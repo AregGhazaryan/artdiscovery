@@ -1,0 +1,36 @@
+.section-accordion {
+    .card {
+        border: none !important;
+
+        .card-header {
+            border-radius: 0 !important;
+            padding: 0;
+        }
+    }
+
+    .section-link {
+        transition: 0.2s;
+        transition-timing-function: ease-out;
+
+        .section {
+            .section-text-dark {
+                color: #37404e !important;
+            }
+
+            .section-text-white {
+                color: #ffffff !important;
+            }
+
+            h3 {
+                margin: 0;
+            }
+        }
+    }
+}
+
+.section-color-pallete {
+    border-radius: 25%;
+    margin: 0 auto;
+    height: 30px;
+    width: 30px;
+}
