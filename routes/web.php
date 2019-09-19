@@ -20,6 +20,7 @@ Route::middleware('admin')->group(function () {
 
     Route::prefix('admin')->group(function () {
         Route::resource('sections', 'SectionController');
+        Route::resource('subsections', 'SubsectionController');
 
         Route::get('/users', 'UserController@Index')->name('admin.users.index');
         Route::get('/videos/create', 'VideoController@create')->name('admin.videos.create');

@@ -5,7 +5,7 @@ return [
   'index' => 'Sections',
   'title_hy' => 'Title in Armenian',
   'title_en' => 'Title in English',
-  'title_en' => 'Title in Russian',
+  'title_ru' => 'Title in Russian',
   'actions' => 'Actions',
   'submit' => 'Submit',
   'success' => 'Section successfully created',

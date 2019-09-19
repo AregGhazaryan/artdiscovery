@@ -7,6 +7,13 @@
     .dropdown-menu {
         .dropdown-item {
             color: #0084ff !important;
+            &:focus{
+                background-color:#0084ff !important;
+                color:white !important;
+                i{
+                    color:white !important;
+                }
+            }
         }
     }
 

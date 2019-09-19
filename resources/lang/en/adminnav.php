@@ -7,4 +7,5 @@ return [
   'sections' => 'Sections',
   'users' => 'Users',
   'purchases' => 'Purchase History',
+  'subsections' => 'Subsections'
 ];

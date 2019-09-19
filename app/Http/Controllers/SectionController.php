@@ -63,9 +63,8 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Section $section)
     {
-        $section = Section::findOrFail($id);
         return view('admin.sections.edit')->with('section', $section);
     }
 
@@ -93,10 +92,9 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Section $section)
     {
-        Section::find($id)->delete();
-
+        $section->delete();
         return redirect(route('sections.index'))->with('message', trans('sections.deleted'));
     }
 }

@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
-use App\Subsection;
+use App\Section;
 
-class Section extends Model
+class Subsection extends Model
 {
     protected $casts = [
         'id' => 'string'
@@ -26,7 +26,7 @@ class Section extends Model
         return $this->title = $this->{'title_' . $language};
     }
 
-    public function subsection(){
-        return $this->hasMany(Subsection::class);
+    public function section(){
+        return $this->belongsTo(Section::class);
     }
 }

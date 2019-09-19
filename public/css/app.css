@@ -10652,6 +10652,15 @@ a.text-dark:focus {
   color: #0084ff !important;
 }
 
+.navbar .dropdown-menu .dropdown-item:focus {
+  background-color: #0084ff !important;
+  color: white !important;
+}
+
+.navbar .dropdown-menu .dropdown-item:focus i {
+  color: white !important;
+}
+
 .navbar .navbar-brand {
   padding: 0px;
 }
@@ -10669,7 +10678,57 @@ html:lang(hy) *:not(i) {
 }
 
 .contain-button-sm {
-  min-width: 107px !important;
+  min-width: -webkit-max-content;
+  min-width: -moz-max-content;
+  min-width: max-content;
+}
+
+@media (min-width: 992px) {
+  .dropdown-menu {
+    animation-duration: 0.3s;
+    -webkit-animation-duration: 0.3s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0rem);
+    opacity: 1;
+  }
+
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes slideIn {
+  0% {
+    -webkit-transform: transform;
+    -webkit-opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    -webkit-opacity: 1;
+  }
+
+  0% {
+    -webkit-transform: translateY(1rem);
+    -webkit-opacity: 0;
+  }
+}
+
+.dropdown-menu {
+  -webkit-animation-name: slideIn;
+  animation-name: slideIn;
 }
 
 .textarea {
@@ -10707,10 +10766,6 @@ html:lang(hy) *:not(i) {
   width: -webkit-min-content !important;
   width: -moz-min-content !important;
   width: min-content !important;
-}
-
-.vis-year-5000 {
-  background-color: red !important;
 }
 
 .section-accordion .card {
