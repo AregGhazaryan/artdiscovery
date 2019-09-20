@@ -12,6 +12,7 @@ return [
   'images' => 'Choose Images',
   'date' => 'Date of the historical event',
   'section' => 'Select Section',
+  'subsection' => 'Select Subsection',
   'notallowed' => 'You cannot upload videos because there are no sections available',
   'submit' => 'Submit',
   'success' => 'Video successfully added',

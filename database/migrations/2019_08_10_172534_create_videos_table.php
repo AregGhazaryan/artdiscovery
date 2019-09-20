@@ -27,6 +27,8 @@ class CreateVideosTable extends Migration
             $table->string('length')->nullable();
             $table->char('section_id',36);
             $table->foreign('section_id')->references('id')->on('sections');
+            $table->char('subsection_id',36);
+            $table->foreign('subsection_id')->references('id')->on('subsections');
             $table->timestamps();
         });
     }

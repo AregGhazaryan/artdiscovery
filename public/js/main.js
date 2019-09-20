@@ -80,5 +80,5 @@ function makeid(container,length) {
     for (var i = 0; i < length; i++) {
         result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
-    $(container).children().children('.timeline').attr('id', result);
+    $(container).children('.timeline').attr('id', result);
 }

@@ -95,6 +95,7 @@ class SectionController extends Controller
     public function destroy(Section $section)
     {
         $section->delete();
+        $section->subsection()->delete();
         return redirect(route('sections.index'))->with('message', trans('sections.deleted'));
     }
 }

@@ -1,12 +1,10 @@
 $(document).ready(function() {
-    // var container = document.getElementById('visualization');
-
-
     $(".timeline").each(function(index) {
 
-        var id = $(this).parent().parent().parent().children('.card-header').children().children().attr('id');
-        var container = document.getElementById($(this).attr('id'));
+        var id = $(this).data('sectionId');
+        var subsection = $(this).data('subSectionId');
 
+        var container = document.getElementById($(this).attr('id'));
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -16,7 +14,8 @@ $(document).ready(function() {
             type: 'POST',
             url: '/getVideos',
             data: {
-                id : id
+                id : id,
+                subsection_id: subsection,
             },
             success: function(response) {
                 console.log(response);

@@ -36,6 +36,15 @@
                         </select>
                 </div>
                 <div class="form-group">
+                        <label for="subsection">
+                            @lang('videoupload.subsection')</label>
+                            <select name="subsection_id" id="subsection" class="form-control">
+                                @foreach($subsections as $section)
+                                <option value="{{ $section->id }}">{{ $section->title }}</option>
+                                @endforeach
+                        </select>
+                    </div>
+                <div class="form-group">
                     <label for="video">
                         @lang('videoupload.file')</label>
                         <div class="custom-file">

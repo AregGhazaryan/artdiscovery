@@ -146,7 +146,8 @@ class VideoController extends Controller
     public function getVideos(Request $request)
     {
         $id = $request->id;
-        $videos = Video::where('section_id', $id)->get();
+        $subsection_id = $request->subsection;
+        $videos = Video::where('section_id', $id)->with('subsection_id', $subsection_id)->get();
         return response()->json($videos);
     }
 
