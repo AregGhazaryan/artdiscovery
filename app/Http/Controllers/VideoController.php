@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Section;
+use App\Subsection;
 use App\Video;
 
 class VideoController extends Controller
@@ -16,7 +17,6 @@ class VideoController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -27,7 +27,8 @@ class VideoController extends Controller
     public function create()
     {
         $sections = Section::all();
-        return view('admin.videos.create')->with('sections', $sections);
+        $subsections = Subsection::all();
+        return view('admin.videos.create', compact('sections', 'subsections'));
     }
 
     /**
@@ -44,36 +45,27 @@ class VideoController extends Controller
             'title_en' => 'string|max:255',
             'title_ru' => 'string|max:255',
             'section_id' => 'required|exists:sections,id',
+            'subsection_id' => 'required|exists:subsections,id',
             'description_en' => 'string',
             'description_hy' => 'string',
             'description_ru' => 'string',
-            'date' => 'string',
+            'start_date' => 'string',
+            'end_date' => 'string|nullable',
             ]
         );
 
         $video = new Video;
-        $explodedDate = explode('-', $request->date);
-        if(empty($explodedDate[1])) {
-            $end_date = null;
-        }else{
-            $end_date = $explodedDate[1];
-        }
-        $start_date = $explodedDate[0];
         $video->title_hy = $request->title_hy;
         $video->title_en = $request->title_en;
         $video->title_ru = $request->title_ru;
         $video->section_id = $request->section_id;
+        $video->subsection_id = $request->subsection_id;
         $video->description_hy = $request->description_hy;
         $video->description_en = $request->description_en;
         $video->description_ru = $request->description_ru;
-        $video->start_date = $start_date;
-        $video->end_date = $end_date;
-        $file = $request->file('video');
-        $fileName = $file->getClientOriginalName();
-        $storagePath = Storage::put('public/videos', $file);
-        $explode = explode("/", $storagePath);
-        $actualFileName = end($explode);
-        $video->video = $actualFileName;
+        $video->start_date = $request->start_date;
+        $video->end_date = $request->end_date;
+        $video->video = $request->video;
         $video->save();
         return redirect(route('admin.videos.adminIndex'))->with('message', trans('videoupload.success'));
     }
@@ -98,8 +90,9 @@ class VideoController extends Controller
     public function edit($id)
     {
         $sections = Section::all();
+        $subsections = Subsection::all();
         $video = Video::findOrFail($id);
-        return view('admin.videos.edit', compact('sections', 'video'));
+        return view('admin.videos.edit', compact('sections', 'subsections', 'video'));
     }
 
     /**
@@ -112,13 +105,16 @@ class VideoController extends Controller
     public function update(Request $request, $id)
     {
         $video = Video::findOrFail($id);
+        $start_date = $explodedDate[0];
+        $video->start_date = $request->start_date;
+        $video->end_date = $request->end_date;
         $video->title_hy = $request->title_hy;
         $video->title_en = $request->title_en;
         $video->title_ru = $request->title_ru;
         $video->description_hy = $request->description_hy;
         $video->description_en = $request->description_en;
         $video->description_ru = $request->description_ru;
-        $video->date = $request->date;
+        $video->video = $request->video;
         $video->save();
         return redirect(route('admin.videos.adminIndex'))->with('message', trans('videoupload.edited'));
     }
@@ -132,7 +128,6 @@ class VideoController extends Controller
     public function destroy($id)
     {
         $video  = Video::findOrFail($id);
-        Storage::delete('public/videos/' . $video->video);
         $video->delete();
         return redirect(route('admin.videos.adminIndex'))->with('message', trans('videoupload.deleted'));
     }
@@ -145,9 +140,13 @@ class VideoController extends Controller
 
     public function getVideos(Request $request)
     {
-        $id = $request->id;
+        $section_id = $request->section;
         $subsection_id = $request->subsection;
-        $videos = Video::where('section_id', $id)->with('subsection_id', $subsection_id)->get();
+        if($subsection_id == '0'){
+          $videos = Video::where('section_id', $section_id)->orderBy('start_date', 'asc')->get();
+        }else{
+          $videos = Video::where('section_id', $section_id)->where('subsection_id', $subsection_id)->orderBy('start_date', 'asc')->get();
+        }
         return response()->json($videos);
     }
 

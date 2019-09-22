@@ -18,6 +18,7 @@ class SectionController extends Controller
         return view('admin.sections.index')->with('sections', $sections);
     }
 
+
     /**
      * Show the form for creating a new resource.
      *

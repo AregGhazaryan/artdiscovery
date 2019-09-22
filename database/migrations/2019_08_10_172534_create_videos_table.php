@@ -21,9 +21,9 @@ class CreateVideosTable extends Migration
             $table->longText('description_hy');
             $table->longText('description_en');
             $table->longText('description_ru');
-            $table->string('video');
-            $table->string('start_date');
-            $table->string('end_date')->nullable();
+            $table->longText('video');
+            $table->date('start_date');
+            $table->date('end_date')->nullable();
             $table->string('length')->nullable();
             $table->char('section_id',36);
             $table->foreign('section_id')->references('id')->on('sections');

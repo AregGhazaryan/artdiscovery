@@ -1,7 +1,13 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="{{ asset('logo.png') }}">
+          <div class="logo-pieces">
+              <img class="logo-piece" src="{{ asset('img/logo-1.png') }}">
+              <img class="logo-piece" src="{{ asset('img/logo-2.png') }}">
+              <img class="logo-piece" src="{{ asset('img/logo-3.png') }}">
+              <img class="logo-piece" src="{{ asset('img/logo-4.png') }}">
+              <img class="text-logo" src="{{ asset('img/logo.png') }}">
+            </div>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -48,7 +54,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}">
-                                <i class="fas fa-user-circle mr-1"></i>@lang('home.profile')
+                            <i class="fas fa-user-circle mr-1"></i>@lang('home.profile')
                         </a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                            document.getElementById('logout-form').submit();">

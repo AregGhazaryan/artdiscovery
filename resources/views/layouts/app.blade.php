@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script>window.Laravel = { csrfToken: '{{ csrf_token() }}'}</script>
     <title>{{ config('app.name', 'Art Discovery') }}</title>
-    <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/flag-icon.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
@@ -36,5 +36,7 @@
     {{-- @else --}}
         {{-- <script src="{{ asset('js/videos.js') }}"></script> --}}
     {{-- @endauth --}}
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/video-scrollers.js') }}" ></script>
 </body>
 </html>

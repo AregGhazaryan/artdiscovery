@@ -1,3 +1,5 @@
+
+
 //
 // var element, bgColor, brightness, r, g, b, hsp;
 //

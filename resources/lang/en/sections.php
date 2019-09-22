@@ -14,4 +14,5 @@ return [
   'color' => 'Color',
   'deleted' => 'Section successfully deleted',
   'edited' => 'Section successfully edited',
+  'all' => 'All Sections',
 ];

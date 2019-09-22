@@ -5,12 +5,14 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
 use App\Section;
+use App\Video;
 
 class Subsection extends Model
 {
     protected $casts = [
         'id' => 'string'
     ];
+    protected $appends = ['title'];
 
     public static function boot()
     {
@@ -28,5 +30,9 @@ class Subsection extends Model
 
     public function section(){
         return $this->belongsTo(Section::class);
+    }
+
+    public function video(){
+        return $this->hasMany(Video::class);
     }
 }

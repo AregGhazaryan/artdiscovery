@@ -8,7 +8,7 @@ return [
   'description_hy' => 'Description in Armenian',
   'description_en' => 'Description in English',
   'description_ru' => 'Description in Russian',
-  'file' => 'Choose Video',
+  'file' => 'Insert Video Code',
   'images' => 'Choose Images',
   'date' => 'Date of the historical event',
   'section' => 'Select Section',
@@ -18,4 +18,6 @@ return [
   'success' => 'Video successfully added',
   'edited' => 'Video successfully edited',
   'deleted' => 'Video successfully deleted',
+  'start_date' => 'Start Date of Event',
+  'end_date' => 'End Date of Event',
 ];

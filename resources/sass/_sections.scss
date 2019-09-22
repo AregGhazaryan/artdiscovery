@@ -1,36 +1,101 @@
-.section-accordion {
-    .card {
-        border: none !important;
-
-        .card-header {
-            border-radius: 0 !important;
-            padding: 0;
-        }
-    }
-
-    .section-link {
-        transition: 0.2s;
-        transition-timing-function: ease-out;
-
-        .section {
-            .section-text-dark {
-                color: #37404e !important;
-            }
-
-            .section-text-white {
-                color: #ffffff !important;
-            }
-
-            h3 {
-                margin: 0;
-            }
-        }
-    }
-}
-
+//Old sections
+// .section-accordion {
+//     .card {
+//         border: none !important;
+//
+//         .card-header {
+//             border-radius: 0 !important;
+//             padding: 0;
+//         }
+//     }
+//
+//     .section-link {
+//         transition: 0.2s;
+//         transition-timing-function: ease-out;
+//
+//         .section {
+//             .section-text-dark {
+//                 color: #37404e !important;
+//             }
+//
+//             .section-text-white {
+//                 color: #ffffff !important;
+//             }
+//
+//             h3 {
+//                 margin: 0;
+//             }
+//         }
+//     }
+// }
+//
 .section-color-pallete {
     border-radius: 25%;
     margin: 0 auto;
     height: 30px;
     width: 30px;
+}
+
+.section-container {
+    box-shadow: 0 0.125rem 0.65rem rgba(0, 0, 0, 0.15) !important;
+    margin-top: 20px;
+    padding: 0;
+
+    .section-headline {
+        border-bottom: 1px #ff8200 solid;
+        height: 48.5px;
+
+        .title {
+            transition:0.2s;
+            transition-timing-function: ease-out;
+            font-size: 1.7rem;
+            margin-left: 10px;
+            padding: 2px;
+
+            &:hover{
+              transition:0.2s;
+              transition-timing-function: ease-in;
+              font-size:1.8rem;
+            }
+        }
+    }
+
+
+    .subsection-picker{
+      cursor: pointer;
+    }
+
+    .inner-container {
+        .scroll-btn {
+            border-radius: 0;
+
+            &:focus {
+                box-shadow: none !important;
+            }
+        }
+
+        .video-body {
+            overflow-x: scroll;
+            box-shadow: inset 0 0 10px rgba(#525252, 0.4);
+            width:100%;
+            min-height: 301.5px;
+
+            .section-body {
+                width: max-content;
+                display: flex;
+                justify-content: space-around;
+                height: 294px;
+
+                &:active {
+                    cursor: grabbing;
+                }
+
+                .video-card {
+                    user-select: none;
+                    border-radius: 0;
+                    box-shadow: 0 0.125rem 0.65rem rgba(0, 0, 0, 0.15) !important;
+                }
+            }
+        }
+    }
 }

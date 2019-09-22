@@ -5,12 +5,15 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
 use App\Subsection;
+use App\Video;
 
 class Section extends Model
 {
     protected $casts = [
         'id' => 'string'
     ];
+
+    protected $appends = ['title'];
 
     public static function boot()
     {
@@ -28,5 +31,9 @@ class Section extends Model
 
     public function subsection(){
         return $this->hasMany(Subsection::class);
+    }
+
+    public function video(){
+        return $this->hasMany(Video::class)->orderBy('start_date', 'asc');
     }
 }

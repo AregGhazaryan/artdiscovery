@@ -1,6 +1,17 @@
 .video-card {
     border-radius: 0;
+    border:none !important;
+    height:252px;
+    width:18rem;
+    transition:0.2s;
+    transition-timing-function: ease-out;
 
+    &:hover{
+      z-index: 1;
+      transition: 0.2s;
+      transition-timing-function: ease-in;
+      transform:scale(1.1);
+    }
     video {
         height: 161px;
     }
@@ -9,5 +20,19 @@
 .modal-body{
     video{
         width: 100%;
+    }
+}
+
+.admin-video-container{
+    flex-wrap: wrap;
+    .video-card{
+        margin-top:20px;
+    }
+}
+
+.card-video-button-wrapper{
+    border-top: 1px #ff8200 solid;
+    .btn{
+        width:49%;
     }
 }

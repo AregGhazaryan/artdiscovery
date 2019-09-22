@@ -6,10 +6,13 @@
     <h2 class="text-center">
         @lang('videos.title')</h2>
         <hr>
-        <div class="d-flex justify-content-around admin-video-container">
+        <div class="d-flex justify-content-around">
+            @if($videos->isNotEmpty())
                 @foreach($videos as $video)
                 <div class="card video-card shadow" style="width: 18rem;">
-                    {!! $video->video !!}
+                    <video class="playback" id="playback{{ $video->id }}" controls controlsList="nodownload" oncontextmenu="return false;">
+                        <source class="source" src="{{ asset('storage/videos') }}/{{ $video->video }}">
+                    </video>
                     <div class="card-body border-top">
                         <h5 class="card-title">{{ str_limit($video->title, 35)}}</h5>
                         <p class="card-text">{{ str_limit($video->description, 200)  }}</p>
@@ -30,6 +33,7 @@
                     </div>
                 </div>
                 @endforeach
+                @endif
         </div>
 </div>
 

@@ -1,31 +1,113 @@
-.navbar {
-    .nav-link {
-        color: #002bcf !important;
+.dropdown-menu {
+  padding: 0;
 
+  .dropdown-item {
+    color: #0084ff !important;
+
+    &:focus {
+      background-color: #0084ff !important;
+      color: white !important;
+
+      i {
+        color: white !important;
+      }
     }
 
-    .dropdown-menu {
-        .dropdown-item {
-            color: #0084ff !important;
-            &:focus{
-                background-color:#0084ff !important;
-                color:white !important;
-                i{
-                    color:white !important;
-                }
-            }
-        }
+    &:active {
+      background-color: #0084ff !important;
+      color: white !important;
     }
-
-    .navbar-brand {
-        padding: 0px;
-
-        img {
-            height: 55px;
-        }
-    }
+  }
 }
 
-.admin-nav{
-    box-shadow: 0 0.3rem .25rem rgba(0,0,0,.075) !important;
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    transform-origin: center;
+  }
+}
+
+@-moz-keyframes backspin {
+  100% {
+    -moz-transform: rotate(-360deg);
+  }
+}
+
+@-webkit-keyframes backspin {
+  100% {
+    -webkit-transform: rotate(-360deg);
+  }
+}
+
+@keyframes backspin {
+  100% {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+    transform-origin: center;
+  }
+}
+
+.logo-pieces {
+  width: 200px;
+  height: 56px;
+
+
+  .logo-piece {
+    position: absolute;
+  }
+
+    .logo-piece{
+      &:nth-child(even) {
+        animation: spin 5s linear infinite;
+        -moz-animation: spin 5s linear infinite;
+        -webkit-animation: spin 5s linear infinite;
+      }
+  
+      &:nth-child(odd) {
+        animation: backspin 10s linear infinite;
+        -moz-animation: backspin 10s linear infinite;
+        -webkit-animation: backspin 10s linear infinite;
+      }
+    }
+
+
+
+  .text-logo {
+    height: 50px;
+    margin-left: 59px;
+    margin-top: 5px;
+  }
+}
+
+
+.navbar {
+  .nav-link {
+    color: #002bcf !important;
+
+  }
+
+  .navbar-brand {
+    padding: 0px;
+
+    img {
+      height: 55px;
+    }
+  }
+}
+
+.admin-nav {
+  box-shadow: 0 0.3rem .25rem rgba(0, 0, 0, .075) !important;
 }
