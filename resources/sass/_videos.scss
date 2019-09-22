@@ -6,6 +6,9 @@
     transition:0.2s;
     transition-timing-function: ease-out;
 
+    iframe{
+      width:100% !important;
+    }
     &:hover{
       z-index: 1;
       transition: 0.2s;

@@ -10777,6 +10777,10 @@ a.text-dark:focus {
   transition-timing-function: ease-out;
 }
 
+.video-card iframe {
+  width: 100% !important;
+}
+
 .video-card:hover {
   z-index: 1;
   transition: 0.2s;
