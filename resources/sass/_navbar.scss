@@ -21,40 +21,56 @@
 }
 
 @-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
   100% {
     -moz-transform: rotate(360deg);
   }
 }
 
 @-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
   100% {
     -webkit-transform: rotate(360deg);
   }
 }
 
 @keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
   100% {
     -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
   }
 }
 
 @-moz-keyframes backspin {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
   100% {
     -moz-transform: rotate(-360deg);
   }
 }
 
 @-webkit-keyframes backspin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
   100% {
     -webkit-transform: rotate(-360deg);
   }
 }
 
 @keyframes backspin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
   100% {
     -webkit-transform: rotate(-360deg);
-    transform: rotate(-360deg);
   }
 }
 
@@ -66,21 +82,20 @@
   }
 
   .navbar-brand {
-    padding: 0px;
-
     svg {
+      overflow:unset !important;
       height: 55px;
       
   .logo-piece {
-    transform-origin: 16.4% 51.5%;
+    transform-origin: 16.7% 61%;
     image-rendering: auto !important;
   }
 
     .logo-piece{
       &:nth-child(even) {
-        animation: spin 5s linear infinite;
-        -moz-animation: spin 5s linear infinite;
-        -webkit-animation: spin 5s linear infinite;
+        animation: spin 15s linear infinite;
+        -moz-animation: spin 15s linear infinite;
+        -webkit-animation: spin 15s linear infinite;
       }
   
       &:nth-child(odd) {

@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
 *:not(i){
-    font-family: 'Josefin Sans', sans-serif !important;
+  font-family: 'Josefin Sans', sans-serif !important;
+}
+
+html:lang(hy){
+  *:not(i){
+    font-family: 'Trebuchet MS', sans-serif !important;
+  }
 }
 
 .contain-button-sm{
@@ -11,6 +18,10 @@
     &:focus{
         box-shadow: none !important;
     }
+}
+
+main{
+  margin-top:100px;
 }
 //
 //

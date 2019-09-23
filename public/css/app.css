@@ -10667,26 +10667,42 @@ a.text-dark:focus {
 }
 
 @-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
   100% {
     -webkit-transform: rotate(360deg);
   }
 }
 
 @keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
   100% {
-    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
   }
 }
 
 @-webkit-keyframes backspin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
   100% {
     -webkit-transform: rotate(-360deg);
   }
 }
 
 @keyframes backspin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
   100% {
-    transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
   }
 }
 
@@ -10694,23 +10710,20 @@ a.text-dark:focus {
   color: #002bcf !important;
 }
 
-.navbar .navbar-brand {
-  padding: 0px;
-}
-
 .navbar .navbar-brand svg {
+  overflow: unset !important;
   height: 55px;
 }
 
 .navbar .navbar-brand svg .logo-piece {
-  transform-origin: 16.4% 51.5%;
+  transform-origin: 16.7% 61%;
   image-rendering: auto !important;
 }
 
 .navbar .navbar-brand svg .logo-piece:nth-child(even) {
-  animation: spin 5s linear infinite;
-  -moz-animation: spin 5s linear infinite;
-  -webkit-animation: spin 5s linear infinite;
+  animation: spin 15s linear infinite;
+  -moz-animation: spin 15s linear infinite;
+  -webkit-animation: spin 15s linear infinite;
 }
 
 .navbar .navbar-brand svg .logo-piece:nth-child(odd) {
@@ -10727,6 +10740,10 @@ a.text-dark:focus {
   font-family: "Josefin Sans", sans-serif !important;
 }
 
+html:lang(hy) *:not(i) {
+  font-family: "Trebuchet MS", sans-serif !important;
+}
+
 .contain-button-sm {
   min-width: -webkit-max-content;
   min-width: -moz-max-content;
@@ -10735,6 +10752,10 @@ a.text-dark:focus {
 
 .btn:focus {
   box-shadow: none !important;
+}
+
+main {
+  margin-top: 100px;
 }
 
 .spinner-grow {
@@ -10757,6 +10778,12 @@ a.text-dark:focus {
 }
 
 .video-card {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border-radius: 0;
+  box-shadow: 0 0.125rem 0.65rem rgba(0, 0, 0, 0.15);
   border-radius: 0;
   border: none !important;
   height: 252px;
@@ -10773,7 +10800,8 @@ a.text-dark:focus {
   z-index: 1;
   transition: 0.2s;
   transition-timing-function: ease-in;
-  transform: scale(1.1);
+  box-shadow: 0 0.125rem 1.05rem rgba(0, 0, 0, 0.35) !important;
+  transform: scale(1.05);
 }
 
 .video-card video {
@@ -10859,6 +10887,7 @@ a.text-dark:focus {
   box-shadow: inset 0 0 10px rgba(82, 82, 82, 0.4);
   width: 100%;
   min-height: 301.5px;
+  padding: 10px 10px 0px 10px;
 }
 
 .section-container .inner-container .video-body .section-body {
@@ -10873,15 +10902,6 @@ a.text-dark:focus {
 .section-container .inner-container .video-body .section-body:active {
   cursor: -webkit-grabbing;
   cursor: grabbing;
-}
-
-.section-container .inner-container .video-body .section-body .video-card {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  border-radius: 0;
-  box-shadow: 0 0.125rem 0.65rem rgba(0, 0, 0, 0.15) !important;
 }
 
 .btn-orange {
