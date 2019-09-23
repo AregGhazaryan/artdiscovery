@@ -10699,6 +10699,7 @@ a.text-dark:focus {
 
 .logo-pieces .logo-piece {
   position: absolute;
+  image-rendering: auto !important;
 }
 
 .logo-pieces .logo-piece:nth-child(even) {
