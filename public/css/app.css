@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
@@ -10675,7 +10675,6 @@ a.text-dark:focus {
 @keyframes spin {
   100% {
     transform: rotate(360deg);
-    transform-origin: center;
   }
 }
 
@@ -10688,36 +10687,7 @@ a.text-dark:focus {
 @keyframes backspin {
   100% {
     transform: rotate(-360deg);
-    transform-origin: center;
   }
-}
-
-.logo-pieces {
-  width: 200px;
-  height: 56px;
-}
-
-.logo-pieces .logo-piece {
-  position: absolute;
-  image-rendering: auto !important;
-}
-
-.logo-pieces .logo-piece:nth-child(even) {
-  animation: spin 5s linear infinite;
-  -moz-animation: spin 5s linear infinite;
-  -webkit-animation: spin 5s linear infinite;
-}
-
-.logo-pieces .logo-piece:nth-child(odd) {
-  animation: backspin 10s linear infinite;
-  -moz-animation: backspin 10s linear infinite;
-  -webkit-animation: backspin 10s linear infinite;
-}
-
-.logo-pieces .text-logo {
-  height: 50px;
-  margin-left: 59px;
-  margin-top: 5px;
 }
 
 .navbar .nav-link {
@@ -10728,8 +10698,25 @@ a.text-dark:focus {
   padding: 0px;
 }
 
-.navbar .navbar-brand img {
+.navbar .navbar-brand svg {
   height: 55px;
+}
+
+.navbar .navbar-brand svg .logo-piece {
+  transform-origin: 16.4% 51.5%;
+  image-rendering: auto !important;
+}
+
+.navbar .navbar-brand svg .logo-piece:nth-child(even) {
+  animation: spin 5s linear infinite;
+  -moz-animation: spin 5s linear infinite;
+  -webkit-animation: spin 5s linear infinite;
+}
+
+.navbar .navbar-brand svg .logo-piece:nth-child(odd) {
+  animation: backspin 10s linear infinite;
+  -moz-animation: backspin 10s linear infinite;
+  -webkit-animation: backspin 10s linear infinite;
 }
 
 .admin-nav {
@@ -10737,7 +10724,7 @@ a.text-dark:focus {
 }
 
 *:not(i) {
-  font-family: "Trebuchet MS", sans-serif !important;
+  font-family: "Josefin Sans", sans-serif !important;
 }
 
 .contain-button-sm {

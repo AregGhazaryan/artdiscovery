@@ -36,7 +36,6 @@
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
-    transform-origin: center;
   }
 }
 
@@ -56,17 +55,24 @@
   100% {
     -webkit-transform: rotate(-360deg);
     transform: rotate(-360deg);
-    transform-origin: center;
   }
 }
 
-.logo-pieces {
-  width: 200px;
-  height: 56px;
 
+.navbar {
+  .nav-link {
+    color: #002bcf !important;
 
+  }
+
+  .navbar-brand {
+    padding: 0px;
+
+    svg {
+      height: 55px;
+      
   .logo-piece {
-    position: absolute;
+    transform-origin: 16.4% 51.5%;
     image-rendering: auto !important;
   }
 
@@ -83,28 +89,6 @@
         -webkit-animation: backspin 10s linear infinite;
       }
     }
-
-
-
-  .text-logo {
-    height: 50px;
-    margin-left: 59px;
-    margin-top: 5px;
-  }
-}
-
-
-.navbar {
-  .nav-link {
-    color: #002bcf !important;
-
-  }
-
-  .navbar-brand {
-    padding: 0px;
-
-    img {
-      height: 55px;
     }
   }
 }
