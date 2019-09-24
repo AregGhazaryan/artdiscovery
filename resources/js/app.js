@@ -30,3 +30,16 @@ require('./bootstrap');
 // const app = new Vue({
 //     el: '#app',
 // });
+
+
+$(window).scroll(function() {
+  if ($(this).scrollTop()) {
+      $('#scroll-to-top').fadeIn();
+  } else {
+      $('#scroll-to-top').fadeOut();
+  }
+});
+
+$("#scroll-to-top").click(function () {
+ $("html, body").animate({scrollTop: 0}, 1000);
+});

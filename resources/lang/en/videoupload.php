@@ -20,4 +20,5 @@ return [
   'deleted' => 'Video successfully deleted',
   'start_date' => 'Start Date of Event',
   'end_date' => 'End Date of Event',
+  'price' => 'Price',
 ];

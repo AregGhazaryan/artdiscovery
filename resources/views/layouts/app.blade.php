@@ -25,6 +25,7 @@
         <main>
             @yield('content')
         </main>
+        <div id='scroll-to-top' class='btn btn-lg btn-success'><i class="fas fa-angle-double-up"></i></div>
     </div>
     {{-- @auth --}}
         {{-- @if(Auth::user()->type !== 'admin') --}}

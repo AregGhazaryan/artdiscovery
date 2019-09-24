@@ -36934,6 +36934,20 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // window
 //     el: '#app',
 // });
 
+
+$(window).scroll(function () {
+  if ($(this).scrollTop()) {
+    $('#scroll-to-top').fadeIn();
+  } else {
+    $('#scroll-to-top').fadeOut();
+  }
+});
+$("#scroll-to-top").click(function () {
+  $("html, body").animate({
+    scrollTop: 0
+  }, 1000);
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

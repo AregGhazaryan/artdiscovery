@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
 use App\Section;
+use App\VideoImage;
 
 class Video extends Model
 {
@@ -35,10 +36,14 @@ class Video extends Model
     }
 
     public function images(){
-        return $this->hasMany('App\VideoImage');
+        return $this->hasMany(VideoImage::class);
     }
 
     public function section(){
         return $this->belongsTo(Section::class);
+    }
+
+    public function currency(){
+      return $this->belongsTo(Currency::class);
     }
 }

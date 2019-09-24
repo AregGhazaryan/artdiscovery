@@ -4,8 +4,7 @@
   box-shadow: 0 0.125rem 0.65rem rgba(0, 0, 0, 0.15);
   border-radius: 0;
   border: none !important;
-  height: 252px;
-  width: 18rem;
+  min-width: 18rem;
   transition: 0.2s;
   transition-timing-function: ease-out;
   iframe {
@@ -15,7 +14,7 @@
   &:hover {
     z-index: 1;
     transition: 0.2s;
-    transition-timing-function: ease-in;
+    transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
     box-shadow: 0 0.125rem 1.05rem rgba(0, 0, 0, 0.35) !important;
     transform: scale(1.05);
   }

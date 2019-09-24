@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Section;
 use App\Subsection;
 use App\Video;
+use App\Currency;
 
 class VideoController extends Controller
 {
@@ -28,7 +29,8 @@ class VideoController extends Controller
     {
         $sections = Section::all();
         $subsections = Subsection::all();
-        return view('admin.videos.create', compact('sections', 'subsections'));
+        $currencies = Currency::all();
+        return view('admin.videos.create', compact('sections', 'subsections','currencies'));
     }
 
     /**
@@ -63,6 +65,8 @@ class VideoController extends Controller
         $video->description_hy = $request->description_hy;
         $video->description_en = $request->description_en;
         $video->description_ru = $request->description_ru;
+        $video->price = $request->price;
+        $video->currency_id = $request->currency_id;
         $video->start_date = $request->start_date;
         $video->end_date = $request->end_date;
         $video->video = $request->video;
@@ -92,7 +96,8 @@ class VideoController extends Controller
         $sections = Section::all();
         $subsections = Subsection::all();
         $video = Video::findOrFail($id);
-        return view('admin.videos.edit', compact('sections', 'subsections', 'video'));
+        $currencies = Currency::all();
+        return view('admin.videos.edit', compact('sections', 'subsections', 'video', 'currencies'));
     }
 
     /**
@@ -105,9 +110,10 @@ class VideoController extends Controller
     public function update(Request $request, $id)
     {
         $video = Video::findOrFail($id);
-        $start_date = $explodedDate[0];
         $video->start_date = $request->start_date;
         $video->end_date = $request->end_date;
+        $video->currency_id = $request->currency_id;
+        $video->price = $request->price;
         $video->title_hy = $request->title_hy;
         $video->title_en = $request->title_en;
         $video->title_ru = $request->title_ru;

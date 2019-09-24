@@ -7,3 +7,14 @@
         color: white;
     }
 }
+
+
+#scroll-to-top {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border-radius: 50px 0px 0px;
+  cursor: pointer;
+  padding: 12px 34px;
+  display: none;
+}
