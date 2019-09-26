@@ -55,6 +55,22 @@ class VideoController extends Controller
             'end_date' => 'string|nullable',
             ]
         );
+        $dateOne = explode('-',$request->start_date);
+        if(!array_key_exists(1,$dateOne)){
+            $dateOne[1] = '01';
+        }
+        if(!array_key_exists(2,$dateOne)){
+            $dateOne[2] = '01';
+        }
+        $start_date = implode('-',$dateOne);
+        $dateTwo = explode('-',$request->end_date);
+        if(!array_key_exists(1,$dateTwo)){
+            $dateTwo[1] = '01';
+        }
+        if(!array_key_exists(2,$dateTwo)){
+            $dateTwo[2] = '01';
+        }
+        $end_date = implode('-',$dateTwo);
 
         $video = new Video;
         $video->title_hy = $request->title_hy;
@@ -67,8 +83,8 @@ class VideoController extends Controller
         $video->description_ru = $request->description_ru;
         $video->price = $request->price;
         $video->currency_id = $request->currency_id;
-        $video->start_date = $request->start_date;
-        $video->end_date = $request->end_date;
+        $video->start_date = $start_date;
+        $video->end_date = $end_date;
         $video->video = $request->video;
         $video->save();
         return redirect(route('admin.videos.adminIndex'))->with('message', trans('videoupload.success'));
@@ -140,7 +156,7 @@ class VideoController extends Controller
 
     public function AdminVideos()
     {
-        $videos = Video::paginate(10);
+        $videos = Video::paginate(20);
         return view('admin.videos.index')->with('videos', $videos);
     }
 

@@ -6,7 +6,41 @@
     <h2 class="text-center">
         @lang('videos.title')</h2>
         <hr>
-        <div class="d-flex justify-content-around admin-video-container">
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Section</th>
+                    <th scope="col">Subsection</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+
+        {{-- <div class="d-flex justify-content-around admin-video-container">
+            
                 @foreach($videos as $video)
                 <div class="card video-card shadow" style="width: 18rem;">
                     {!! $video->video !!}
@@ -30,7 +64,7 @@
                     </div>
                 </div>
                 @endforeach
-        </div>
+        </div> --}}
 </div>
 
 @endsection
