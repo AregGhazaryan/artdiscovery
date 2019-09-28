@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^12.4.0",
         "mdbootstrap": "^4.8.9",
         "vis-timeline": "^5.1.0"
     }

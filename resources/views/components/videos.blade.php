@@ -17,7 +17,7 @@
     </button>
     <div class="dropdown-menu">
       <a class="dropdown-item subsection-picker" data-section="{{ $section->id }}"
-        data-subsection="0">@lang('sections.all')</a>
+        data-subsection="0" data-name="{{$section->title}}">@lang('sections.all')</a>
       @foreach($section->subsection as $subsection)
       <a class="dropdown-item subsection-picker" data-section="{{ $section->id }}"
         data-subsection="{{ $subsection->id }}">{{$subsection->title}}</a>
@@ -35,7 +35,11 @@
     <div class="section-body">
       @foreach($section->video as $video)
       <div class="video-card card m-3" style="width: 18rem;">
-        {!! $video->video !!}
+        <div class="h-100 buy-btn-wrapper">
+          <a href="#" class="btn btn-success buy-btn"><i class="fas fa-unlock mr-2"></i>@lang('store.buy')</a>
+        </div>
+
+        {{-- {!! $video->video !!} --}}
         <div class="card-body p-2">
           <h5 class="card-title m-0">{{ $video->title }}</h5>
           <div class="text-muted mb-1">
@@ -46,7 +50,26 @@
           </div>
           <div class="d-flex justify-content-between pt-2 card-video-button-wrapper">
             <button class="btn-sm btn btn-orange"><i class="fas fa-cart-plus mr-2"></i>@lang('store.addtocart')</button>
-            <a href="#" class="btn btn-sm btn-success"><i class="fas fa-money-bill mr-2"></i>@lang('store.buy')</a>
+            <a href="#" class="btn btn-info text-white" data-toggle="modal" data-target="#m{{ $video->id }}"><i class="fas fa-info-circle mr-1"></i>@lang('store.info')</a>
+          </div>
+        </div>
+      </div>
+      {{-- Video modal --}}
+      <div class="modal fade" id="m{{ $video->id }}" tabindex="-1" role="dialog" aria-labelledby="Video info" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">{{ $video->title }}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              {!! $video->description !!}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">@lang('store.close')</button>
+            </div>
           </div>
         </div>
       </div>
@@ -60,3 +83,4 @@
 @endif
 </div>
 @endforeach
+<!-- Modal -->

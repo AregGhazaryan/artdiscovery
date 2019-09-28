@@ -12,4 +12,8 @@ class PagesController extends Controller
         $sections = Section::all();
         return view('pages.index')->with('sections', $sections);
     }
+
+    public function contact(){
+      
+    }
 }

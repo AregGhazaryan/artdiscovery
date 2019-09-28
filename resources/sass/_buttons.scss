@@ -1,20 +1,40 @@
 .btn-orange {
+  color: white;
+  background-color: $orange;
+
+  &:hover {
+    background-color: darken($orange, 10);
     color: white;
-    background-color: $orange;
-
-    &:hover {
-        background-color:darken($orange, 10);
-        color: white;
-    }
+  }
 }
-
 
 #scroll-to-top {
   position: fixed;
   bottom: 0;
   right: 0;
-  border-radius: 50px 0px 0px;
+  border-radius: 50px 0 0;
   cursor: pointer;
   padding: 12px 34px;
   display: none;
+}
+
+.buy-btn-wrapper {
+  background-color: rgb(242, 242, 242);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+
+  .buy-btn {
+    border-radius: 0px;
+    font-size: 1rem !important;
+
+    i {
+      vertical-align: middle;
+    }
+  }
+
+  &:after {
+    vertical-align: middle;
+  }
 }

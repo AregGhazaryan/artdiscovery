@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
 use App\Section;
+use App\Subsection;
 use App\VideoImage;
 
 class Video extends Model
@@ -12,7 +13,7 @@ class Video extends Model
     protected $casts = [
         'id' => 'string'
     ];
-    
+
     protected $appends = ['title', 'description'];
 
     public static function boot()
@@ -35,6 +36,15 @@ class Video extends Model
         return $this->description = $this->{'description_' . $language};
     }
 
+    public function getDateAttribute()
+    {
+      if($this->end_date){
+        return $this->start_date . ' - ' . $this->end_date;
+      }else{
+        return $this->start_date;
+      }
+    }
+
     public function images(){
         return $this->hasMany(VideoImage::class);
     }
@@ -45,5 +55,9 @@ class Video extends Model
 
     public function currency(){
       return $this->belongsTo(Currency::class);
+    }
+
+    public function subsection(){
+      return $this->belongsTo(Subsection::class);
     }
 }

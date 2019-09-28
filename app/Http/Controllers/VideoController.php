@@ -149,9 +149,9 @@ class VideoController extends Controller
         $section_id = $request->section;
         $subsection_id = $request->subsection;
         if($subsection_id == '0'){
-          $videos = Video::where('section_id', $section_id)->orderBy('start_date', 'asc')->get();
+          $videos = Video::with('currency')->where('section_id', $section_id)->orderBy('start_date', 'asc')->get();
         }else{
-          $videos = Video::where('section_id', $section_id)->where('subsection_id', $subsection_id)->orderBy('start_date', 'asc')->get();
+          $videos = Video::with('currency')->where('section_id', $section_id)->where('subsection_id', $subsection_id)->orderBy('start_date', 'asc')->get();
         }
         return response()->json($videos);
     }

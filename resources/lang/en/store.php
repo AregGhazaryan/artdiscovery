@@ -1,6 +1,8 @@
-<?php 
+<?php
 
 return [
   'addtocart' => 'Add',
-  'buy' => 'Buy'
+  'buy' => 'Buy',
+  'info' => 'Details',
+  'close' => 'Close',
 ];

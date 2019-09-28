@@ -1,14 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 *:not(i){
-  font-family: 'Josefin Sans', sans-serif !important;
+  font-family: 'Trebuchet MS', sans-serif;
 }
 
-html:lang(hy){
-  *:not(i){
-    font-family: 'Trebuchet MS', sans-serif !important;
-  }
-}
 
 .contain-button-sm{
   min-width: max-content;

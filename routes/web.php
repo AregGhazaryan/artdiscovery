@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PagesController@index');
+Route::get('/', 'PagesController@index')->name('home');
 Route::post('/getVideos', 'VideoController@getVideos');
 Route::post('/getVideo', 'VideoController@getVideo');
 
@@ -47,4 +47,5 @@ Route::middleware('auth')->group(function () {
 
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@store']);
 
+Route::get('/contact', 'PagesController@contact');
 Auth::routes();

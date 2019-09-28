@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito'); // Variables
 @import 'variables'; // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import 'animation';
 @import 'navbar';
 @import 'global';
 @import 'inputs';
@@ -9,3 +10,7 @@
 @import 'timeline';
 @import 'sections';
 @import 'buttons';
+@import 'waves';
+@import 'tables';
+@import 'footers';
+@import 'dropdowns';

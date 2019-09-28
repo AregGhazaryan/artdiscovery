@@ -3,34 +3,67 @@
 @include('includes.adminnav')
 @include('includes.messages')
 <div class="container shadow p-4">
-    <h2 class="text-center">
-        @lang('videos.title')</h2>
-        <hr>
-        <div class="d-flex justify-content-around admin-video-container">
-                @foreach($videos as $video)
-                <div class="card video-card shadow" style="width: 18rem;">
-                    {!! $video->video !!}
-                    <div class="card-body border-top">
-                        <h5 class="card-title">{{ str_limit($video->title, 35)}}</h5>
-                        <p class="card-text">{{ str_limit($video->description, 200)  }}</p>
-                        <div class="cart-footer d-flex justify-content-between">
-                            <a href="{{ route('admin.videos.edit', $video->id) }}" class="btn btn-primary">
-                                <i class="fas fa-edit mr-2"></i>
-                                @lang('videos.edit')
-                            </a>
-                            <form action="{{ route('admin.videos.delete', $video->id) }}" method="post">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="fas fa-edit mr-2"></i>
-                                    @lang('videos.delete')
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-        </div>
+  <h2 class="text-center">
+    @lang('videos.title')</h2>
+    <hr>
+    {{ $videos->links() }}
+    <div class="d-flex justify-content-around admin-video-container table-responsive">
+      <table class="table centered-table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">
+              @lang('adminvideos.title')</th>
+            <th scope="col">
+              @lang('adminvideos.dates')</th>
+            <th scope="col">
+              @lang('adminvideos.section')</th>
+            <th scope="col">
+              @lang('adminvideos.subsection')</th>
+            <th scope="col">
+              @lang('adminvideos.actions')</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($videos as $video)
+          <tr>
+            <td>
+              {{ $loop->iteration }}
+            </td>
+            <td>
+              {{ $video->title }}
+            </td>
+            <td>
+              {{ $video->date }}
+            </td>
+            <td>
+              {{ $video->section->title }}
+            </td>
+            <td>
+              {{ $video->subsection->title }}
+            </td>
+            <td>
+              <div class="d-flex justify-content-center">
+
+              <a href="{{ route('admin.videos.edit', $video->id) }}" class="btn btn-sm btn-primary mr-1">
+                <i class="fas fa-edit"></i>
+                @lang('videos.edit')
+              </a>
+              <form action="{{ route('admin.videos.delete', $video->id) }}" method="post">
+                @csrf
+                @method('delete')
+                <button type="submit" class="btn btn-sm btn-danger">
+                  <i class="fas fa-trash-alt"></i>
+                  @lang('videos.delete')
+                </button>
+              </form>
+            </div>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+</div>
 </div>
 
 @endsection

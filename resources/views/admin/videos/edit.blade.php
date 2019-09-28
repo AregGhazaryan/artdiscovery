@@ -84,7 +84,7 @@
                             @endforeach
                         </select>
                       </div>
-                      <input type="text" class="form-control" aria-label="price" name="price" placeholder="@lang('videoupload.price')">
+                      <input type="text" class="form-control" aria-label="price" name="price" value="{{ $video->price }}" placeholder="@lang('videoupload.price')">
                     </div>
                 </div>
               </div>
@@ -93,20 +93,20 @@
         <div class="form-group">
           <label for="description-hy">
             @lang('videoupload.description_hy')</label>
-            <textarea name="description_hy" class="form-control textarea" id="description-hy" placeholder="@lang('videoupload.description_hy')">{{ $video->description_hy }}</textarea>
+            <textarea name="description_hy" class="form-control textarea ckeditor" id="description-hy" placeholder="@lang('videoupload.description_hy')">{{ $video->description_hy }}</textarea>
         </div>
         <div class="form-group">
           <label for="description-en">
             @lang('videoupload.description_en')</label>
-            <textarea name="description_en" class="form-control textarea" id="description-en" placeholder="@lang('videoupload.description_en')">{{ $video->description_en }}</textarea>
+            <textarea name="description_en" class="form-control textarea ckeditor" id="description-en" placeholder="@lang('videoupload.description_en')">{{ $video->description_en }}</textarea>
         </div>
         <div class="form-group">
           <label for="description-ru">
             @lang('videoupload.description_ru')</label>
-            <textarea name="description_ru" class="form-control textarea" id="description-ru" placeholder="@lang('videoupload.description_ru')">{{ $video->description_ru }}</textarea>
+            <textarea name="description_ru" class="form-control textarea ckeditor" id="description-ru" placeholder="@lang('videoupload.description_ru')">{{ $video->description_ru }}</textarea>
         </div>
         <div class="text-center">
-          <input class="btn btn-success" type="submit" value="@lang('videoupload.submit')">
+          <input class="btn btn-success btn-lg" type="submit" value="@lang('videoupload.submit')">
         </div>
       </form>
 </div>
