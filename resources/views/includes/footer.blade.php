@@ -1,74 +1,56 @@
-<!-- Footer -->
 <footer class="page-footer font-small stylish-color-dark pt-4">
-
-  <!-- Footer Links -->
   <div class="container text-center text-md-left">
-
-    <!-- Grid row -->
     <div class="row">
-
-      <!-- Grid column -->
       <div class="col-md-4 mx-auto">
-
-        <!-- Content -->
-        <img src="{{ asset('img/footer-logo.png') }}" class="footer-logo"/>
-
+        <img src="{{ asset('img/footer-logo.png') }}" class="footer-logo" />
       </div>
-      <!-- Grid column -->
-
       <hr class="clearfix w-100 d-md-none">
-
-      <!-- Grid column -->
       <div class="col mx-auto text-center">
-
-        <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">@lang('footer.website')</h5>
-        <ul class="list-unstyled">
-          <li>
-            <a href="#">@lang('footer.privacy')</a>
-          </li>
-          <li>
-            <a href="#!">@lang('footer.services')</a>
-          </li>
-        </ul>
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">
+          @lang('footer.website')</h5>
+          <ul class="list-unstyled">
+            <li>
+              <a href="#">
+                @lang('footer.privacy')</a>
+            </li>
+            <li>
+              <a href="#!">
+                @lang('footer.services')</a>
+            </li>
+          </ul>
       </div>
-      <!-- Grid column -->
-
       <hr class="clearfix w-100 d-md-none">
-      <!-- Grid column -->
       <div class="col mx-auto text-center">
-
-        <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">@lang('footer.aboutus')</h5>
-
-        <ul class="list-unstyled">
-          <li>
-            <a href="#!">@lang('footer.contact')</a>
-          </li>
-          <li>
-            <a href="#!">@lang('footer.faq')</a>
-          </li>
-        </ul>
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">
+          @lang('footer.aboutus')</h5>
+          <ul class="list-unstyled">
+            <li>
+              <a href="#!">
+                @lang('footer.contact')</a>
+            </li>
+            <li>
+              <a href="#!">
+                @lang('footer.faq')</a>
+            </li>
+          </ul>
       </div>
       <hr class="clearfix w-100 d-md-none">
     </div>
   </div>
   <hr>
-@guest
-  <!-- Call to action -->
+  @guest
   <ul class="list-unstyled list-inline text-center py-2">
     <li class="list-inline-item">
-      <h5 class="mb-1">@lang('footer.register')</h5>
+      <h5 class="mb-1">
+        @lang('footer.register')</h5>
     </li>
     <li class="list-inline-item">
-      <a href="{{route('register')}}" class="btn btn-danger btn-rounded">@lang('footer.registerbtn')</a>
+      <a href="{{route('register')}}" class="btn btn-danger btn-rounded">
+        @lang('footer.registerbtn')</a>
     </li>
   </ul>
-  <!-- Call to action -->
   <hr>
-@endguest
-
-  <!-- Social buttons -->
+  @endguest
   <ul class="list-unstyled list-inline text-center">
     <li class="list-inline-item">
       <a class="btn-floating btn-fb mx-1" href="https://www.facebook.com/artdiscovery.online/" target="_blank">

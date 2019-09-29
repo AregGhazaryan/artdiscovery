@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Http\File;
 use App\Section;
 use App\Subsection;
 use App\Video;
@@ -30,7 +32,7 @@ class VideoController extends Controller
         $sections = Section::all();
         $subsections = Subsection::all();
         $currencies = Currency::all();
-        return view('admin.videos.create', compact('sections', 'subsections','currencies'));
+        return view('admin.videos.create', compact('sections', 'subsections', 'currencies'));
     }
 
     /**
@@ -55,22 +57,22 @@ class VideoController extends Controller
             'end_date' => 'string|nullable',
             ]
         );
-        $dateOne = explode('-',$request->start_date);
-        if(!array_key_exists(1,$dateOne)){
+        $dateOne = explode('-', $request->start_date);
+        if(!array_key_exists(1, $dateOne)) {
             $dateOne[1] = '01';
         }
-        if(!array_key_exists(2,$dateOne)){
+        if(!array_key_exists(2, $dateOne)) {
             $dateOne[2] = '01';
         }
-        $start_date = implode('-',$dateOne);
-        $dateTwo = explode('-',$request->end_date);
-        if(!array_key_exists(1,$dateTwo)){
+        $start_date = implode('-', $dateOne);
+        $dateTwo = explode('-', $request->end_date);
+        if(!array_key_exists(1, $dateTwo)) {
             $dateTwo[1] = '01';
         }
-        if(!array_key_exists(2,$dateTwo)){
+        if(!array_key_exists(2, $dateTwo)) {
             $dateTwo[2] = '01';
         }
-        $end_date = implode('-',$dateTwo);
+        $end_date = implode('-', $dateTwo);
 
         $video = new Video;
         $video->title_hy = $request->title_hy;
@@ -164,10 +166,10 @@ class VideoController extends Controller
     {
         $section_id = $request->section;
         $subsection_id = $request->subsection;
-        if($subsection_id == '0'){
-          $videos = Video::with('currency')->where('section_id', $section_id)->orderBy('start_date', 'asc')->get();
+        if($subsection_id == '0') {
+            $videos = Video::with('currency')->where('section_id', $section_id)->orderBy('start_date', 'asc')->get();
         }else{
-          $videos = Video::with('currency')->where('section_id', $section_id)->where('subsection_id', $subsection_id)->orderBy('start_date', 'asc')->get();
+            $videos = Video::with('currency')->where('section_id', $section_id)->where('subsection_id', $subsection_id)->orderBy('start_date', 'asc')->get();
         }
         return response()->json($videos);
     }
@@ -177,5 +179,32 @@ class VideoController extends Controller
         $id = $request->id;
         $video = Video::where('id', $id)->first();
         return response()->json($video);
+    }
+
+    public function imageUpload(Request $request)
+    {
+        $request->validate(['upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',]);
+        $imageName = time().'.'.$request->upload->getClientOriginalExtension();
+        $path = Storage::putFileAs('public/video_images', new File($request->upload), $imageName);
+        // $path = Storage::putFile('public/video_images', $request->upload);
+        $exp = explode('/',$path);
+        unset($exp[0]);
+        $realpath = implode('/',$exp);
+        // $data = [
+        //   "url" => route('home').'//storage/' .$realpath,
+        // ];
+        $data = [
+          'resourceType' => 'Files',
+          'currentFolder'  => [
+            'path' => '/storage/video_images',
+            'url' => '/uploadImg',
+            'acl' => 255
+          ],
+          'fileName' => $imageName,
+          'uploaded' => 1,
+        ];
+
+        return response()->json($data, 200,[], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
+        // return response()->json(route('home').'/storage/'.$realpath, 200);
     }
 }

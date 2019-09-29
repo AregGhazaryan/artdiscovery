@@ -19,7 +19,8 @@ $teal: #4dc0b5;
 $cyan: #6cb2eb;
 
 $theme-colors: (
-  primary: ,
-  info: 
-  success:
+  primary: $blue,
+  info: rgb(0, 163, 255),
+  success: rgb(0, 218, 74),
+  orange: $orange,
 );

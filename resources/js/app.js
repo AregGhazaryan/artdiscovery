@@ -5,6 +5,8 @@
  */
 
 require('./bootstrap');
+require('./ckeditor5-build-classic/build/ckeditor.js');
+
 
 // window.Vue = require('vue');
 
@@ -50,27 +52,63 @@ $("#scroll-to-top").click(function () {
 
 var allEditors = document.querySelectorAll('.ckeditor');
 for (var i = 0; i < allEditors.length; ++i) {
-  ClassicEditor.create(allEditors[i]);
+  ClassicEditor.create(allEditors[i],{
+     ckfinder: {
+            uploadUrl: '/uploadImg'
+        }
+  });
 }
 
-! function (t) {
-  "use strict";
-  t("#sidebarToggle, #sidebarToggleTop").on("click", function (o) {
-    t("body").toggleClass("sidebar-toggled"), t(".sidebar").toggleClass("toggled"), t(".sidebar").hasClass("toggled") && t(".sidebar .collapse").collapse("hide")
-  }), t(window).resize(function () {
-    t(window).width() < 768 && t(".sidebar .collapse").collapse("hide")
-  }), t("body.fixed-nav .sidebar").on("mousewheel DOMMouseScroll wheel", function (o) {
-    if (768 < t(window).width()) {
-      var e = o.originalEvent,
-        l = e.wheelDelta || -e.detail;
-      this.scrollTop += 30 * (l < 0 ? 1 : -1), o.preventDefault()
-    }
-  }), t(document).on("scroll", function () {
-    100 < t(this).scrollTop() ? t(".scroll-to-top").fadeIn() : t(".scroll-to-top").fadeOut()
-  }), t(document).on("click", "a.scroll-to-top", function (o) {
-    var e = t(this);
-    t("html, body").stop().animate({
-      scrollTop: t(e.attr("href")).offset().top
-    }, 1e3, "easeInOutExpo"), o.preventDefault()
-  })
-}(jQuery);
+// Video scrollers
+
+const slider = document.querySelectorAll('.video-body');
+var isOnDiv = false;
+
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.forEach(function (el) {
+  el.addEventListener('mousedown', (e) => {
+    isDown = true;
+    el.classList.add('active');
+    startX = e.pageX - el.offsetLeft;
+    scrollLeft = el.scrollLeft;
+  });
+  el.addEventListener('mouseleave', () => {
+    isDown = false;
+    el.classList.remove('active');
+  });
+  el.addEventListener('mouseup', () => {
+    isDown = false;
+    el.classList.remove('active');
+  });
+  el.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - el.offsetLeft;
+    const walk = (x - startX) * 3; //scroll-fast
+    el.scrollLeft = scrollLeft - walk;
+  });
+});
+
+
+
+$('.scroll-right-button').click(function () {
+  event.preventDefault();
+  $(this).siblings('.video-body').clearQueue();
+  $(this).siblings('.video-body').animate({
+    scrollLeft: "+=300px"
+  }, "slow");
+});
+
+$('.scroll-left-button').click(function () {
+  event.preventDefault();
+  $(this).siblings('.video-body').clearQueue();
+  $(this).siblings('.video-body').animate({
+    scrollLeft: "-=300px"
+  }, "slow");
+});
+
+
+// End of video scrollers

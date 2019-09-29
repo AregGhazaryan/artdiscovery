@@ -17,11 +17,11 @@ Route::post('/getVideo', 'VideoController@getVideo');
 
 Route::middleware('admin')->group(function () {
     Route::resource('videos', 'VideoController');
+    Route::post('/uploadImg', 'VideoController@imageUpload');
 
     Route::prefix('admin')->group(function () {
         Route::resource('sections', 'SectionController');
         Route::resource('subsections', 'SubsectionController');
-
         Route::get('/users', 'UserController@Index')->name('admin.users.index');
         Route::get('/videos/create', 'VideoController@create')->name('admin.videos.create');
         Route::post('/videos/store', 'VideoController@store')->name('admin.videos.store');

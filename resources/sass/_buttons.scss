@@ -1,10 +1,27 @@
 .btn-orange {
   color: white;
-  background-color: $orange;
 
   &:hover {
-    background-color: darken($orange, 10);
     color: white;
+  }
+}
+
+.btn {
+  border: none;
+}
+
+.card-video-button-wrapper {
+  border-top: 1px #ff8200 solid;
+
+  .btn {
+    &:first-child {
+      border-radius: 50px 0 0 50px;
+    }
+    width: 49%;
+  }
+
+  .btn-info {
+    border-radius: 0 50px 50px 0;
   }
 }
 
@@ -26,7 +43,7 @@
   text-align: center;
 
   .buy-btn {
-    border-radius: 0px;
+    border-radius: 0;
     font-size: 1rem !important;
 
     i {

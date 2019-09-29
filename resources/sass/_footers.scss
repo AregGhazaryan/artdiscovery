@@ -1,23 +1,25 @@
-// Footers
 footer {
-  margin-top:80px;
+  margin-top: 80px;
   background-color: rgb(42, 42, 42);
 
-  .footer-logo{
-    width: 200px; 
+  .footer-logo {
+    width: 200px;
   }
 
   &.page-footer {
     bottom: 0;
     color: white;
+
     .container-fluid {
       width: auto;
     }
+
     .footer-copyright {
       overflow: hidden;
       color: rgb(235, 235, 235);
       background-color: rgb(62, 62, 62);
     }
+
     a {
       color: white;
     }
