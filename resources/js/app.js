@@ -53,9 +53,20 @@ $("#scroll-to-top").click(function () {
 var allEditors = document.querySelectorAll('.ckeditor');
 for (var i = 0; i < allEditors.length; ++i) {
   ClassicEditor.create(allEditors[i],{
-     ckfinder: {
-            uploadUrl: '/uploadImg'
-        }
+  
+    simpleUpload: {
+    // The URL that the images are uploaded to.
+    uploadUrl: '/uploadImg',
+
+    // Headers sent along with the XMLHttpRequest to the upload server.
+    headers: {
+        'X-CSRF-TOKEN': 'CSFR-Token',
+        Authorization: 'Bearer <JSON Web Token>'
+    }
+  }
+     // ckfinder: {
+     //        uploadUrl: '/uploadImg'
+     //    }
   });
 }
 

@@ -190,19 +190,19 @@ class VideoController extends Controller
         $exp = explode('/',$path);
         unset($exp[0]);
         $realpath = implode('/',$exp);
-        // $data = [
-        //   "url" => route('home').'//storage/' .$realpath,
-        // ];
         $data = [
-          'resourceType' => 'Files',
-          'currentFolder'  => [
-            'path' => '/storage/video_images',
-            'url' => '/uploadImg',
-            'acl' => 255
-          ],
-          'fileName' => $imageName,
-          'uploaded' => 1,
+          "url" => route('home').'//storage/' .$realpath,
         ];
+        // $data = [
+        //   'resourceType' => 'Files',
+        //   'currentFolder'  => [
+        //     'path' => '/storage/video_images',
+        //     'url' => '/uploadImg',
+        //     'acl' => 255
+        //   ],
+        //   'fileName' => $imageName,
+        //   'uploaded' => 1,
+        // ];
 
         return response()->json($data, 200,[], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
         // return response()->json(route('home').'/storage/'.$realpath, 200);
