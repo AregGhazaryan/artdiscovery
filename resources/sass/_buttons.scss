@@ -14,15 +14,15 @@
   border-top: 1px #ff8200 solid;
 
   .btn {
-    &:first-child {
-      border-radius: 50px 0 0 50px;
-    }
+    // &:first-child {
+    //   border-radius: 50px 0 0 50px;
+    // }
     width: 49%;
   }
-
-  .btn-info {
-    border-radius: 0 50px 50px 0;
-  }
+  //
+  // .btn-info {
+  //   border-radius: 0 50px 50px 0;
+  // }
 }
 
 #scroll-to-top {
