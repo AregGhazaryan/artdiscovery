@@ -1,3 +1,19 @@
+.cls-1 {
+  fill: #139ee9;
+}
+
+.cls-2 {
+  fill: #002bcf;
+}
+
+.cls-3 {
+  fill: #ff9d00;
+}
+
+.cls-4 {
+  fill: #ffec00;
+}
+
 .dropdown-menu {
   padding: 0;
 
@@ -20,71 +36,27 @@
   }
 }
 
-@-moz-keyframes spin {
-  0% {
-    -moz-transform: rotate(0deg);
-  }
-
-  100% {
-    -moz-transform: rotate(360deg);
-  }
-}
-
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-@keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-@-moz-keyframes backspin {
-  0% {
-    -moz-transform: rotate(0deg);
-  }
-
-  100% {
-    -moz-transform: rotate(-360deg);
-  }
-}
-
-@-webkit-keyframes backspin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(-360deg);
-  }
-}
-
-@keyframes backspin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(-360deg);
-  }
-}
-
-
 .navbar {
-  .nav-link {
-    color: #002bcf !important;
+  line-height: normal !important;
 
+  .nav-item {
+    .nav-link {
+      color: #002bcf !important;
+      border-radius: 5px;
+      transition: 0.2s;
+      transition-timing-function: ease-in;
+      height: min-content;
+      margin-left: 10px;
+      padding: 0.7rem !important;
+
+      &:hover {
+        transition: 0.3s;
+        transition-timing-function: ease-out;
+        box-shadow: 0 0 0.2rem #bfbfbf;
+        background-color: $blue;
+        color: white !important;
+      }
+    }
   }
 
   .navbar-brand {
@@ -103,16 +75,19 @@
           -moz-animation: spin 20s linear infinite;
           -webkit-animation: spin 20s linear infinite;
         }
+
         &.backward-1 {
           animation: backspin 20s linear infinite;
           -moz-animation: backspin 20s linear infinite;
           -webkit-animation: backspin 20s linear infinite;
         }
+
         &.forward-2 {
           animation: spin 5s linear infinite;
           -moz-animation: spin 5s linear infinite;
           -webkit-animation: spin 5s linear infinite;
         }
+
         &.backward-2 {
           animation: backspin 5s linear infinite;
           -moz-animation: backspin 5s linear infinite;
@@ -124,5 +99,5 @@
 }
 
 .admin-nav {
-  box-shadow: 0 0.3rem .25rem rgba(0, 0, 0, .075) !important;
+  box-shadow: 0 0.3rem 0.25rem rgba(0, 0, 0, .075) !important;
 }

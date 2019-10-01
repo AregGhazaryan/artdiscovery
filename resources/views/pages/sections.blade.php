@@ -1,6 +1,4 @@
 @extends('layouts.app')
 @section('content')
-  <div class="admin-dashboard">
-
-  </div>
+@include('components.videos')
 @endsection

@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'PagesController@index')->name('home');
+Route::get('/sections', 'PagesController@sections')->name('sections');
 Route::post('/getVideos', 'VideoController@getVideos');
 Route::post('/getVideo', 'VideoController@getVideo');
 

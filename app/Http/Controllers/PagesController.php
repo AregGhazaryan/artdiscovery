@@ -9,11 +9,15 @@ use App\Section;
 class PagesController extends Controller
 {
     public function index(){
-        $sections = Section::all();
-        return view('pages.index')->with('sections', $sections);
+        return view('pages.index');
     }
 
     public function contact(){
-      
+
+    }
+
+    public function sections(){
+      $sections = Section::all();
+      return view('pages.sections')->with('sections', $sections);
     }
 }

@@ -2,26 +2,6 @@
   <div class="container">
     <a class="navbar-brand" href="{{ url('/') }}">
       <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 746.97 233.39">
-        <defs>
-          <style>
-            .cls-1 {
-              fill: #139ee9;
-            }
-
-            .cls-2 {
-              fill: #002bcf;
-            }
-
-            .cls-3 {
-              fill: #ff9d00;
-            }
-
-            .cls-4 {
-              fill: #ffec00;
-            }
-
-          </style>
-        </defs>
         <title>final-21</title>
         <path class="logo-piece backward-1 cls-1" d="M38.48,105.17l-8.88-3.9c16.12-39,60.5-67.7,109.32-60.14A102.59,102.59,0,1,1,21.59,155.4l9.63-1.22c4.54,29.21,18.86,51.95,43.9,67.48a89.34,89.34,0,0,0,56.78,13.22A92.69,92.69,0,0,0,155.48,55.53a92.85,92.85,0,0,0-117,49.64Z"
           transform="translate(-1.67 -20.05)" />
@@ -62,11 +42,14 @@
             <i class="fas fa-globe-americas mr-1"></i>
             @lang('home.language')
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu d-flex flex-column" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/lang/hy"><span class="flag-icon flag-icon-am mr-2"></span>Հայերեն</a>
             <a class="dropdown-item" href="/lang/en"><span class="flag-icon flag-icon-gb mr-2"></span>English</a>
             <a class="dropdown-item" href="/lang/ru"><span class="flag-icon flag-icon-ru mr-2"></span>Русский</a>
           </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('sections') }}"><i class="fas fa-list mr-2"></i>@lang('sections.index')</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
@@ -100,10 +83,10 @@
                                            document.getElementById('logout-form').submit();">
                   <i class="fas fa-sign-out-alt mr-1"></i>
                   @lang('home.logout')
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                  </form>
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  @csrf
-                </form>
           </div>
         </li>
         @endguest

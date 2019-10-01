@@ -37734,12 +37734,35 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+// window.Vue = require('vue');
+
+/**
+ * The following block of code may be used to automatically register your
+ * Vue components. It will recursively scan this directory for the Vue
+ * components and automatically register them with their "basename".
+ *
+ * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ */
+// const files = require.context('./', true, /\.vue$/i);
+// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+// Vue.component('art-section', require('./components/Section.vue').default);
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+//
+// const app = new Vue({
+//     el: '#app',
+// });
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./@ckeditor/ckeditor5-build-classic/build/ckeditor.js */ "./resources/js/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"); // import Image from './@ckeditor/ckeditor5-image/src/image';
 // import ImageToolbar from './@ckeditor/ckeditor5-image/src/imagetoolbar';
 // import ImageCaption from './@ckeditor/ckeditor5-image/src/imagecaption';
 // import ImageStyle from './@ckeditor/ckeditor5-image/src/imagestyle';
+// import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
 
 
 var MyUploadAdapter =
@@ -37831,29 +37854,7 @@ function MyCustomUploadAdapterPlugin(editor) {
     // Configure the URL to the upload script in your back-end here!
     return new MyUploadAdapter(loader);
   };
-} // window.Vue = require('vue');
-
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
-// Vue.component('art-section', require('./components/Section.vue').default);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-//
-// const app = new Vue({
-//     el: '#app',
-// });
-
+}
 
 $(window).scroll(function () {
   if ($(this).scrollTop()) {
@@ -37874,8 +37875,7 @@ for (var i = 0; i < allEditors.length; ++i) {
   ClassicEditor.create(allEditors[i], {
     extraPlugins: [MyCustomUploadAdapterPlugin],
     image: {
-      resizeUnit: 'px',
-      toolbar: ['imageTextAlternative', '|', 'imageStyle:full', 'imageStyle:side']
+      resizeUnit: 'px'
     },
     simpleUpload: {
       uploadUrl: '/uploadImg',
