@@ -2,7 +2,7 @@
 @section('content')
 @include('includes.adminnav')
 @include('includes.messages')
-<div class="container shadow p-4">
+<div class="container shadow p-4 bg-white">
   <h2 class="text-center">
     @lang('videos.title')</h2>
     <hr>

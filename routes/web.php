@@ -15,6 +15,7 @@ Route::get('/', 'PagesController@index')->name('home');
 Route::get('/sections', 'PagesController@sections')->name('sections');
 Route::post('/getVideos', 'VideoController@getVideos');
 Route::post('/getVideo', 'VideoController@getVideo');
+Route::get('/video/{id}', 'PagesController@video')->name('page.video');
 
 Route::middleware('admin')->group(function () {
     Route::resource('videos', 'VideoController');

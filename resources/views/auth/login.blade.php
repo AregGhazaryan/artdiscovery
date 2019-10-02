@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">@lang('login.title')</div>
+            <div class="card shadow mt-5 border-0 auth-card">
+                <div class="card-header bg-white text-center border-bottom border-orange">@lang('login.title')</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">

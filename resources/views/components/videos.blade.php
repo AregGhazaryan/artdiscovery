@@ -8,7 +8,6 @@
     <span class="sr-only">Loading...</span>
   </div>
 
-
   @if($section->subsection)
   <div class="btn-group">
     <button type="button" class="btn btn-sm btn-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
@@ -41,7 +40,7 @@
 
         {{-- {!! $video->video !!} --}}
         <div class="card-body p-2">
-          <h5 class="card-title m-0">{{ $video->title }}</h5>
+          <h5 class="card-title m-0"><a href="{{ route('page.video', $video->id) }}" title="{{ $video->title }}">{{ $video->title }}</a></h5>
           <div class="text-muted mb-1">
             <small>
               {{ $video->start_date }}{{ $video->end_date ? ' - ' . $video->end_date  : '' }} | <i class="fas fa-eye"></i>  {{ $video->views }}

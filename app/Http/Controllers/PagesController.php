@@ -16,6 +16,11 @@ class PagesController extends Controller
 
     }
 
+    public function video($id){
+      $video = Video::where('id', $id)->first();
+      return view('pages.video')->with('video', $video);
+    }
+
     public function sections(){
       $sections = Section::all();
       return view('pages.sections')->with('sections', $sections);

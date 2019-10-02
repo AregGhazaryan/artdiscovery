@@ -6,7 +6,7 @@
         {{ session()->get('message') }}
     </div>
     @endif
-    <div class="container shadow p-4">
+    <div class="container shadow p-4 bg-white">
         <a href="{{ route('sections.create') }}" class="btn btn-success btn-sm mb-2"><i class="fas fa-plus mr-2"></i>
             @lang('sections.create')</a>
             <h2 class="text-center">

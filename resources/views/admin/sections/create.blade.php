@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @include('includes.adminnav')
-<div class="container shadow p-4">
+<div class="container shadow p-4 bg-white">
     <h2 class="text-center">
         @lang('sections.create')</h2>
         <form action="{{ route('sections.store') }}" method="post">

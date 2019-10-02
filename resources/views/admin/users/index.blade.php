@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @include('includes.adminnav')
-<div class="container shadow p-4">
+<div class="container shadow p-4 bg-white">
     <h2 class="text-center">
         @lang('users.index')</h2>
         <table class="table text-center">
