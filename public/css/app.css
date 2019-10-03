@@ -11111,17 +11111,36 @@ main {
   height: 100%;
 }
 
-.video-container iframe {
-  min-height: 527px;
+.video-container .video-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%;
 }
 
-.video-container .video-title {
-  padding: 0 0.5rem 0.2rem;
+.video-container .video-wrapper iframe {
+  padding: 15px 15px 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-container .video-headline .video-title-wrapper .video-title {
   font-size: 20pt;
+}
+
+.video-container .video-headline .video-title-wrapper .video-views {
+  font-size: 16pt;
 }
 
 .video-container .video-description {
   text-align: justify;
+}
+
+.video-container .video-description a {
+  font-size: 14pt;
 }
 
 .video-container .video-description a i {
@@ -11515,5 +11534,29 @@ footer.page-footer a {
 .auth-card .card-header {
   background: none !important;
   font-size: 17pt;
+}
+
+.profile-container {
+  min-height: 400px;
+}
+
+.profile-container .profile-image-wrapper .profile-image {
+  padding: 20px 0 0 10px;
+}
+
+.profile-container .profile-image-wrapper .profile-image img {
+  border-radius: 100%;
+  box-shadow: 0 0 0.2rem #bababa;
+  -o-object-fit: fill;
+     object-fit: fill;
+  width: 250px;
+}
+
+.profile-container .profile-details-wrapper {
+  padding: 20px 0;
+}
+
+.profile-container .profile-details-wrapper .profile-details .list-group .list-group-item:first-child {
+  font-size: 14pt;
 }
 

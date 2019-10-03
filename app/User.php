@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id','first_name','last_name', 'email', 'password', 'gender',
+        'id','first_name','last_name', 'email', 'password', 'gender', 'address', 'agreed_to_terms', 'mobile', 'avatar'
     ];
 
     /**
@@ -43,8 +43,19 @@ class User extends Authenticatable
     public static function boot()
     {
         parent::boot();
-        self::creating(function ($model) {
-            $model->id = (string) Uuid::generate(4);
-        });
+        self::creating(
+            function ($model) {
+                $model->id = (string) Uuid::generate(4);
+            }
+        );
+    }
+
+    public function getGenderAttribute($gender)
+    {
+        if($gender == 'male') {
+            return $this->gender = trans('registration.male');
+        }else{
+            return $this->gender = trans('registration.female');
+        }
     }
 }

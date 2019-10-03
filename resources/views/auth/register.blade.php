@@ -60,6 +60,38 @@
                   </div>
               </div>
               <div class="form-group row">
+                <label for="mobile" class="col-md-4 col-form-label text-md-right">
+                  @lang('registration.mobile')</label>
+
+                  <div class="col-md-6">
+                    <input id="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror"
+                    name="mobile" value="{{ old('mobile') }}" required autocomplete="mobile">
+
+                    @error('mobile')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="address" class="col-md-4 col-form-label text-md-right">
+                  @lang('registration.address')</label>
+
+                  <div class="col-md-6">
+                    <input id="address" type="text" class="form-control @error('address') is-invalid @enderror"
+                    name="address" value="{{ old('address') }}" required autocomplete="address">
+
+                    @error('address')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+              </div>
+
+              <div class="form-group row">
                 <label for="gender" class="col-md-4 col-form-label text-md-right">
                   @lang('registration.gender')</label>
                   <div class="col-md-6">
@@ -92,8 +124,21 @@
                   @lang('registration.passconfirm')</label>
 
                   <div class="col-md-6">
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                    <input id="password-confirm" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password">
                   </div>
+              </div>
+
+              <div class="form-group">
+                @error('terms')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+                <div class="custom-control custom-checkbox row text-center">
+                  <input type="checkbox" class="custom-control-input @error('terms') is-invalid @enderror" id="terms" name="terms">
+                  <label class="custom-control-label" for="terms">
+                    @lang('registration.terms')</label>
+                </div>
               </div>
 
               <div class="form-group row d-flex justify-content-center">

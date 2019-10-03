@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return [
   'firstname' => 'First Name',
@@ -9,5 +9,8 @@ return [
   'female' => 'Female',
   'password' => 'Password',
   'passconfirm' => 'Confirm Password',
-  'register' => 'Register'
+  'register' => 'Register',
+  'mobile' => 'Mobile Number',
+  'terms' => 'I agree with <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>',
+  'address' => 'Address',
 ];

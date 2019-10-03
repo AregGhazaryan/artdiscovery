@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
         // Uses first & second Middleware
     });
 
+    Route::get('/profile/{id}', 'ProfileController@show')->name('profile.show');
     Route::resource('users', 'UserController');
 });
 

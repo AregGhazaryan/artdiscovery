@@ -75,7 +75,7 @@
               <a class="dropdown-item" href="{{ route('cpanel') }}"><i class="fas fa-user-cog mr-1"></i>
                 @lang('home.cpanel')</a>
                 @endif
-                <a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}">
+                <a class="dropdown-item" href="{{ route('profile.show', Auth::user()->id) }}">
                   <i class="fas fa-user-circle mr-1"></i>
                   @lang('home.profile')
                 </a>

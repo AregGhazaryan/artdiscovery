@@ -4,4 +4,5 @@ return [
   'title' => 'Videos',
   'edit' => 'Edit',
   'delete' => 'Delete',
+  'views' => 'Views',
 ];
