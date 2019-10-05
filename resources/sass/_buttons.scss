@@ -14,15 +14,8 @@
   border-top: 1px #ff8200 solid;
 
   .btn {
-    // &:first-child {
-    //   border-radius: 50px 0 0 50px;
-    // }
     width: 49%;
   }
-  //
-  // .btn-info {
-  //   border-radius: 0 50px 50px 0;
-  // }
 }
 
 #scroll-to-top {
@@ -33,6 +26,7 @@
   cursor: pointer;
   padding: 12px 34px;
   display: none;
+  z-index: 1;
 }
 
 .buy-btn-wrapper {

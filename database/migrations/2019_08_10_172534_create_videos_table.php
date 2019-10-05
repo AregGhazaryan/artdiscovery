@@ -22,13 +22,13 @@ class CreateVideosTable extends Migration
             $table->longText('description_en');
             $table->longText('description_ru');
             $table->longText('video');
+            $table->string('thumbnail')->nullable();
             $table->integer('price');
             $table->integer('views')->default(0);
             $table->char('currency_id',36);
             $table->foreign('currency_id')->references('id')->on('currencies');
-            $table->date('start_date');
+            $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->string('length')->nullable();
             $table->char('section_id',36);
             $table->foreign('section_id')->references('id')->on('sections');
             $table->char('subsection_id',36);

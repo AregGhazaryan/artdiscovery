@@ -1,0 +1,12 @@
+.under-construction{
+  text-shadow: 0rem 0rem 0.2rem #c8c8c8;
+  i{
+    height: 100%;
+    &::before{
+      vertical-align:sub;
+    }
+  }
+    h1{
+      font-weight: 600 !important;
+    }
+}

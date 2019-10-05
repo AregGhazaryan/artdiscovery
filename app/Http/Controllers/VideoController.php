@@ -55,24 +55,40 @@ class VideoController extends Controller
             'description_ru' => 'string',
             'start_date' => 'string',
             'end_date' => 'string|nullable',
+            'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             ]
         );
-        $dateOne = explode('-', $request->start_date);
-        if(!array_key_exists(1, $dateOne)) {
+
+        if(empty($dateOne)){
+          $start_date = null;
+        }else{
+          $dateOne = explode('-', $request->start_date);
+          if(!array_key_exists(1, $dateOne)) {
             $dateOne[1] = '01';
-        }
-        if(!array_key_exists(2, $dateOne)) {
+          }
+          if(!array_key_exists(2, $dateOne)) {
             $dateOne[2] = '01';
+          }
+          $start_date = implode('-', $dateOne);
         }
-        $start_date = implode('-', $dateOne);
-        $dateTwo = explode('-', $request->end_date);
-        if(!array_key_exists(1, $dateTwo)) {
+
+        if(empty($dateTwo)){
+          $end_date = null;
+        }else{
+          $dateTwo = explode('-', $request->end_date);
+          if(!array_key_exists(1, $dateTwo)) {
             $dateTwo[1] = '01';
-        }
-        if(!array_key_exists(2, $dateTwo)) {
+          }
+          if(!array_key_exists(2, $dateTwo)) {
             $dateTwo[2] = '01';
+          }
+          $end_date = implode('-', $dateTwo);
         }
-        $end_date = implode('-', $dateTwo);
+
+
+        $imageName = time().'.'.$request->thumbnail->getClientOriginalExtension();
+        $path = Storage::putFileAs('public/video_thumbnails', new File($request->thumbnail), $imageName);
+        $exp = explode('/',$path);
 
         $video = new Video;
         $video->title_hy = $request->title_hy;
@@ -83,6 +99,7 @@ class VideoController extends Controller
         $video->description_hy = $request->description_hy;
         $video->description_en = $request->description_en;
         $video->description_ru = $request->description_ru;
+        $video->thumbnail = $imageName;
         $video->price = $request->price;
         $video->currency_id = $request->currency_id;
         $video->start_date = $start_date;
@@ -182,25 +199,12 @@ class VideoController extends Controller
         $request->validate(['upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',]);
         $imageName = time().'.'.$request->upload->getClientOriginalExtension();
         $path = Storage::putFileAs('public/video_images', new File($request->upload), $imageName);
-        // $path = Storage::putFile('public/video_images', $request->upload);
         $exp = explode('/',$path);
         unset($exp[0]);
         $realpath = implode('/',$exp);
         $data = [
           "url" => route('home').'//storage/' .$realpath,
         ];
-        // $data = [
-        //   'resourceType' => 'Files',
-        //   'currentFolder'  => [
-        //     'path' => '/storage/video_images',
-        //     'url' => '/uploadImg',
-        //     'acl' => 255
-        //   ],
-        //   'fileName' => $imageName,
-        //   'uploaded' => 1,
-        // ];
-
         return response()->json($data, 200,[], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
-        // return response()->json(route('home').'/storage/'.$realpath, 200);
     }
 }

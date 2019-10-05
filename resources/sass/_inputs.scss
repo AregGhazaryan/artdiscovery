@@ -1,17 +1,31 @@
-.textarea{
-  max-height:500px !important;
-  min-height:300px;
+.textarea {
+  max-height: 500px !important;
+  min-height: 300px;
 }
 
-.video-preview{
+.video-preview {
   display: none;
 }
 
-.image-card{
-    .card-img-top{
-        img{
-            max-height: 150px !important;
-            object-fit: contain !important;
-        }
+.image-card {
+  .card-img-top {
+    img {
+      max-height: 150px !important;
+      object-fit: contain !important;
     }
+  }
+}
+
+.thumbnail-preview-wrapper {
+  display: none;
+
+  .thumbnail-preview {
+    width: 370px;
+    padding: 5px;
+    box-shadow: 0 0 0.4rem #c4c4c4;
+    margin: auto;
+    display: block;
+    height: 230px;
+    object-fit: cover;
+  }
 }

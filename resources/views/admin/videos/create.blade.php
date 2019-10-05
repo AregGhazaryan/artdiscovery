@@ -45,7 +45,21 @@
                 @endforeach
               </select>
           </div>
+
+          <div class="form-group col">
+            <label for="video-thumbnail">
+              @lang('videoupload.thumbnail')</label>
+              <div class="custom-file">
+                <input type="file" name='thumbnail' class="custom-file-input" id="video-thumbnail" required>
+                <label class="custom-file-label" for="video-thumbnail"></label>
+              </div>
+          </div>
+
         </div>
+        <div id="wrapper" class="thumbnail-preview-wrapper">
+          <img id="img" class="thumbnail-preview">
+        </div>
+
         <div class="form-group">
           <label for="video">
             @lang('videoupload.file')</label>
@@ -117,43 +131,60 @@
       </form>
 </div>
 <script>
-  $(document).on("change", ".video", function(evt) {
-    let parent = $('#video_here').parent();
-    parent.slideDown(400, function() {
-      $(this).show();
-    });
-    var source = $('#video_here');
-    source[0].src = URL.createObjectURL(this.files[0]);
-    source.parent()[0].load();
-  });
+  // $(document).on("change", ".video", function(evt) {
+  //   let parent = $('#video_here').parent();
+  //   parent.slideDown(400, function() {
+  //     $(this).show();
+  //   });
+  //   var source = $('#video_here');
+  //   source[0].src = URL.createObjectURL(this.files[0]);
+  //   source.parent()[0].load();
+  // });
 
 
-  $(function() {
-    // Multiple images preview in browser
-    var imagesPreview = function(input, placeToInsertImagePreview) {
+  // $(function() {
+  //   // Multiple images preview in browser
+  //   var imagesPreview = function(input, placeToInsertImagePreview) {
+  //
+  //     if (input.files) {
+  //       var filesAmount = input.files.length;
+  //
+  //       for (i = 0; i < filesAmount; i++) {
+  //         var reader = new FileReader();
+  //
+  //         reader.onload = function(event) {
+  //           $(placeToInsertImagePreview).append(
+  //             '<div class="card image-card m-2 shadow"><div class="card-img-top"><img src="' +
+  //             event.target.result + '"></div></div>')
+  //         }
+  //
+  //         reader.readAsDataURL(input.files[i]);
+  //       }
+  //     }
+  //
+  //   };
+  //
+  //   $('#images').on('change', function() {
+  //     $('#images-here').empty();
+  //     imagesPreview(this, '#images-here');
+  //   });
+  // });
 
-      if (input.files) {
-        var filesAmount = input.files.length;
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
 
-        for (i = 0; i < filesAmount; i++) {
-          var reader = new FileReader();
-
-          reader.onload = function(event) {
-            $(placeToInsertImagePreview).append(
-              '<div class="card image-card m-2 shadow"><div class="card-img-top"><img src="' +
-              event.target.result + '"></div></div>')
-          }
-
-          reader.readAsDataURL(input.files[i]);
-        }
+      reader.onload = function(e) {
+        $('#wrapper').slideDown();
+        $('#img').attr('src', e.target.result);
       }
 
-    };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
 
-    $('#images').on('change', function() {
-      $('#images-here').empty();
-      imagesPreview(this, '#images-here');
-    });
+  $("#video-thumbnail").change(function() {
+    readURL(this);
   });
 </script>
 @else

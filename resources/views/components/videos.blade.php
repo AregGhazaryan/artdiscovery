@@ -34,9 +34,15 @@
     <div class="section-body">
       @foreach($section->video as $video)
       <div class="video-card card m-3" style="width: 18rem;">
+        @if($video->thumbnail)
+        <div class="h-100 buy-btn-wrapper" style="background-image: url('storage/video_thumbnails/{{ $video->thumbnail }}')">
+          <a href="#" class="btn btn-success buy-btn"><i class="fas fa-unlock mr-2"></i>@lang('store.buy')</a>
+        </div>
+      @else
         <div class="h-100 buy-btn-wrapper">
           <a href="#" class="btn btn-success buy-btn"><i class="fas fa-unlock mr-2"></i>@lang('store.buy')</a>
         </div>
+      @endif
 
         {{-- {!! $video->video !!} --}}
         <div class="card-body p-2">

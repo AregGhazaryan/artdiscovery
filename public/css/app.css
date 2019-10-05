@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=Open+Sans&display=swap);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
@@ -11056,6 +11056,21 @@ main {
      object-fit: contain !important;
 }
 
+.thumbnail-preview-wrapper {
+  display: none;
+}
+
+.thumbnail-preview-wrapper .thumbnail-preview {
+  width: 370px;
+  padding: 5px;
+  box-shadow: 0 0 0.4rem #c4c4c4;
+  margin: auto;
+  display: block;
+  height: 230px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .video-card {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -11177,6 +11192,15 @@ main {
   width: min-content !important;
 }
 
+@media only screen and (max-width: 600px) {
+  .section-headline .title {
+    max-width: 120px;
+    white-space: inherit;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
 .section-color-pallete {
   border-radius: 25%;
   margin: 0 auto;
@@ -11194,6 +11218,15 @@ main {
 .section-container .section-headline {
   border-bottom: 1px #ff8200 solid;
   height: 48.5px;
+}
+
+.section-container .section-headline .spinner-grow {
+  height: 33px;
+  width: 33px;
+}
+
+.section-container .section-headline .btn-group .dropdown-menu {
+  left: -60px;
 }
 
 .section-container .section-headline .title {
@@ -11228,7 +11261,7 @@ main {
   box-shadow: inset 0 0 10px rgba(82, 82, 82, 0.4);
   width: 100%;
   min-height: 301.5px;
-  padding: 10px 10px 0px 10px;
+  padding: 10px 10px 0;
 }
 
 .section-container .inner-container .video-body .section-body {
@@ -11273,6 +11306,7 @@ main {
   cursor: pointer;
   padding: 12px 34px;
   display: none;
+  z-index: 1;
 }
 
 .buy-btn-wrapper {
@@ -11355,9 +11389,9 @@ main {
 }
 
 .waves-button,
+.waves-button-input,
 .waves-button:hover,
-.waves-button:visited,
-.waves-button-input {
+.waves-button:visited {
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
@@ -11410,12 +11444,12 @@ main {
 
 .waves-float {
   -webkit-mask-image: none;
-  box-shadow: 0px 1px 1.5px 1px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 1.5px 1px rgba(0, 0, 0, 0.12);
   transition: all 300ms;
 }
 
 .waves-float:active {
-  box-shadow: 0px 8px 20px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 20px 1px rgba(0, 0, 0, 0.3);
 }
 
 .waves-block {
@@ -11425,6 +11459,12 @@ main {
 a.waves-effect,
 a.waves-light {
   display: inline-block;
+}
+
+.buy-btn-wrapper {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .centered-table tr th {
@@ -11558,5 +11598,21 @@ footer.page-footer a {
 
 .profile-container .profile-details-wrapper .profile-details .list-group .list-group-item:first-child {
   font-size: 14pt;
+}
+
+.under-construction {
+  text-shadow: 0rem 0rem 0.2rem #c8c8c8;
+}
+
+.under-construction i {
+  height: 100%;
+}
+
+.under-construction i::before {
+  vertical-align: sub;
+}
+
+.under-construction h1 {
+  font-weight: 600 !important;
 }
 

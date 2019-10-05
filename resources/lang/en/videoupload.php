@@ -21,4 +21,5 @@ return [
   'start_date' => 'Start Date of Event',
   'end_date' => 'End Date of Event',
   'price' => 'Price',
+  'thumbnail' => 'Upload Video Thumbnail',
 ];

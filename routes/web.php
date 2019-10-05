@@ -52,3 +52,13 @@ Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@stor
 
 Route::get('/contact', 'PagesController@contact');
 Auth::routes();
+Auth::routes(['verify' => true]);
+
+
+Route::get('/sections', function () {
+    return view('maintance.underconstruction');
+})->name('sections');
+
+Route::get('/video/{id}', function () {
+    return view('maintance.underconstruction');
+})->name('page.video');
