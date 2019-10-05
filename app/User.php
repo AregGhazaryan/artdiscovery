@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Webpatser\Uuid\Uuid;
 
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable 
 {
     use Notifiable;
     public $incrementing = false;
