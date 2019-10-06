@@ -1,25 +1,48 @@
-*:not(i){
+*:not(i) {
   font-family: 'Trebuchet MS', sans-serif;
 }
 
-body{
+body {
   background-color: rgb(241, 241, 241);
 }
 
-.contain-button-sm{
+.contain-button-sm {
   min-width: max-content;
 }
 
-.btn{
-    &:focus{
-        box-shadow: none !important;
-    }
+.btn {
+  &:focus {
+    box-shadow: none !important;
+  }
 }
 
-main{
-  padding-top:5rem;
+main {
+  padding-top: 5rem;
 }
 
-.spinner-grow{
-  display:none;
+.spinner-grow {
+  display: none;
+}
+
+.main-container {
+  min-height: 1080px;
+}
+
+.page-loader {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: white;
+  position: fixed;
+  
+
+  .spinner-grow {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    z-index: 11;
+    display: block;
+  }
 }

@@ -88,7 +88,6 @@ class VideoController extends Controller
 
         $imageName = time().'.'.$request->thumbnail->getClientOriginalExtension();
         $path = Storage::putFileAs('public/video_thumbnails', new File($request->thumbnail), $imageName);
-        $exp = explode('/',$path);
 
         $video = new Video;
         $video->title_hy = $request->title_hy;

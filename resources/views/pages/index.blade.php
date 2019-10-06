@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
-  <div class="admin-dashboard">
+  @include('includes.messages')
+  <div class="main-container">
 
-  </div>
+  @include('components.posts.main-posts')
+</div>
 @endsection

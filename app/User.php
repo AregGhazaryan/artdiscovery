@@ -6,9 +6,10 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Webpatser\Uuid\Uuid;
+use Auth;
+use Carbon\Carbon;
 
-
-class User extends Authenticatable 
+class User extends Authenticatable
 {
     use Notifiable;
     public $incrementing = false;
@@ -18,16 +19,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id','first_name','last_name', 'email', 'password', 'gender', 'address', 'agreed_to_terms', 'mobile', 'avatar'
+        'id','first_name','last_name', 'email', 'password', 'gender', 'address', 'agreed_to_terms', 'mobile', 'avatar', 'birthday','ip_address'
     ];
 
+    protected $appends = ['fullname'];
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token'
     ];
 
     /**
@@ -50,12 +52,17 @@ class User extends Authenticatable
         );
     }
 
-    public function getGenderAttribute($gender)
+    public function getSexAttribute($gender)
     {
-        if($gender == 'male') {
-            return $this->gender = trans('registration.male');
-        }else{
-            return $this->gender = trans('registration.female');
-        }
+        return trans('registration.' . $this->gender);
     }
+
+    public function getOnlineAttribute() {
+        return ($this->last_activity > Carbon::now()->subMinutes(5) && Auth::check()) ? true : false;
+    }
+
+    public function getFullnameAttribute(){
+      return $this->first_name . ' ' . $this->last_name;
+    }
+
 }

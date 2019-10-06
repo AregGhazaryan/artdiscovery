@@ -4,39 +4,61 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
- // window.Vue = require('vue');
+// window.Vue = require('vue');
 
- /**
-  * The following block of code may be used to automatically register your
-  * Vue components. It will recursively scan this directory for the Vue
-  * components and automatically register them with their "basename".
-  *
-  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
-  */
+/**
+ * The following block of code may be used to automatically register your
+ * Vue components. It will recursively scan this directory for the Vue
+ * components and automatically register them with their "basename".
+ *
+ * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ */
 
- // const files = require.context('./', true, /\.vue$/i);
- // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+// const files = require.context('./', true, /\.vue$/i);
+// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
- // Vue.component('art-section', require('./components/Section.vue').default);
+// Vue.component('art-section', require('./components/Section.vue').default);
 
- /**
-  * Next, we will create a fresh Vue application instance and attach it to
-  * the page. Then, you may begin adding components to this application
-  * or customize the JavaScript scaffolding to fit your unique needs.
-  */
- //
- // const app = new Vue({
- //     el: '#app',
- // });
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+//
+// const app = new Vue({
+//     el: '#app',
+// });
+
+// Start of TranslationServiceProvider
+function trans(key, replace = {})
+{
+    let translation = key.split('.').reduce((t, i) => t[i] || null, window.translations);
+
+    for (var placeholder in replace) {
+        translation = translation.replace(`:${placeholder}`, replace[placeholder]);
+    }
+
+    return translation;
+}
+
+function trans_choice(key, count = 1, replace = {})
+{
+    let translation = key.split('.').reduce((t, i) => t[i] || null, window.translations).split('|');
+
+    translation = count > 1 ? translation[1] : translation[0];
+
+    for (var placeholder in replace) {
+        translation = translation.replace(`:${placeholder}`, replace[placeholder]);
+    }
+
+    return translation;
+}
+
+//end of TranslationServiceProvider
 
 require('./bootstrap');
 require('./@ckeditor/ckeditor5-build-classic/build/ckeditor.js');
-
-// import Image from './@ckeditor/ckeditor5-image/src/image';
-// import ImageToolbar from './@ckeditor/ckeditor5-image/src/imagetoolbar';
-// import ImageCaption from './@ckeditor/ckeditor5-image/src/imagecaption';
-// import ImageStyle from './@ckeditor/ckeditor5-image/src/imagestyle';
-// import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
+require('./gijgo.js');
 
 class MyUploadAdapter {
   constructor(loader) {
@@ -108,8 +130,73 @@ function MyCustomUploadAdapterPlugin(editor) {
   };
 }
 
+class PostUploadAdapter {
+  constructor(loader) {
+    this.loader = loader;
+  }
 
+  upload() {
+    return this.loader.file
+      .then(file => new Promise((resolve, reject) => {
+        this._initRequest();
+        this._initListeners(resolve, reject, file);
+        this._sendRequest(file);
+      }));
+  }
 
+  abort() {
+    if (this.xhr) {
+      this.xhr.abort();
+    }
+  }
+
+  _initRequest() {
+    const xhr = this.xhr = new XMLHttpRequest();
+
+    xhr.open('POST', '/uploadPostImg', true);
+    xhr.responseType = 'json';
+  }
+
+  _initListeners(resolve, reject, file) {
+    const xhr = this.xhr;
+    const loader = this.loader;
+    const genericErrorText = `Couldn't upload file: ${ file.name }.`;
+
+    xhr.addEventListener('error', () => reject(genericErrorText));
+    xhr.addEventListener('abort', () => reject());
+    xhr.addEventListener('load', () => {
+      const response = xhr.response;
+      if (!response || response.error) {
+        return reject(response && response.error ? response.error.message : genericErrorText);
+      }
+      resolve({
+        default: response.url
+      });
+    });
+
+    if (xhr.upload) {
+      xhr.upload.addEventListener('progress', evt => {
+        if (evt.lengthComputable) {
+          loader.uploadTotal = evt.total;
+          loader.uploaded = evt.loaded;
+        }
+      });
+    }
+  }
+
+  _sendRequest(file) {
+    const data = new FormData();
+    data.append('upload', file);
+    this.xhr.send(data);
+  }
+}
+
+function PostUploadAdapterPlugin(editor) {
+  editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+    // Configure the URL to the upload script in your back-end here!
+    return new PostUploadAdapter(loader);
+  };
+}
 
 
 
@@ -146,6 +233,95 @@ for (var i = 0; i < allEditors.length; ++i) {
     }
   });
 }
+
+let editor;
+
+ClassicEditor
+  .create(document.querySelector('#editor'), {
+    extraPlugins: [PostUploadAdapterPlugin],
+    image: {
+      resizeUnit: 'px',
+    },
+    simpleUpload: {
+      uploadUrl: '/uploadPostImg',
+
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    }
+  })
+  .then(newEditor => {
+    editor = newEditor;
+  })
+  .catch(error => {
+    console.error(error);
+  });
+
+$('.page-loader').fadeOut('slow');
+
+$('#publish-post').on('click', function() {
+  const editorData = editor.getData();
+  let edtext = trans('posts.edit');
+  let deltext = trans('posts.delete');
+  $('#content').val(editorData);
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  $('.submit-loading').fadeIn().css("display", "inline-block");
+
+  $.post("/post", {
+      title: $('#post-title').val(),
+      content: editorData
+    })
+    .done(function(response) {
+      html = '<div class="card post-card shadow-sm mt-2"><div class="card-header bg-white p-3 post-by">';
+      html += '<a href="/profile/' + response.user['id'] + '"><img class="post-by-image mr-2" src="storage/profile_images/' + response.user['avatar'] + '" />' +
+        response.user['first_name'] + ' ' + response.user['last_name'] +
+        '</a><div class="dropdown post-options float-right"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light" href="/post/' +
+        response.post['id'] + '/edit">' + edtext + '</a><a class="dropdown-item waves-light" href="/post/' + response.post['id'] + '/delete' + '">' + deltext + '</a></div></div></div><div class="card-header bg-white p-3 align-middle post-title">' + response.post['title'] +
+        '</div><div class="card-body">' + response.post['content'] + '</div></div>';
+      $('#new-added').prepend(html);
+      editor.setData('');
+      $('#post-title').val('');
+      $('.submit-loading').fadeOut();
+    }).fail(function(xhr, status, error) {
+      $('.submit-loading').fadeOut();
+    });
+
+});
+
+// Add Comment
+$('#submit-comment').on('click', function() {
+  const editorData = editor.getData();
+  body_input = $(this).prev('input');
+  comment_body = $(this).prev('input').val();
+  post = $(this).data('post');
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  $.post("/comment", {
+      comment_body : comment_body,
+      post_id: post,
+    })
+    .done(function(response) {
+      console.log(response);
+      html = '<div class="bg-white comment rounded p-2"><div class="comment-header mb-1"><a href="/profile/'
+      +response.user['id']+ '"><img class="comment-by-image mr-2" src="storage/profile_images/'
+      + response.user['avatar'] + '"/>'+ response.user['fullname'] + '</a></div><div class="comment-body">'
+      + response.comment['body'] + '</div><div class="comment-footer text-right"><small class="text-muted">'
+      + response.comment['created_at']+'</small></div></div>';
+      body_input.val('')
+      $('#comments').prepend(html);
+    }).fail(function(xhr, status, error) {
+      console.log(error);
+    });
+
+});
+
 
 // Video scrollers
 
@@ -198,5 +374,9 @@ $('.scroll-left-button').click(function() {
   }, "slow");
 });
 
+$('#datepicker').datepicker({
+  uiLibrary: 'bootstrap4',
+  format: 'yyyy/mm/dd'
+});
 
 // End of video scrollers

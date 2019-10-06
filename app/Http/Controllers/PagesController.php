@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
+use Request;
 use App\Video;
 use App\Section;
+use App\Post;
+use Illuminate\Support\Facades\Cache;
 
 class PagesController extends Controller
 {
     public function index(){
-        return view('pages.index');
+        $posts = Post::orderBy('created_at', 'desc')->paginate(5);
+        return view('pages.index')->with('posts', $posts);
     }
 
     public function contact(){

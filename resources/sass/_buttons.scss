@@ -26,7 +26,7 @@
   cursor: pointer;
   padding: 12px 34px;
   display: none;
-  z-index: 1;
+  z-index: 2;
 }
 
 .buy-btn-wrapper {
@@ -48,4 +48,10 @@
   &:after {
     vertical-align: middle;
   }
+}
+
+.add-comment-button {
+  border-radius: 0;
+  border-top-right-radius: 0.25rem !important;
+  border-bottom-right-radius: 0.25rem !important;
 }

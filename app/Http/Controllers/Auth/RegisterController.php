@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Request;
 
 class RegisterController extends Controller
 {
@@ -57,6 +58,7 @@ class RegisterController extends Controller
             'mobile' => ['required','numeric'],
             'terms' => ['required'],
             'address' => ['nullable', 'string'],
+            'birth_date' => ['required', 'date']
         ]);
     }
 
@@ -68,6 +70,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
@@ -77,6 +80,8 @@ class RegisterController extends Controller
             'mobile' => $data['mobile'],
             'agreed_to_terms' => 1,
             'address' => $data['address'],
+            'birthday' => $data['birth_date'],
+            'ip_address' => Request::ip(),
         ]);
     }
 }

@@ -45,6 +45,21 @@
               </div>
 
               <div class="form-group row">
+                <label for="birth-date" class="col-md-4 col-form-label text-md-right">
+                  @lang('registration.birthdate')</label>
+
+                  <div class="col-md-6">
+                    <input type="text" name="birth_date" id="datepicker" class="form-control @error('birth_date') is-invalid @enderror" required>
+
+                    @error('birth_date')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+              </div>
+
+              <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">
                   @lang('registration.email')</label>
 
@@ -81,7 +96,7 @@
 
                   <div class="col-md-6">
                     <input id="address" type="text" class="form-control @error('address') is-invalid @enderror"
-                    name="address" value="{{ old('address') }}" required autocomplete="address">
+                    name="address" value="{{ old('address') }}" autocomplete="address">
 
                     @error('address')
                     <span class="invalid-feedback" role="alert">

@@ -102,8 +102,6 @@
     }
   }
 
-  .video-description a:not(.collapsed):after {}
-
   .video-description #description-collapse.collapse:not(.show) {
     display: block;
     /* height = lineheight * no of lines to display */

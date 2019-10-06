@@ -1,0 +1,43 @@
+.comment{
+  margin-top:5px;
+
+  .comment-by-image {
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    box-shadow: 0 0 0.2rem #c6c2c2;
+  }
+}
+
+.comments-collapse {
+  text-align: justify;
+
+  a {
+    font-size: 14pt;
+
+    i {
+      transition: 0.2s;
+      transition-timing-function: ease-in;
+      transform: rotate(360deg);
+    }
+
+    &.collapsed {
+      i {
+        transition: 0.2s;
+        transition-timing-function: ease-out;
+        transform: rotate(180deg);
+        display: inline-block;
+      }
+    }
+  }
+}
+.comments-collapse #description-collapse.collapse:not(.show) {
+  display: block;
+  /* height = lineheight * no of lines to display */
+  height: 12em;
+  overflow: hidden;
+}
+
+.comments-collapse #description-collapse.collapsing {
+  height: 4.5em;
+}

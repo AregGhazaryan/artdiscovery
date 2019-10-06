@@ -1,7 +1,9 @@
 .image-style-side {
+  margin: 0 0.2rem 1rem;
+  width: max-content;
+  float: right;
+
   img {
-    float: right;
     max-width: 250px;
-    margin-top: 1rem;
   }
 }

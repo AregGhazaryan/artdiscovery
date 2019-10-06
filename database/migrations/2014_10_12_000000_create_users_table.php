@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
+            $table->date('birthday');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('mobile');
@@ -25,6 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('gender');
             $table->string('type')->default('user');
+            $table->string('ip_address')->nullable();
+            $table->timestamp('last_activity')->nullable();
             $table->boolean('agreed_to_terms');
             $table->rememberToken();
             $table->timestamps();

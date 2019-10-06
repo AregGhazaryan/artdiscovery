@@ -8,3 +8,8 @@
       {{ session('message') }}
   </div>
 @endif
+@if (session('error-message'))
+  <div class="alert alert-danger" role="alert">
+      {{ session('error-message') }}
+  </div>
+@endif

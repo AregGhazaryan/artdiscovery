@@ -1,0 +1,62 @@
+.profile-post-card {
+  margin: 1rem 0;
+}
+
+.post-main {
+  margin-top: 40px !important;
+}
+
+.post-card {
+  border: none;
+  max-width: 768px;
+  margin: auto;
+
+  .ck-toolbar {
+    border: none !important;
+    border-bottom: 1px solid #c1c1c1 !important;
+    background-color: white !important;
+  }
+
+  .ck-editor__editable {
+    border: none !important;
+  }
+}
+
+.post-by-image {
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  box-shadow: 0 0 0.2rem #c6c2c2;
+}
+
+.post-title {
+  font-size: 14pt;
+}
+
+.post-by {
+  a {
+    text-decoration: none;
+  }
+}
+
+figure {
+  img {
+    max-width: 100%;
+    margin: auto;
+    display: block;
+  }
+}
+
+.submit-loading {
+  display: none;
+}
+
+.post-options {
+  width: min-content;
+
+  .dropdown-toggle {
+    &:after {
+      display: none;
+    }
+  }
+}

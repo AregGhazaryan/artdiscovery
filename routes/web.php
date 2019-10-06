@@ -20,6 +20,11 @@ Route::get('/video/{id}', 'PagesController@video')->name('page.video');
 Route::middleware('admin')->group(function () {
     Route::resource('videos', 'VideoController');
     Route::post('/uploadImg', 'VideoController@imageUpload');
+    Route::post('/uploadPostImg', 'PostController@imageUpload');
+    Route::post('/post', 'PostController@store')->name('post.store');
+    Route::get('/post/{id}/edit', 'PostController@edit')->name('post.edit');
+    Route::get('/post/{id}/delete', 'PostController@destroy')->name('post.destroy');
+    Route::put('/post/{id}/update', 'PostController@update')->name('post.update');
 
     Route::prefix('admin')->group(function () {
         Route::resource('sections', 'SectionController');
@@ -39,12 +44,13 @@ Route::middleware('admin')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-
+  Route::resource('comment', 'CommentController');
     Route::get('/videos', function () {
         // Uses first & second Middleware
     });
 
-    Route::get('/profile/{id}', 'ProfileController@show')->name('profile.show');
+    // Route::get('/profile/{id}', 'ProfileController@show')->name('profile.show');
+    Route::resource('profile', 'ProfileController');
     Route::resource('users', 'UserController');
 });
 
