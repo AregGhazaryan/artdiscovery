@@ -11700,12 +11700,17 @@ main {
 .profile-container .profile-image-wrapper .profile-image {
   margin: 30px 0 0;
   width: 350px;
+  height: 350px;
   border-radius: 20%;
   box-shadow: 0 0 0.2rem #bababa;
   overflow: hidden;
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
+}
+
+.profile-container .profile-image-wrapper .profile-image img {
+  width: 100%;
 }
 
 .profile-container .profile-image-wrapper .file {
