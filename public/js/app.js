@@ -38017,8 +38017,6 @@ ClassicEditor.create(document.querySelector('#editor'), {
   }
 }).then(function (newEditor) {
   editor = newEditor;
-})["catch"](function (error) {
-  console.error(error);
 });
 $('.page-loader').fadeOut('slow');
 $('#publish-post').on('click', function () {

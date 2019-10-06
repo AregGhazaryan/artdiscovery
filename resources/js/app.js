@@ -252,9 +252,6 @@ ClassicEditor
   })
   .then(newEditor => {
     editor = newEditor;
-  })
-  .catch(error => {
-    console.error(error);
   });
 
 $('.page-loader').fadeOut('slow');
