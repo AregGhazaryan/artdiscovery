@@ -11872,14 +11872,14 @@ figure img {
   display: inline-block;
 }
 
-.comments-collapse #description-collapse.collapse:not(.show) {
+.comments-collapse .collapse:not(.show) {
   display: block;
   /* height = lineheight * no of lines to display */
   height: 12em;
   overflow: hidden;
 }
 
-.comments-collapse #description-collapse.collapsing {
+.comments-collapse .collapsing {
   height: 12em;
 }
 

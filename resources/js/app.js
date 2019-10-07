@@ -30,28 +30,26 @@
 // });
 
 // Start of TranslationServiceProvider
-function trans(key, replace = {})
-{
-    let translation = key.split('.').reduce((t, i) => t[i] || null, window.translations);
+function trans(key, replace = {}) {
+  let translation = key.split('.').reduce((t, i) => t[i] || null, window.translations);
 
-    for (var placeholder in replace) {
-        translation = translation.replace(`:${placeholder}`, replace[placeholder]);
-    }
+  for (var placeholder in replace) {
+    translation = translation.replace(`:${placeholder}`, replace[placeholder]);
+  }
 
-    return translation;
+  return translation;
 }
 
-function trans_choice(key, count = 1, replace = {})
-{
-    let translation = key.split('.').reduce((t, i) => t[i] || null, window.translations).split('|');
+function trans_choice(key, count = 1, replace = {}) {
+  let translation = key.split('.').reduce((t, i) => t[i] || null, window.translations).split('|');
 
-    translation = count > 1 ? translation[1] : translation[0];
+  translation = count > 1 ? translation[1] : translation[0];
 
-    for (var placeholder in replace) {
-        translation = translation.replace(`:${placeholder}`, replace[placeholder]);
-    }
+  for (var placeholder in replace) {
+    translation = translation.replace(`:${placeholder}`, replace[placeholder]);
+  }
 
-    return translation;
+  return translation;
 }
 
 //end of TranslationServiceProvider
@@ -256,7 +254,9 @@ ClassicEditor
 
 $('.page-loader').fadeOut('slow');
 
-$('#publish-post').on('click', function() {
+
+// Add post
+$(document).on('click', '#publish-post', function(event) {
   const editorData = editor.getData();
   let edtext = trans('posts.edit');
   let deltext = trans('posts.delete');
@@ -267,7 +267,6 @@ $('#publish-post').on('click', function() {
     }
   });
   $('.submit-loading').fadeIn().css("display", "inline-block");
-
   $.post("/post", {
       title: $('#post-title').val(),
       content: editorData
@@ -278,7 +277,9 @@ $('#publish-post').on('click', function() {
         response.user['first_name'] + ' ' + response.user['last_name'] +
         '</a><div class="dropdown post-options float-right"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light" href="/post/' +
         response.post['id'] + '/edit">' + edtext + '</a><a class="dropdown-item waves-light" href="/post/' + response.post['id'] + '/delete' + '">' + deltext + '</a></div></div></div><div class="card-header bg-white p-3 align-middle post-title">' + response.post['title'] +
-        '</div><div class="card-body">' + response.post['content'] + '</div></div>';
+        '</div><div class="card-body">' + response.post['content'] + '</div><div class="card-footer p-2"><div class="comments-section"><div class="input-group"><input type="text" name="comment_body" class="form-control" /><button data-post="' + response.post['id'] + '" type="button" id="submit-comment" class="btn btn-primary add-comment-button">' +
+        trans('comments.add') + '</button></div><hr /></div></div></div>';
+
       $('#new-added').prepend(html);
       editor.setData('');
       $('#post-title').val('');
@@ -290,29 +291,30 @@ $('#publish-post').on('click', function() {
 });
 
 // Add Comment
-$('#submit-comment').on('click', function() {
+$(document).on('click', '.submit-comment', function(event) {
   const editorData = editor.getData();
   body_input = $(this).prev('input');
   comment_body = $(this).prev('input').val();
   post = $(this).data('post');
+  comment_placholder = $(this).parent().siblings().find('.comments-placeholder');
+  console.log(comment_placholder);
   $.ajaxSetup({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   });
   $.post("/comment", {
-      comment_body : comment_body,
+      comment_body: comment_body,
       post_id: post,
     })
     .done(function(response) {
-      console.log(response);
-      html = '<div class="bg-white comment rounded p-2"><div class="comment-header mb-1"><a href="/profile/'
-      +response.user['id']+ '"><img class="comment-by-image mr-2" src="storage/profile_images/'
-      + response.user['avatar'] + '"/>'+ response.user['fullname'] + '</a></div><div class="comment-body">'
-      + response.comment['body'] + '</div><div class="comment-footer text-right"><small class="text-muted">'
-      + response.comment['created_at']+'</small></div></div>';
-      body_input.val('')
-      $('#comments').prepend(html);
+      html = '<div class="bg-white comment rounded p-2"><div class="comment-header mb-1"><a href="/profile/' +
+        response.user['id'] + '"><img class="comment-by-image mr-2" src="storage/profile_images/' +
+        response.user['avatar'] + '"/>' + response.user['fullname'] + '</a></div><div class="comment-body">' +
+        response.comment['body'] + '</div><div class="comment-footer text-right"><small class="text-muted">' +
+        response.comment['created_at'] + '</small></div></div>';
+      body_input.val('');
+      comment_placholder.prepend(html);
     }).fail(function(xhr, status, error) {
       console.log(error);
     });
@@ -376,4 +378,10 @@ $('#datepicker').datepicker({
   format: 'yyyy/mm/dd'
 });
 
+
+$('.comments-collapse ').each(function(){
+  id = genId(5);
+  $(this).children('.collapse').attr('id', id);
+  $(this).children('a').attr('href', '#'+id);
+});
 // End of video scrollers

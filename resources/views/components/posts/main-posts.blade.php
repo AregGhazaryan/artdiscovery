@@ -48,7 +48,7 @@
       <div class="card-body">
         {!! $post->content !!}
       </div>
-      <div class="card-footer">
+      <div class="card-footer p-2">
         @include('components.comments.comments-section')
       </div>
     </div>
