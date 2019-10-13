@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id','first_name','last_name', 'email', 'password', 'gender', 'address', 'agreed_to_terms', 'mobile', 'avatar', 'birthday','ip_address'
+        'id','first_name','last_name', 'email', 'password', 'gender', 'address', 'agreed_to_terms', 'mobile', 'avatar', 'birthday','ip_address', 'role_id', 'status_id'
     ];
 
     protected $appends = ['fullname'];
@@ -65,4 +65,15 @@ class User extends Authenticatable
       return $this->first_name . ' ' . $this->last_name;
     }
 
+    public function isAdmin(){
+      return $this->role->name == 'Admin' ? true : false; 
+    }
+
+    public function role(){
+      return $this->belongsTo(Role::class);
+    }
+
+    public function isBanned(){
+      return $this->status_id == 3 ? true : false;
+    }
 }

@@ -23,6 +23,7 @@
   <script src="{{ asset('js/jscolor.js') }}"></script>
   <script src="{{ asset('js/main.js') }}"></script>
   <script src="{{ asset('js/waves.js') }}"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>

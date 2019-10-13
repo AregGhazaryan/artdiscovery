@@ -36,7 +36,7 @@ main {
   z-index: 10;
   background-color: white;
   position: fixed;
-  
+
 
   .spinner-grow {
     position: relative;
@@ -45,4 +45,8 @@ main {
     z-index: 11;
     display: block;
   }
+}
+
+#app{
+  min-height: 80vh;
 }

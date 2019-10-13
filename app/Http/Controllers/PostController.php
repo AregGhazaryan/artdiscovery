@@ -100,14 +100,22 @@ class PostController extends Controller
      * @param  \App\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        if($request->images !== null) {
+            foreach($request->images as $image){
+                $exp = explode('/', $image);
+                $name = end($exp);
+                Storage::delete('public/post_images/' . $name);
+            }
+        }
         $post = Post::find($id);
         foreach($post->comments as $comment){
-          $comment->delete();
+            $comment->delete();
         }
         $post->delete();
-        return Redirect::route('home')->with('message', trans('posts.deleted'));
+        return response()->json(['success'], 200);
+        // return Redirect::route('home')->with('message', trans('posts.deleted'));
     }
 
     public function imageUpload(Request $request)

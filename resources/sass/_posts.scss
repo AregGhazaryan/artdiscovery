@@ -40,6 +40,34 @@
 }
 
 figure {
+  margin: 0.8rem;
+
+  &.image-style-side {
+    margin: 0 0.2rem 1rem;
+    width: max-content;
+    float: right;
+
+    img {
+      max-width: 250px;
+    }
+  }
+
+  &.image-style-align-right {
+    float: right;
+
+    img {
+      max-width: 250px;
+    }
+  }
+
+  &.image-style-align-left {
+    float: left;
+
+    img {
+      max-width: 250px;
+    }
+  }
+
   img {
     max-width: 100%;
     margin: auto;
@@ -58,5 +86,11 @@ figure {
     &:after {
       display: none;
     }
+  }
+}
+
+.post-content {
+  p {
+    text-align: justify;
   }
 }

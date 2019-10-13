@@ -17,7 +17,7 @@
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-// Vue.component('art-section', require('./components/Section.vue').default);
+// Vue.component('posts', require('./components/Post.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,6 +28,8 @@
 // const app = new Vue({
 //     el: '#app',
 // });
+
+
 
 // Start of TranslationServiceProvider
 function trans(key, replace = {}) {
@@ -54,9 +56,13 @@ function trans_choice(key, count = 1, replace = {}) {
 
 //end of TranslationServiceProvider
 
+
+
 require('./bootstrap');
 require('./@ckeditor/ckeditor5-build-classic/build/ckeditor.js');
 require('./gijgo.js');
+
+
 
 class MyUploadAdapter {
   constructor(loader) {
@@ -198,7 +204,7 @@ function PostUploadAdapterPlugin(editor) {
 
 
 
-$(window).scroll(function() {
+$(window).scroll(function () {
   if ($(this).scrollTop()) {
     $('#scroll-to-top').fadeIn();
   } else {
@@ -206,7 +212,7 @@ $(window).scroll(function() {
   }
 });
 
-$("#scroll-to-top").click(function() {
+$("#scroll-to-top").click(function () {
   $("html, body").clearQueue();
   $("html, body").animate({
     scrollTop: 0
@@ -233,12 +239,22 @@ for (var i = 0; i < allEditors.length; ++i) {
 }
 
 let editor;
-
 ClassicEditor
   .create(document.querySelector('#editor'), {
     extraPlugins: [PostUploadAdapterPlugin],
     image: {
       resizeUnit: 'px',
+      toolbar: ['imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight'],
+      styles: [
+        // This option is equal to a situation where no style is applied.
+        'full',
+
+        // This represents an image aligned to the left.
+        'alignLeft',
+
+        // This represents an image aligned to the right.
+        'alignRight'
+      ]
     },
     simpleUpload: {
       uploadUrl: '/uploadPostImg',
@@ -252,11 +268,10 @@ ClassicEditor
     editor = newEditor;
   });
 
-$('.page-loader').fadeOut('slow');
 
 
 // Add post
-$(document).on('click', '#publish-post', function(event) {
+$(document).on('click', '#publish-post', function (event) {
   const editorData = editor.getData();
   let edtext = trans('posts.edit');
   let deltext = trans('posts.delete');
@@ -271,33 +286,71 @@ $(document).on('click', '#publish-post', function(event) {
       title: $('#post-title').val(),
       content: editorData
     })
-    .done(function(response) {
+    .done(function (response) {
       html = '<div class="card post-card shadow-sm mt-2"><div class="card-header bg-white p-3 post-by">';
       html += '<a href="/profile/' + response.user['id'] + '"><img class="post-by-image mr-2" src="storage/profile_images/' + response.user['avatar'] + '" />' +
         response.user['first_name'] + ' ' + response.user['last_name'] +
         '</a><div class="dropdown post-options float-right"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light" href="/post/' +
-        response.post['id'] + '/edit">' + edtext + '</a><a class="dropdown-item waves-light" href="/post/' + response.post['id'] + '/delete' + '">' + deltext + '</a></div></div></div><div class="card-header bg-white p-3 align-middle post-title">' + response.post['title'] +
-        '</div><div class="card-body">' + response.post['content'] + '</div><div class="card-footer p-2"><div class="comments-section"><div class="input-group"><input type="text" name="comment_body" class="form-control" /><button data-post="' + response.post['id'] + '" type="button" id="submit-comment" class="btn btn-primary add-comment-button">' +
-        trans('comments.add') + '</button></div><hr /></div></div></div>';
+        response.post['id'] + '/edit">' + edtext + '</a><a class="dropdown-item waves-light delete-post" data-id="' + response.post['id'] + '">' + deltext + '</a></div></div></div><div class="card-header bg-white p-3 align-middle post-title">' + response.post['title'] +
+        '</div><div class="card-body">' + response.post['content'] + '</div><div class="card-footer p-2"><div class="comments-section"><div class="input-group"><input type="text" name="comment_body" class="form-control" /><button data-post="' + response.post['id'] + '" type="button" class="btn btn-primary add-comment-button submit-comment">' + trans('comments.add') + '</button></div><hr /><div class="comments-wrapper"><div class="comments-placeholder"></div></div></div>';
 
       $('#new-added').prepend(html);
       editor.setData('');
       $('#post-title').val('');
       $('.submit-loading').fadeOut();
-    }).fail(function(xhr, status, error) {
+    }).fail(function (xhr, status, error) {
       $('.submit-loading').fadeOut();
     });
 
 });
 
+// Delete post
+$(document).on('click', '.delete-post', function (event) {
+  images = [];
+  container = $(this).closest('.post-card');
+  console.log(container);
+  id = $(this).data('id');
+  $(this).parents('.card').find('.post-content').find('img').each(function () {
+    images.push(this.src);
+  });
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  $.ajax({
+    url: "/post/" + id + "/delete",
+    data: {
+      images: images,
+      id: id,
+    },
+    type: 'DELETE',
+    success: function (result) {
+      console.log(result);
+      container.remove();
+    }
+  });
+  // $('.submit-loading').fadeIn().css("display", "inline-block");
+});
+
 // Add Comment
-$(document).on('click', '.submit-comment', function(event) {
-  const editorData = editor.getData();
+$(document).on('click', '.submit-comment', function (event) {
   body_input = $(this).prev('input');
   comment_body = $(this).prev('input').val();
+  // if(comment_body == ''){
+  //   body_input.addClass('is-invalid');
+  //   return;
+  // }else{
+  //   body_input.addClass('is-valid');
+  // }
   post = $(this).data('post');
-  comment_placholder = $(this).parent().siblings().find('.comments-placeholder');
-  console.log(comment_placholder);
+  edtext = trans('posts.edit');
+  reptext = trans('comments.reply');
+  deltext = trans('posts.delete');
+  comment_placeholder = $(this).parent().siblings().find('.comments-placeholder');
+  if(comment_placeholder.parent().not('.show')){
+    comment_placeholder.parent().addClass('show');
+  }
   $.ajaxSetup({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -307,18 +360,111 @@ $(document).on('click', '.submit-comment', function(event) {
       comment_body: comment_body,
       post_id: post,
     })
-    .done(function(response) {
-      html = '<div class="bg-white comment rounded p-2"><div class="comment-header mb-1"><a href="/profile/' +
-        response.user['id'] + '"><img class="comment-by-image mr-2" src="storage/profile_images/' +
-        response.user['avatar'] + '"/>' + response.user['fullname'] + '</a></div><div class="comment-body">' +
-        response.comment['body'] + '</div><div class="comment-footer text-right"><small class="text-muted">' +
-        response.comment['created_at'] + '</small></div></div>';
+    .done(function (response) {
+      html = '<div class="comment-wrapper"><div class="bg-white comment rounded p-2 shadow-sm"><div class="comment-header mb-1"><a href="/profile/' +
+        response[0].user['id'] + '"><img class="comment-by-image mr-2" src="storage/profile_images/' +
+        response[0].user['avatar'] + '"/>' + response[0].user['fullname'] 
+        + '</a><div class="dropdown post-options float-right dropleft comment-dropdowns"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light delete-comment" data-id="'+response[0].comment['id']+'">'+deltext+'</a></div></div></div><div class="comment-body">' 
+        + response[0].comment['body'] + '</div><div class="replies-wrapper text-right"><a data-toggle="collapse" href="#reply'
+        +response[0].comment['id']+'" class="ml-3" role="button">'+reptext+'</a><div class="collapse" id="reply'
+        +response[0].comment['id']+'"><div class="input-group"><input type="text" name="comment_body" class="form-control" class="form-control" /><button data-comment="'
+        +response[0].comment['id']+'" data-parent="true" data-post="'+post+'" type="submit" class="btn btn-primary add-comment-button submit-reply">'
+        +reptext+'</button></div></div></div><div class="comment-footer text-right"><small class="text-muted">' +
+        response[0].comment['created_at'] + '</small></div></div><div class="collapse replies-collapse" id="replies'+response[0].comment['id']+'"></div></div>';
       body_input.val('');
-      comment_placholder.prepend(html);
-    }).fail(function(xhr, status, error) {
-      console.log(error);
+      body_input.removeClass('is-invalid');
+      // body_input.addClass('is-valid');
+      comment_placeholder.prepend(html);
+    }).fail(function (response) {
+      // body_input.addClass('is-invalid');
+      console.log(response);
+      for (let index in response.errors) {
+        console.log(response.errors[index])
+        for (let error in repsponse.errors[index]) {
+          console.log(response.errors[index][error])
+          body_input.parents('.comment').append(response.errors[index][error]);
+        }
+      }
     });
+});
 
+// Add Reply
+
+$(document).on('click', '.submit-reply', function (event) {
+  post_id = $(this).data('post');
+  comment_id = $(this).data('comment');
+  body_input = $(this).prev('input');
+  comment_body = $(this).prev('input').val();
+  let edtext = trans('posts.edit');
+  let deltext = trans('posts.delete');
+  let reptext = trans('comments.reply');
+  // if(comment_body == ''){
+  //   body_input.addClass('is-invalid');
+  //   return;
+  // }else{
+  //   body_input.addClass('is-valid');
+  // }
+  if($(this).data('parent')){
+    // comment_placeholder = $(this).closest('.replies-collapse');
+    // if(comment_placeholder == null){
+      comment_placeholder = $(this).parents('.comment-wrapper').find('.replies-collapse');
+    // }
+}else{
+    comment_placeholder = $(this).closest('.comments-wrapper');
+  }
+  if(comment_placeholder.not('.show')){
+    comment_placeholder.addClass('show');
+  }
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  $.post("/reply/store", {
+      post_id: post_id,
+      comment_id: comment_id,
+      comment_body: comment_body,
+    })
+    .done(function (response) {
+      console.log(response);
+      html = '<div class="comment comment-reply shadow-sm p-2"><div class="comment-header mb-1"><a href="/profile/' + response.user['id'] +
+        '"><img class="comment-by-image mr-2" src="storage/profile_images/' + response.user['avatar'] + '" />' +
+        response.user['fullname'] + '</a><div class="dropdown post-options float-right dropleft comment-dropdowns"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light delete-comment" data-id="' 
+        +response.comment['id'] + '">' + deltext + '</a></div></div></div><div class="comment-body">' + response.comment['body'] + '</div><div class="replies-wrapper text-right"><a data-toggle="collapse" href="#reply' +
+        response.comment['id'] + '" role="button">' + reptext + '</a><div class="collapse" id="reply' +
+        response.comment['id'] + '"><div class="input-group"><input type="text" name="comment_body" class="form-control" class="form-control" /><button data-comment="' +
+        response.comment['id'] + '" data-post="'+post_id+'" type="submit" class="btn btn-primary add-comment-button submit-reply" data-parent="true">' + reptext 
+        + '</button></div></div></div><div class="comment-footer text-right"><small class="text-muted">' +
+        response.comment['created_at'] + '</small></div></div>';
+        comment_placeholder.append(html);
+
+      body_input.val('');
+      body_input.removeClass('is-invalid');
+      body_input.addClass('is-valid');
+    }).fail(function (response) {
+      body_input.addClass('is-invalid');
+      console.log(response);
+    });
+});
+
+
+// Delete Comment
+
+$(document).on('click', '.delete-comment', function (event) {
+  comment = $(this).parents('.comment');
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  $.ajax({
+    url: '/comment/' + $(this).data('id'),
+    type: 'DELETE',
+    success: function (result) {
+      comment.remove();
+      console.log(result);
+    }
+  });
 });
 
 
@@ -331,7 +477,7 @@ let isDown = false;
 let startX;
 let scrollLeft;
 
-slider.forEach(function(el) {
+slider.forEach(function (el) {
   el.addEventListener('mousedown', (e) => {
     isDown = true;
     el.classList.add('active');
@@ -357,7 +503,7 @@ slider.forEach(function(el) {
 
 
 
-$('.scroll-right-button').click(function() {
+$('.scroll-right-button').click(function () {
   event.preventDefault();
   $(this).siblings('.video-body').clearQueue();
   $(this).siblings('.video-body').animate({
@@ -365,7 +511,7 @@ $('.scroll-right-button').click(function() {
   }, "slow");
 });
 
-$('.scroll-left-button').click(function() {
+$('.scroll-left-button').click(function () {
   event.preventDefault();
   $(this).siblings('.video-body').clearQueue();
   $(this).siblings('.video-body').animate({
@@ -379,9 +525,14 @@ $('#datepicker').datepicker({
 });
 
 
-$('.comments-collapse ').each(function(){
+$('.comments-collapse ').each(function () {
   id = genId(5);
   $(this).children('.collapse').attr('id', id);
-  $(this).children('a').attr('href', '#'+id);
+  $(this).children('a').attr('href', '#' + id);
 });
 // End of video scrollers
+
+
+
+
+$('.page-loader').fadeOut('slow');

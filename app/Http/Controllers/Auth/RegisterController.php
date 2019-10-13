@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Request;
+use App\Rules\Captcha;
 
 class RegisterController extends Controller
 {
@@ -58,7 +59,8 @@ class RegisterController extends Controller
             'mobile' => ['required','numeric'],
             'terms' => ['required'],
             'address' => ['nullable', 'string'],
-            'birth_date' => ['required', 'date']
+            'birth_date' => ['required', 'date'],
+            'g-recaptcha-response' => new Captcha()
         ]);
     }
 
@@ -82,6 +84,8 @@ class RegisterController extends Controller
             'address' => $data['address'],
             'birthday' => $data['birth_date'],
             'ip_address' => Request::ip(),
+            'role_id' => 2,
+            'status_id' => 1,
         ]);
     }
 }

@@ -1,11 +1,12 @@
-.comment{
-  margin-top:5px;
+.comment {
+  margin-top: 5px;
 
   .comment-by-image {
     height: 30px;
     width: 30px;
     border-radius: 100%;
     box-shadow: 0 0 0.2rem #c6c2c2;
+    object-fit: cover;
   }
 }
 
@@ -31,6 +32,7 @@
     }
   }
 }
+
 .comments-collapse .collapse:not(.show) {
   display: block;
   /* height = lineheight * no of lines to display */
@@ -40,4 +42,32 @@
 
 .comments-collapse .collapsing {
   height: 12em;
+}
+
+.comment-dropdowns {
+  .dropdown-toggle {
+    &::before {
+      display: none !important;
+    }
+  }
+
+  .dropdown-menu {
+    a {
+      font-size: 10pt;
+      padding: 0.5rem;
+    }
+  }
+}
+
+
+.comment-reply {
+  width: 97%;
+  margin: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  margin-top: 0px;
+  background-color: white;
+
+  &:last-child {
+    margin-bottom: 1rem;
+  }
 }

@@ -16,7 +16,7 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->type == 'admin') {
+        if (Auth::user() &&  Auth::user()->isAdmin()) {
             return $next($request);
         }
         return redirect('/');

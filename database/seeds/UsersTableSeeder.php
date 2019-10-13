@@ -23,7 +23,8 @@ class UsersTableSeeder extends Seeder
             'password' => '$2y$10$.bgi/8Bb9vFO2Lu0BLRGQOLWseyOTux9yqP7oShsKtYWxgHv6ssNS',
             'gender' => 'male',
             'agreed_to_terms' => 1,
-            'type' => 'admin'
+            'role_id' => 1,
+            'status_id' => 1,
           ],
           [
             'id' => '5eeaf3e9-0f8a-4a6f-b5e9-5d2c9ea603bb',
@@ -37,7 +38,8 @@ class UsersTableSeeder extends Seeder
             'password' => '$2y$10$nyiwAVUSmrEPC2i5y9sT8uKBw4GXrHmarW8Re3Ag0bJs/94T8aJ36',
             'agreed_to_terms' => 1,
             'gender' => 'male',
-            'type' => 'admin',
+            'role_id' => 1,
+            'status_id' => 1,
           ],
           [
             'id' => '66156419-3575-45b0-b746-a946c0355323',
@@ -51,7 +53,8 @@ class UsersTableSeeder extends Seeder
             'password' => '$2y$10$.k.JHQdaFCcu9e5SMDxlpesJ7r99HHke/KTKEsDq7Peh5xtDGr1RW',
             'agreed_to_terms' => 1,
             'gender' => 'male',
-            'type' => 'user',
+            'role_id' => 2,
+            'status_id' => 1,
           ]
         ]);
     }

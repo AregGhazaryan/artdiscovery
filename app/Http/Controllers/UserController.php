@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Auth;
 use App\User;
 
@@ -92,5 +93,19 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function ban($id){
+      $user = User::find($id);
+      $user->status_id = 3;
+      $user->save();
+      return Redirect::back()->with('message', trans('users.banned'));
+    }
+
+    public function unban($id){
+      $user = User::find($id);
+      $user->status_id = 1;
+      $user->save();
+      return Redirect::back()->with('message', trans('users.unbanned'));
     }
 }

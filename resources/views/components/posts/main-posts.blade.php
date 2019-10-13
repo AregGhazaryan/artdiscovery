@@ -4,7 +4,7 @@
   </div>
 </div>
 @auth
-@if(Auth::user()->type == 'admin')
+@if(Auth::user()->isAdmin())
   <form id="post-publish">
     <input type="text" name="title" class="card post-card post-main shadow-sm form-control mb-2" id="post-title" placeholder="@lang('posts.title')" required/>
     <div class="card post-card shadow-sm">
@@ -29,7 +29,8 @@
         <a href="{{ route('profile.show', $post->user->id) }}"><img class="post-by-image mr-2" src="storage/profile_images/{{ $post->user->avatar }}" />
           {{ $post->user->fullname }}
         </a>
-
+        @auth
+        @if(Auth::user()->isAdmin())
         <div class="dropdown post-options float-right">
           <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-ellipsis-v"></i>
@@ -37,15 +38,16 @@
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <a class="dropdown-item waves-light edit-post" href="{{route('post.edit', $post->id)}}">@lang('posts.edit')</a>
-            <a class="dropdown-item waves-light delete-post" href="{{ route('post.destroy', $post->id)}}">@lang('posts.delete')</a>
+            <a class="dropdown-item waves-light delete-post" data-id="{{ $post->id }}">@lang('posts.delete')</a>
           </div>
         </div>
-
+        @endif
+      @endauth
       </div>
       <div class="card-header bg-white p-3 align-middle post-title">
         {{$post->title}}
       </div>
-      <div class="card-body">
+      <div class="card-body post-content">
         {!! $post->content !!}
       </div>
       <div class="card-footer p-2">

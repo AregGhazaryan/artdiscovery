@@ -11235,6 +11235,15 @@ a.waves-light {
   box-shadow: 0 0.3rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
 
+.user-avi {
+  height: 30px;
+  width: 30px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 25%;
+  margin-right: 5px;
+}
+
 *:not(i) {
   font-family: "Trebuchet MS", sans-serif;
 }
@@ -11281,6 +11290,10 @@ main {
   left: 50%;
   z-index: 11;
   display: block;
+}
+
+#app {
+  min-height: 80vh;
 }
 
 .textarea {
@@ -11672,18 +11685,6 @@ main {
   min-height: 600px;
 }
 
-.image-style-side {
-  margin: 0 0.2rem 1rem;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  float: right;
-}
-
-.image-style-side img {
-  max-width: 250px;
-}
-
 .auth-card {
   border-radius: 1.25rem;
 }
@@ -11699,8 +11700,8 @@ main {
 
 .profile-container .profile-image-wrapper .profile-image {
   margin: 30px 0 0;
-  width: 350px;
-  height: 350px;
+  min-width: 20rem;
+  min-height: 20rem;
   border-radius: 20%;
   box-shadow: 0 0 0.2rem #bababa;
   overflow: hidden;
@@ -11710,7 +11711,10 @@ main {
 }
 
 .profile-container .profile-image-wrapper .profile-image img {
-  width: 100%;
+  width: 20rem;
+  height: 20rem;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .profile-container .profile-image-wrapper .file {
@@ -11820,6 +11824,38 @@ main {
   text-decoration: none;
 }
 
+figure {
+  margin: 0.8rem;
+}
+
+figure.image-style-side {
+  margin: 0 0.2rem 1rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  float: right;
+}
+
+figure.image-style-side img {
+  max-width: 250px;
+}
+
+figure.image-style-align-right {
+  float: right;
+}
+
+figure.image-style-align-right img {
+  max-width: 250px;
+}
+
+figure.image-style-align-left {
+  float: left;
+}
+
+figure.image-style-align-left img {
+  max-width: 250px;
+}
+
 figure img {
   max-width: 100%;
   margin: auto;
@@ -11840,6 +11876,10 @@ figure img {
   display: none;
 }
 
+.post-content p {
+  text-align: justify;
+}
+
 .comment {
   margin-top: 5px;
 }
@@ -11849,6 +11889,8 @@ figure img {
   width: 30px;
   border-radius: 100%;
   box-shadow: 0 0 0.2rem #c6c2c2;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .comments-collapse {
@@ -11881,5 +11923,26 @@ figure img {
 
 .comments-collapse .collapsing {
   height: 12em;
+}
+
+.comment-dropdowns .dropdown-toggle::before {
+  display: none !important;
+}
+
+.comment-dropdowns .dropdown-menu a {
+  font-size: 10pt;
+  padding: 0.5rem;
+}
+
+.comment-reply {
+  width: 97%;
+  margin: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  margin-top: 0px;
+  background-color: white;
+}
+
+.comment-reply:last-child {
+  margin-bottom: 1rem;
 }
 

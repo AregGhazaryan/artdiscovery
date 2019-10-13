@@ -23,8 +23,10 @@ Route::middleware('admin')->group(function () {
     Route::post('/uploadPostImg', 'PostController@imageUpload');
     Route::post('/post', 'PostController@store')->name('post.store');
     Route::get('/post/{id}/edit', 'PostController@edit')->name('post.edit');
-    Route::get('/post/{id}/delete', 'PostController@destroy')->name('post.destroy');
+    Route::delete('/post/{id}/delete', 'PostController@destroy')->name('post.destroy');
     Route::put('/post/{id}/update', 'PostController@update')->name('post.update');
+    Route::get('/user/{id}/ban', 'UserController@ban')->name('user.ban');
+    Route::get('/user/{id}/unban', 'UserController@unban')->name('user.unban');
 
     Route::prefix('admin')->group(function () {
         Route::resource('sections', 'SectionController');
@@ -45,13 +47,11 @@ Route::middleware('admin')->group(function () {
 
 Route::middleware('auth')->group(function () {
   Route::resource('comment', 'CommentController');
-    Route::get('/videos', function () {
-        // Uses first & second Middleware
-    });
 
     // Route::get('/profile/{id}', 'ProfileController@show')->name('profile.show');
     Route::resource('profile', 'ProfileController');
     Route::resource('users', 'UserController');
+    Route::post('/reply/store', 'CommentController@replyStore')->name('reply.add');
 });
 
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@store']);

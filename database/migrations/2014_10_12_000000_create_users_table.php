@@ -25,10 +25,13 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->default('default.png');
             $table->string('address')->nullable();
             $table->string('gender');
-            $table->string('type')->default('user');
             $table->string('ip_address')->nullable();
             $table->timestamp('last_activity')->nullable();
             $table->boolean('agreed_to_terms');
+            $table->integer('role_id')->unsigned();
+            $table->foreign('role_id')->references('id')->on('roles')->default(2);
+            $table->integer('status_id')->unsigned();
+            $table->foreign('status_id')->references('id')->on('statuses')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

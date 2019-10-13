@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-alignment": "^11.2.0",
         "@ckeditor/ckeditor5-build-classic": "^12.4.0",
         "@ckeditor/ckeditor5-image": "^14.0.0",
         "@ckeditor/ckeditor5-upload": "^12.0.0",
