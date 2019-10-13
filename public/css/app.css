@@ -11627,6 +11627,13 @@ main {
   color: white;
 }
 
+.footer-dev-logo {
+  width: 90px;
+  height: 90px;
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+
 .dropdown-menu {
   opacity: 0;
   visibility: hidden;
