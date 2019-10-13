@@ -143,7 +143,7 @@
                   </div>
               </div>
 
-              <div class="form-group">
+              {{-- <div class="form-group">
                 @error('terms')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -154,7 +154,7 @@
                   <label class="custom-control-label" for="terms">
                     @lang('registration.terms')</label>
                 </div>
-              </div>
+              </div> --}}
               <div class="g-recaptcha" data-sitekey="{{ env('CAPTCHA_SITE_KEY') }}"></div>
               @if ($errors->has('g-recaptcha-response'))
                   <span class="invalid-feedback" style="display: block;">
