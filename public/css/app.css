@@ -11884,6 +11884,7 @@ figure img {
 }
 
 .post-content p {
+  word-break: keep-all;
   text-align: justify;
 }
 
