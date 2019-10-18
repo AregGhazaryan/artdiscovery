@@ -2,7 +2,7 @@
 <div class="comment comment-reply shadow-sm p-2">
   <div class="comment-header mb-1">
     <a href="{{ route('profile.show', $reply->user->id) }}"><img class="comment-by-image mr-2"
-        src="storage/profile_images/{{ $reply->user->avatar }}" />{{ $comment->user->fullname }}</a>
+        src="storage/profile_images/{{ $reply->user->avatar }}" />{{ $reply->user->fullname }}</a>
     @auth
     @if(Auth::user()->isAdmin() || $reply->user->id == Auth::user()->id)
     <div class="dropdown post-options float-right dropleft comment-dropdowns">
