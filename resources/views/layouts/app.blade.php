@@ -4,7 +4,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="ArtDiscovery, Art, Lectures, Armenian, Website, Armenia, History">
+  <meta name="description" content="Lectures about History, Art and more">
+  <meta name="copyright" content="ArtDiscovery">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta property="og:title" content="ArtDiscovery" />
+  <meta property="og:description" content="Start discovering today!" />
+  <meta property="og:image" content="https://artdiscovery.online/img/og-logo.png" />
+  <meta property="og:url" content="https://artdiscovery.online/" />
+  <meta property="og:site_name" content="ArtDiscovery" />
   <script>
     window.Laravel = {
       csrfToken: '{{ csrf_token() }}'
@@ -24,6 +33,18 @@
   <script src="{{ asset('js/main.js') }}"></script>
   <script src="{{ asset('js/waves.js') }}"></script>
   <script src='https://www.google.com/recaptcha/api.js'></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-32422407-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-32422407-3');
+  </script>
+
 </head>
 
 <body>
@@ -48,7 +69,11 @@
 
   @include('includes.footer')
   <script src="{{ asset('js/app.js') }}" defer></script>
-  <script>window.translations = {!! Cache::get('translations') !!}</script>
+  <script>
+    window.translations = {
+      !!Cache::get('translations') !!
+    }
+  </script>
   <script src="{{ asset('js/video-scrollers.js') }}"></script>
   <script src="{{ asset('js/jquery.jscroll.min.js') }}" defer></script>
   @yield('scripts')

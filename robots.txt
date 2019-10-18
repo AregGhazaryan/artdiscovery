@@ -1,0 +1,9 @@
+# Rule 1
+User-agent: Googlebot
+Allow: /
+
+# Rule 2
+User-agent: *
+Disallow: /
+
+Sitemap: https://artdiscovery.online/sitemap.xml
