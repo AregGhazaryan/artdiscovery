@@ -8,6 +8,7 @@ use App\Video;
 use App\Section;
 use App\Post;
 use Illuminate\Support\Facades\Cache;
+use Auth;
 
 class PagesController extends Controller
 {

@@ -70,9 +70,7 @@
   @include('includes.footer')
   <script src="{{ asset('js/app.js') }}" defer></script>
   <script>
-    window.translations = {
-      !!Cache::get('translations') !!
-    }
+    window.translations = {!! Cache::get('translations') !!}
   </script>
   <script src="{{ asset('js/video-scrollers.js') }}"></script>
   <script src="{{ asset('js/jquery.jscroll.min.js') }}" defer></script>

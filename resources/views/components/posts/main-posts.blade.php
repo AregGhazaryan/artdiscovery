@@ -4,7 +4,7 @@
   </div>
 </div>
 @auth
-@if(Auth::user()->isAdmin())
+@if(Gate::allows('post-crud'))
   <form id="post-publish">
     <input type="text" name="title" class="card post-card post-main shadow-sm form-control mb-2" id="post-title" placeholder="@lang('posts.title')" required/>
     <div class="card post-card shadow-sm">
@@ -30,7 +30,7 @@
           {{ $post->user->fullname }}
         </a>
         @auth
-        @if(Auth::user()->isAdmin())
+        @if(Gate::allows('post-menu', $post, Auth::user()))
         <div class="dropdown post-options float-right">
           <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-ellipsis-v"></i>

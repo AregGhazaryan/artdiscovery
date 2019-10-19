@@ -1,5 +1,5 @@
 <?php
-
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,14 +17,11 @@ Route::post('/getVideos', 'VideoController@getVideos');
 Route::post('/getVideo', 'VideoController@getVideo');
 Route::get('/video/{id}', 'PagesController@video')->name('page.video');
 
+
+
 Route::middleware('admin')->group(function () {
     Route::resource('videos', 'VideoController');
     Route::post('/uploadImg', 'VideoController@imageUpload');
-    Route::post('/uploadPostImg', 'PostController@imageUpload');
-    Route::post('/post', 'PostController@store')->name('post.store');
-    Route::get('/post/{id}/edit', 'PostController@edit')->name('post.edit');
-    Route::delete('/post/{id}/delete', 'PostController@destroy')->name('post.destroy');
-    Route::put('/post/{id}/update', 'PostController@update')->name('post.update');
     Route::get('/user/{id}/ban', 'UserController@ban')->name('user.ban');
     Route::get('/user/{id}/unban', 'UserController@unban')->name('user.unban');
 
@@ -46,6 +43,11 @@ Route::middleware('admin')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+  Route::post('/post', 'PostController@store')->name('post.store')->middleware('can:create,App\Post');
+  Route::put('/post/{id}/update', 'PostController@update')->name('post.update');
+  Route::get('/post/{id}/edit', 'PostController@edit')->name('post.edit');
+  Route::delete('/post/{id}/delete', 'PostController@destroy')->name('post.destroy');
+  Route::post('/uploadPostImg', 'PostController@imageUpload')->middleware('can:create,post')->middleware('can:create,App\Post');
   Route::resource('comment', 'CommentController');
 
     // Route::get('/profile/{id}', 'ProfileController@show')->name('profile.show');

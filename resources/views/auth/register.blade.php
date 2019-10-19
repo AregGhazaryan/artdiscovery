@@ -48,15 +48,35 @@
                 <label for="birth-date" class="col-md-4 col-form-label text-md-right">
                   @lang('registration.birthdate')</label>
 
-                  <div class="col-md-6">
-                    <input type="text" name="birth_date" id="datepicker" class="form-control @error('birth_date') is-invalid @enderror" required>
-
+                  <div class="col-md-6 birthday-container">
+                    {{-- <input type="text" name="birth_date" id="datepicker" class="form-control @error('birth_date') is-invalid @enderror" required> --}}
+                    <select class="day form-control col-sm-4 float-left" name="day">
+                      @for($day=1; $day <= 31; $day++)
+                      <option value="{{ $day }}">
+                        {{$day}}
+                      </option>
+                      @endfor
+                    </select>
+                    <select class="month form-control col-sm-4 float-left" name="month">
+                      @for($month=1; $month <= 12; $month++)
+                        <option value="{{ $month }}">
+                        {{$month}}
+                      </option>
+                      @endfor
+                    </select>
+                    <select class="year form-control col-sm-4 float-left" name="year">
+                      @for($year=1900; $year <= date("Y"); $year++)
+                      <option value="{{ $year }}">
+                        {{$year}}
+                      </option>
+                      @endfor
+                    </select>
                     @error('birth_date')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                     </span>
                     @enderror
-                  </div>
+                </div>
               </div>
 
               <div class="form-group row">
@@ -116,29 +136,29 @@
                 @error('terms')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-                <div class="custom-control custom-checkbox row text-center">
-                  <input type="checkbox" class="custom-control-input @error('terms') is-invalid @enderror" id="terms" name="terms">
-                  <label class="custom-control-label" for="terms">
-                    @lang('registration.terms')</label>
-                </div>
-              </div> --}}
-              <div class="g-recaptcha" data-sitekey="{{ env('CAPTCHA_SITE_KEY') }}"></div>
-              @if ($errors->has('g-recaptcha-response'))
-                  <span class="invalid-feedback" style="display: block;">
-                      <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                  </span>
-              @endif
-              <div class="form-group row d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary">
-                  @lang('registration.register')
-                </button>
+              </span>
+              @enderror
+              <div class="custom-control custom-checkbox row text-center">
+                <input type="checkbox" class="custom-control-input @error('terms') is-invalid @enderror" id="terms" name="terms">
+                <label class="custom-control-label" for="terms">
+                  @lang('registration.terms')</label>
               </div>
-            </form>
+          </div> --}}
+          <div class="g-recaptcha" data-sitekey="{{ env('CAPTCHA_SITE_KEY') }}"></div>
+          @if ($errors->has('g-recaptcha-response'))
+          <span class="invalid-feedback" style="display: block;">
+            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+          </span>
+          @endif
+          <div class="form-group row d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary">
+              @lang('registration.register')
+            </button>
           </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
-  @endsection
+</div>
+@endsection

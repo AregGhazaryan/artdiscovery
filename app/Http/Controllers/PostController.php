@@ -75,6 +75,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
+        $this->authorize('update', $post);
         return view('components.posts.edit-post')->with('post', $post);
     }
 
@@ -87,7 +88,8 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
+        $this->authorize('update', $post);
         $post->title = $request->title;
         $post->content = $request->content;
         $post->save();
@@ -102,6 +104,8 @@ class PostController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+      $post = Post::findOrFail($id);
+      $this->authorize('delete', $post);
         if($request->images !== null) {
             foreach($request->images as $image){
                 $exp = explode('/', $image);
@@ -109,7 +113,6 @@ class PostController extends Controller
                 Storage::delete('public/post_images/' . $name);
             }
         }
-        $post = Post::find($id);
         foreach($post->comments as $comment){
             $comment->delete();
         }

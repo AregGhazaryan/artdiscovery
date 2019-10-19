@@ -56,10 +56,10 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'gender'=> ['required'],
-            'mobile' => ['nullable','numeric'],
             // 'terms' => ['required'],
-            'address' => ['nullable', 'string'],
-            'birth_date' => ['required', 'date'],
+            'day' => ['required', 'numeric'],
+            'month' => ['required', 'numeric'],
+            'year' => ['required', 'numeric'],
             'g-recaptcha-response' => new Captcha()
         ]);
     }
@@ -79,10 +79,8 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'gender' => $data['gender'],
-            'mobile' => $data['mobile'],
             'agreed_to_terms' => 1,
-            'address' => $data['address'],
-            'birthday' => $data['birth_date'],
+            'birthday' => $data['year'] . '-' . $data['month'] . '-' . $data['day'],
             'ip_address' => Request::ip(),
             'role_id' => 2,
             'status_id' => 1,

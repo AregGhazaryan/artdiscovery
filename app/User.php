@@ -66,7 +66,7 @@ class User extends Authenticatable
     }
 
     public function isAdmin(){
-      return $this->role->name == 'Admin' ? true : false; 
+      return $this->role->name == 'Admin' ? true : false;
     }
 
     public function role(){
@@ -75,5 +75,9 @@ class User extends Authenticatable
 
     public function isBanned(){
       return $this->status_id == 3 ? true : false;
+    }
+
+    public function isAuthor(){
+      return $this->role->name == 'Author' ? true : false;
     }
 }
