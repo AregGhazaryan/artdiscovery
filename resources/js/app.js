@@ -363,8 +363,8 @@ $(document).on('click', '.submit-comment', function (event) {
     .done(function (response) {
       html = '<div class="comment-wrapper"><div class="bg-white comment rounded p-2 shadow-sm"><div class="comment-header mb-1"><a href="/profile/' +
         response[0].user['id'] + '"><img class="comment-by-image mr-2" src="storage/profile_images/' +
-        response[0].user['avatar'] + '"/>' + response[0].user['fullname'] 
-        + '</a><div class="dropdown post-options float-right dropleft comment-dropdowns"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light delete-comment" data-id="'+response[0].comment['id']+'">'+deltext+'</a></div></div></div><div class="comment-body">' 
+        response[0].user['avatar'] + '"/>' + response[0].user['fullname']
+        + '</a><div class="dropdown post-options float-right dropleft comment-dropdowns"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light delete-comment" data-id="'+response[0].comment['id']+'">'+deltext+'</a></div></div></div><div class="comment-body">'
         + response[0].comment['body'] + '</div><div class="replies-wrapper text-right"><a data-toggle="collapse" href="#reply'
         +response[0].comment['id']+'" class="ml-3" role="button">'+reptext+'</a><div class="collapse" id="reply'
         +response[0].comment['id']+'"><div class="input-group"><input type="text" name="comment_body" class="form-control" class="form-control" /><button data-comment="'
@@ -429,11 +429,11 @@ $(document).on('click', '.submit-reply', function (event) {
       console.log(response);
       html = '<div class="comment comment-reply shadow-sm p-2"><div class="comment-header mb-1"><a href="/profile/' + response.user['id'] +
         '"><img class="comment-by-image mr-2" src="storage/profile_images/' + response.user['avatar'] + '" />' +
-        response.user['fullname'] + '</a><div class="dropdown post-options float-right dropleft comment-dropdowns"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light delete-comment" data-id="' 
+        response.user['fullname'] + '</a><div class="dropdown post-options float-right dropleft comment-dropdowns"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light delete-comment" data-id="'
         +response.comment['id'] + '">' + deltext + '</a></div></div></div><div class="comment-body">' + response.comment['body'] + '</div><div class="replies-wrapper text-right"><a data-toggle="collapse" href="#reply' +
         response.comment['id'] + '" role="button">' + reptext + '</a><div class="collapse" id="reply' +
         response.comment['id'] + '"><div class="input-group"><input type="text" name="comment_body" class="form-control" class="form-control" /><button data-comment="' +
-        response.comment['id'] + '" data-post="'+post_id+'" type="submit" class="btn btn-primary add-comment-button submit-reply" data-parent="true">' + reptext 
+        response.comment['id'] + '" data-post="'+post_id+'" type="submit" class="btn btn-primary add-comment-button submit-reply" data-parent="true">' + reptext
         + '</button></div></div></div><div class="comment-footer text-right"><small class="text-muted">' +
         response.comment['created_at'] + '</small></div></div>';
         comment_placeholder.append(html);
@@ -536,3 +536,9 @@ $('.comments-collapse ').each(function () {
 
 
 $('.page-loader').fadeOut('slow');
+
+
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})

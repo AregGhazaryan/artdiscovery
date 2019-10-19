@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(30);
         return view('admin.users.index')->with('users', $users);
     }
 
@@ -107,5 +107,19 @@ class UserController extends Controller
       $user->status_id = 1;
       $user->save();
       return Redirect::back()->with('message', trans('users.unbanned'));
+    }
+
+    public function setAuthor($id){
+      $user = User::find($id);
+      $user->role_id = 3;
+      $user->save();
+      return Redirect::back()->with('message', trans('users.authorset'));
+    }
+
+    public function unsetAuthor($id){
+      $user = User::find($id);
+      $user->role_id = 2;
+      $user->save();
+      return Redirect::back()->with('message', trans('users.authorunset'));
     }
 }

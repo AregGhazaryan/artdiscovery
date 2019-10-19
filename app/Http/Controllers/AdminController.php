@@ -11,6 +11,6 @@ class AdminController extends Controller
     }
 
     public function purchaseHistory(){
-        return 123;
+        // return 123;
     }
 }

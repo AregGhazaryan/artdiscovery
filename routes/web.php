@@ -23,7 +23,9 @@ Route::middleware('admin')->group(function () {
     Route::resource('videos', 'VideoController');
     Route::post('/uploadImg', 'VideoController@imageUpload');
     Route::get('/user/{id}/ban', 'UserController@ban')->name('user.ban');
-    Route::get('/user/{id}/unban', 'UserController@unban')->name('user.unban');
+    Route::get('/user/{id}/ban', 'UserController@ban')->name('user.ban');
+    Route::get('/user/{id}/setauthor', 'UserController@setAuthor')->name('user.set-author');
+    Route::get('/user/{id}/unsetauthor', 'UserController@unsetAuthor')->name('user.unset-author');
 
     Route::prefix('admin')->group(function () {
         Route::resource('sections', 'SectionController');

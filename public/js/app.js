@@ -38244,6 +38244,9 @@ $('.comments-collapse ').each(function () {
 }); // End of video scrollers
 
 $('.page-loader').fadeOut('slow');
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+});
 
 /***/ }),
 
