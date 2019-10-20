@@ -16,14 +16,21 @@ Route::get('/sections', 'PagesController@sections')->name('sections');
 Route::post('/getVideos', 'VideoController@getVideos');
 Route::post('/getVideo', 'VideoController@getVideo');
 Route::get('/video/{id}', 'PagesController@video')->name('page.video');
-
-
+Route::get('/events', 'EventController@index')->name('events.index');
+Route::get('/events/get', 'EventController@getAll')->name('events.get');
 
 Route::middleware('admin')->group(function () {
+    Route::post('/events', 'EventController@store')->name('events.store');
+    Route::get('/events/create', 'EventController@create')->name('events.create');
+    Route::get('/events/list', 'EventController@lists')->name('events.list');
+    Route::get('/events/{id}/edit', 'EventController@edit')->name('events.edit');
+    Route::put('/events/{id}/update', 'EventController@update')->name('events.update');
+    Route::get('/events/{id}/delete', 'EventController@destroy')->name('events.destroy');
     Route::resource('videos', 'VideoController');
     Route::post('/uploadImg', 'VideoController@imageUpload');
+    Route::post('/uploadEventImg', 'EventController@imageUpload');
     Route::get('/user/{id}/ban', 'UserController@ban')->name('user.ban');
-    Route::get('/user/{id}/ban', 'UserController@ban')->name('user.ban');
+    Route::get('/user/{id}/unban', 'UserController@unban')->name('user.unban');
     Route::get('/user/{id}/setauthor', 'UserController@setAuthor')->name('user.set-author');
     Route::get('/user/{id}/unsetauthor', 'UserController@unsetAuthor')->name('user.unset-author');
 

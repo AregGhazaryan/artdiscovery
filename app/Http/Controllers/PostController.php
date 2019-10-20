@@ -123,7 +123,6 @@ class PostController extends Controller
 
     public function imageUpload(Request $request)
     {
-        $request->validate(['upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',]);
         $imageName = time().'.'.$request->upload->getClientOriginalExtension();
         $path = Storage::putFileAs('public/post_images', new File($request->upload), $imageName);
         $exp = explode('/', $path);

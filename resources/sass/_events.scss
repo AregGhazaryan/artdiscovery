@@ -1,0 +1,12 @@
+.event-card{
+  .card{
+    .card-img-top{
+      height: 250px;
+      object-fit: cover;
+    }
+    .card-text{
+      height: 200px;
+      overflow-y: scroll;
+    }
+  }
+}

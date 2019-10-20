@@ -11296,6 +11296,11 @@ main {
   min-height: 80vh;
 }
 
+.table-centered table td,
+.table-centered table th {
+  text-align: center !important;
+}
+
 .textarea {
   max-height: 500px !important;
   min-height: 300px;
@@ -11844,7 +11849,7 @@ figure.image-style-side {
 }
 
 figure.image-style-side img {
-  max-width: 250px;
+  max-width: 250px !important;
 }
 
 figure.image-style-align-right {
@@ -11852,7 +11857,7 @@ figure.image-style-align-right {
 }
 
 figure.image-style-align-right img {
-  max-width: 250px;
+  max-width: 250px !important;
 }
 
 figure.image-style-align-left {
@@ -11860,7 +11865,7 @@ figure.image-style-align-left {
 }
 
 figure.image-style-align-left img {
-  max-width: 250px;
+  max-width: 250px !important;
 }
 
 figure img {
@@ -11886,6 +11891,10 @@ figure img {
 .post-content p {
   word-break: keep-all;
   text-align: justify;
+}
+
+.ck-content {
+  text-align: justify !important;
 }
 
 .comment {
@@ -11952,5 +11961,16 @@ figure img {
 
 .comment-reply:last-child {
   margin-bottom: 1rem;
+}
+
+.event-card .card .card-img-top {
+  height: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.event-card .card .card-text {
+  height: 200px;
+  overflow-y: scroll;
 }
 

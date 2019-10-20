@@ -9,7 +9,7 @@
   <h2 class="text-center">
     @lang('posts.edit')</h2>
     <hr>
-    <form action="{{ route('post.update', $post->id) }}" method="post">
+    <form class="card post-card" action="{{ route('post.update', $post->id) }}" method="post">
       @csrf
       @method('put')
       <input type="text" class="form-control mb-2" value="{{ $post->title }}" name="title" />

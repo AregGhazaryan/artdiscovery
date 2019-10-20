@@ -35,9 +35,18 @@ class AuthServiceProvider extends ServiceProvider
                 }
             }
         );
+
         Gate::define(
             'post-menu', function ($user, $post) {
                 return $user->id === $post->user_id;
+            }
+        );
+
+        Gate::define(
+            'events-crud', function ($user) {
+                if($user->isAdmin()) {
+                    return true;
+                }
             }
         );
     }

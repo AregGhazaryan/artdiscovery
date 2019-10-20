@@ -29,7 +29,39 @@
 //     el: '#app',
 // });
 
+import { Calendar } from './@fullcalendar/core';
+import dayGridPlugin from './@fullcalendar/daygrid';
+import './@fullcalendar/core/main.css';
+import './@fullcalendar/daygrid/main.css';
+// import './@fullcalendar/timegrid/main.css';
+// import './@fullcalendar/list/main.css';
 
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+
+  var calendar = new Calendar(calendarEl, {
+    plugins: [ dayGridPlugin ],
+    events: '/events/get',
+    eventClick: function(info) {
+      console.log(info);
+      var start = info.event.start;
+      var end = info.event.end;
+
+      $('.fc-event-container a').css('background-color', '#3788d8');
+      $(info.el).css('background-color', '#00da4a');
+      $('#info-container').empty();
+      var html = '<div class="card"><img class="card-img-top" src="/storage/event_images/'+info.event._def.extendedProps.image
+      +'"><div class="card-body"><h5 class="card-title">'+info.event.title
+      +'</h5><h6>'+info.event._def.extendedProps.location+'</h6><small class="text-right">'
+      +(new Date(start)).toISOString().slice(0, 10)+' - ' +(new Date(end)).toISOString().slice(0, 10)+'</small><div class="card-text">'
+      +info.event._def.extendedProps.description+'</div></div></div>';
+      $('#info-container').append(html);
+  }
+
+  });
+
+  calendar.render();
+});
 
 // Start of TranslationServiceProvider
 function trans(key, replace = {}) {
@@ -219,6 +251,103 @@ $("#scroll-to-top").click(function () {
   }, 1000);
 });
 
+class EventUploadAdapter {
+  constructor(loader) {
+    this.loader = loader;
+  }
+
+  upload() {
+    return this.loader.file
+      .then(file => new Promise((resolve, reject) => {
+        this._initRequest();
+        this._initListeners(resolve, reject, file);
+        this._sendRequest(file);
+      }));
+  }
+
+  abort() {
+    if (this.xhr) {
+      this.xhr.abort();
+    }
+  }
+
+  _initRequest() {
+    const xhr = this.xhr = new XMLHttpRequest();
+
+    xhr.open('POST', '/uploadEventImg', true);
+    xhr.responseType = 'json';
+  }
+
+  _initListeners(resolve, reject, file) {
+    const xhr = this.xhr;
+    const loader = this.loader;
+    const genericErrorText = `Couldn't upload file: ${ file.name }.`;
+
+    xhr.addEventListener('error', () => reject(genericErrorText));
+    xhr.addEventListener('abort', () => reject());
+    xhr.addEventListener('load', () => {
+      const response = xhr.response;
+      if (!response || response.error) {
+        return reject(response && response.error ? response.error.message : genericErrorText);
+      }
+      resolve({
+        default: response.url
+      });
+    });
+
+    if (xhr.upload) {
+      xhr.upload.addEventListener('progress', evt => {
+        if (evt.lengthComputable) {
+          loader.uploadTotal = evt.total;
+          loader.uploaded = evt.loaded;
+        }
+      });
+    }
+  }
+
+  _sendRequest(file) {
+    const data = new FormData();
+    data.append('upload', file);
+    this.xhr.send(data);
+  }
+}
+
+function EventUploadAdapterPlugin(editor) {
+  editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+    // Configure the URL to the upload script in your back-end here!
+    return new EventUploadAdapter(loader);
+  };
+}
+
+let eventeditor;
+ClassicEditor
+  .create(document.querySelector('#event-description'), {
+    extraPlugins: [EventUploadAdapterPlugin],
+    image: {
+      resizeUnit: 'px',
+      toolbar: ['imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight'],
+      styles: [
+        // This option is equal to a situation where no style is applied.
+        'full',
+
+        // This represents an image aligned to the left.
+        'alignLeft',
+
+        // This represents an image aligned to the right.
+        'alignRight'
+      ]
+    },
+    simpleUpload: {
+      uploadUrl: '/uploadEventImg',
+
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    }
+  })
+  .then(newEditor => {
+    eventeditor = newEditor;
+  });
 
 var allEditors = document.querySelectorAll('.ckeditor');
 for (var i = 0; i < allEditors.length; ++i) {
@@ -287,7 +416,7 @@ $(document).on('click', '#publish-post', function (event) {
       content: editorData
     })
     .done(function (response) {
-      html = '<div class="card post-card shadow-sm mt-2"><div class="card-header bg-white p-3 post-by">';
+      var html = '<div class="card post-card shadow-sm mt-2"><div class="card-header bg-white p-3 post-by">';
       html += '<a href="/profile/' + response.user['id'] + '"><img class="post-by-image mr-2" src="storage/profile_images/' + response.user['avatar'] + '" />' +
         response.user['first_name'] + ' ' + response.user['last_name'] +
         '</a><div class="dropdown post-options float-right"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light" href="/post/' +
@@ -306,10 +435,10 @@ $(document).on('click', '#publish-post', function (event) {
 
 // Delete post
 $(document).on('click', '.delete-post', function (event) {
-  images = [];
-  container = $(this).closest('.post-card');
+  var images = [];
+  var container = $(this).closest('.post-card');
   console.log(container);
-  id = $(this).data('id');
+  var id = $(this).data('id');
   $(this).parents('.card').find('.post-content').find('img').each(function () {
     images.push(this.src);
   });
@@ -335,19 +464,19 @@ $(document).on('click', '.delete-post', function (event) {
 
 // Add Comment
 $(document).on('click', '.submit-comment', function (event) {
-  body_input = $(this).prev('input');
-  comment_body = $(this).prev('input').val();
+  var body_input = $(this).prev('input');
+  var comment_body = $(this).prev('input').val();
   // if(comment_body == ''){
   //   body_input.addClass('is-invalid');
   //   return;
   // }else{
   //   body_input.addClass('is-valid');
   // }
-  post = $(this).data('post');
-  edtext = trans('posts.edit');
-  reptext = trans('comments.reply');
-  deltext = trans('posts.delete');
-  comment_placeholder = $(this).parent().siblings().find('.comments-placeholder');
+  var post = $(this).data('post');
+  var edtext = trans('posts.edit');
+  var reptext = trans('comments.reply');
+  var deltext = trans('posts.delete');
+  var comment_placeholder = $(this).parent().siblings().find('.comments-placeholder');
   if(comment_placeholder.parent().not('.show')){
     comment_placeholder.parent().addClass('show');
   }
@@ -361,7 +490,7 @@ $(document).on('click', '.submit-comment', function (event) {
       post_id: post,
     })
     .done(function (response) {
-      html = '<div class="comment-wrapper"><div class="bg-white comment rounded p-2 shadow-sm"><div class="comment-header mb-1"><a href="/profile/' +
+      var html = '<div class="comment-wrapper"><div class="bg-white comment rounded p-2 shadow-sm"><div class="comment-header mb-1"><a href="/profile/' +
         response[0].user['id'] + '"><img class="comment-by-image mr-2" src="storage/profile_images/' +
         response[0].user['avatar'] + '"/>' + response[0].user['fullname']
         + '</a><div class="dropdown post-options float-right dropleft comment-dropdowns"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light delete-comment" data-id="'+response[0].comment['id']+'">'+deltext+'</a></div></div></div><div class="comment-body">'
@@ -391,10 +520,10 @@ $(document).on('click', '.submit-comment', function (event) {
 // Add Reply
 
 $(document).on('click', '.submit-reply', function (event) {
-  post_id = $(this).data('post');
-  comment_id = $(this).data('comment');
-  body_input = $(this).prev('input');
-  comment_body = $(this).prev('input').val();
+  var post_id = $(this).data('post');
+  var comment_id = $(this).data('comment');
+  var body_input = $(this).prev('input');
+  var comment_body = $(this).prev('input').val();
   let edtext = trans('posts.edit');
   let deltext = trans('posts.delete');
   let reptext = trans('comments.reply');
@@ -407,10 +536,10 @@ $(document).on('click', '.submit-reply', function (event) {
   if($(this).data('parent')){
     // comment_placeholder = $(this).closest('.replies-collapse');
     // if(comment_placeholder == null){
-      comment_placeholder = $(this).parents('.comment-wrapper').find('.replies-collapse');
+      var comment_placeholder = $(this).parents('.comment-wrapper').find('.replies-collapse');
     // }
 }else{
-    comment_placeholder = $(this).closest('.comments-wrapper');
+    var comment_placeholder = $(this).closest('.comments-wrapper');
   }
   if(comment_placeholder.not('.show')){
     comment_placeholder.addClass('show');
@@ -427,7 +556,7 @@ $(document).on('click', '.submit-reply', function (event) {
     })
     .done(function (response) {
       console.log(response);
-      html = '<div class="comment comment-reply shadow-sm p-2"><div class="comment-header mb-1"><a href="/profile/' + response.user['id'] +
+      var html = '<div class="comment comment-reply shadow-sm p-2"><div class="comment-header mb-1"><a href="/profile/' + response.user['id'] +
         '"><img class="comment-by-image mr-2" src="storage/profile_images/' + response.user['avatar'] + '" />' +
         response.user['fullname'] + '</a><div class="dropdown post-options float-right dropleft comment-dropdowns"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light delete-comment" data-id="'
         +response.comment['id'] + '">' + deltext + '</a></div></div></div><div class="comment-body">' + response.comment['body'] + '</div><div class="replies-wrapper text-right"><a data-toggle="collapse" href="#reply' +
@@ -451,7 +580,7 @@ $(document).on('click', '.submit-reply', function (event) {
 // Delete Comment
 
 $(document).on('click', '.delete-comment', function (event) {
-  comment = $(this).parents('.comment');
+  var comment = $(this).parents('.comment');
   $.ajaxSetup({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -542,3 +671,19 @@ $('.page-loader').fadeOut('slow');
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#img').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#imgInp").change(function() {
+  readURL(this);
+});

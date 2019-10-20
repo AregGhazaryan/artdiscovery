@@ -48,7 +48,7 @@ figure {
     float: right;
 
     img {
-      max-width: 250px;
+      max-width: 250px !important;
     }
   }
 
@@ -56,7 +56,7 @@ figure {
     float: right;
 
     img {
-      max-width: 250px;
+      max-width: 250px !important;
     }
   }
 
@@ -64,7 +64,7 @@ figure {
     float: left;
 
     img {
-      max-width: 250px;
+      max-width: 250px !important;
     }
   }
 
@@ -94,4 +94,8 @@ figure {
     word-break: keep-all;
     text-align: justify;
   }
+}
+
+.ck-content{
+  text-align: justify !important;
 }

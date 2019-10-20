@@ -69,8 +69,11 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('sections') }}"><i class="fas fa-list mr-2"></i>@lang('sections.index')</a>
+          <a class="nav-link" href="{{ route('events.index') }}"><i class="fas fa-calendar-alt mr-2"></i>@lang('events.index')</a>
         </li>
+        {{-- <li class="nav-item">
+          <a class="nav-link" href="{{ route('sections') }}"><i class="fas fa-list mr-2"></i>@lang('sections.index')</a>
+        </li> --}}
       </ul>
       <ul class="navbar-nav ml-auto">
         @guest

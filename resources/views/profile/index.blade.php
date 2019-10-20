@@ -28,7 +28,7 @@
         <div class="profile-details">
 
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{$user->first_name . ' ' .$user->last_name}} @if($user->online ) <small
+            <li class="list-group-item">{{$user->first_name . ' ' .$user->last_name}} @include('profile.partials.badge') @if($user->online ) <small
                 class="profile-status">
                 <div class="green-dot pulse"></div>
               </small>
@@ -42,14 +42,11 @@
             @if(Auth::user()->isAdmin() || Auth::user()->id == $user->id)
             <li class="list-group-item">@lang('profile.email') : {{$user->email}}</li>
             <li class="list-group-item">@lang('profile.gender') : {{$user->sex}}</li>
-            <li class="list-group-item">@lang('profile.address') : {{$user->address}}</li>
             <li class="list-group-item">@lang('profile.birthday') : {{$user->birthday}}</li>
-            <li class="list-group-item">@lang('profile.mobile') : {{$user->mobile}}</li>
             @else
             <li class="list-group-item">@lang('profile.gender') : {{$user->sex}}</li>
             <li class="list-group-item">@lang('profile.birthday') : {{$user->birthday}}</li>
             @endif
-            <li class="list-group-item"><small class="text-muted">@lang('profile.disclaimer')</small></li>
           </ul>
         </div>
       </div>
@@ -59,7 +56,7 @@
 </div>
 @auth
 @if(Auth::user()->isAdmin())
-<div class="modal border-0 fade" tabindex="-1" role="dialog" id="confirm-ban"> 
+<div class="modal border-0 fade" tabindex="-1" role="dialog" id="confirm-ban">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -78,7 +75,7 @@
       <div class="modal-footer">
         @if($user->isBanned())
         <a href="/user/{{$user->id}}/unban" class="btn btn-primary">@lang('confirmation.yes')</a>
-        @else 
+        @else
         <a href="/user/{{$user->id}}/ban" class="btn btn-primary">@lang('confirmation.yes')</a>
         @endif
         <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('confirmation.close')</button>
