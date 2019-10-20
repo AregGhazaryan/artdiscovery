@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SubsectionsTableSeeder::class);
         $this->call(CurrenciesTableSeeder::class);
         $this->call(VideosTableSeeder::class);
+        $this->call(PostsTableSeeder::class);
     }
 }
