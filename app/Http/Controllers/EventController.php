@@ -40,7 +40,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-      if($request->has('image'){
+      if($request->has('image')){
       $imageName = time().'.'.$request->image->getClientOriginalExtension();
       $path = Storage::putFileAs('public/event_images/', new File($request->image), $imageName);  
       }else{
