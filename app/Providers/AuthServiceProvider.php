@@ -38,7 +38,12 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define(
             'post-menu', function ($user, $post) {
-                return $user->id === $post->user_id;
+              if($user->isAdmin(){
+                return true;
+              }
+               if($user->id === $post->user_id){
+                 return true;
+               }
             }
         );
 
