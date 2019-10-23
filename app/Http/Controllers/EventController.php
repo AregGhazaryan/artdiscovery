@@ -95,6 +95,7 @@ class EventController extends Controller
         $event->start = $request->start_date;
         $event->end = $request->end_date;
         $event->location = $request->location;
+        $event->description = $request->description;
         if($request->has('image')){
           Storage::delete('public/event_images/' . $event->image);
           $imageName = time().'.'.$request->image->getClientOriginalExtension();
