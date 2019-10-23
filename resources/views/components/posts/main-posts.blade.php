@@ -1,8 +1,3 @@
-<div class="page-loader">
-  <div class="spinner-grow text-primary" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
-</div>
 @auth
 @if(Gate::allows('post-crud'))
   <form id="post-publish">

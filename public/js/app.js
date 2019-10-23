@@ -47071,6 +47071,98 @@ function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj
 
 /***/ }),
 
+/***/ "./resources/js/@fullcalendar/core/locales/hy.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/@fullcalendar/core/locales/hy.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+(function (global, factory) {
+  ( false ? undefined : _typeof(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory() :  true ? !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : (undefined);
+})(this, function () {
+  'use strict';
+
+  var ru = {
+    code: "hy",
+    week: {
+      dow: 1,
+      doy: 4 // The week that contains Jan 4th is the first week of the year.
+
+    },
+    buttonText: {
+      prev: "Նախորդ",
+      next: "Հաջորդ",
+      today: "Այսօր",
+      month: "Ամիս",
+      week: "Շաբաթ",
+      day: "Օր",
+      list: "Ցանկ"
+    },
+    weekLabel: "Շաբ",
+    allDayText: "Ամբողջ օր",
+    eventLimitText: function eventLimitText(n) {
+      return "+ և " + n;
+    },
+    noEventsMessage: "Իրադարձություններ չկան"
+  };
+  return ru;
+});
+
+/***/ }),
+
+/***/ "./resources/js/@fullcalendar/core/locales/ru.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/@fullcalendar/core/locales/ru.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+(function (global, factory) {
+  ( false ? undefined : _typeof(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory() :  true ? !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : (undefined);
+})(this, function () {
+  'use strict';
+
+  var ru = {
+    code: "ru",
+    week: {
+      dow: 1,
+      doy: 4 // The week that contains Jan 4th is the first week of the year.
+
+    },
+    buttonText: {
+      prev: "Пред",
+      next: "След",
+      today: "Сегодня",
+      month: "Месяц",
+      week: "Неделя",
+      day: "День",
+      list: "Повестка дня"
+    },
+    weekLabel: "Нед",
+    allDayText: "Весь день",
+    eventLimitText: function eventLimitText(n) {
+      return "+ ещё " + n;
+    },
+    noEventsMessage: "Нет событий для отображения"
+  };
+  return ru;
+});
+
+/***/ }),
+
 /***/ "./resources/js/@fullcalendar/core/main.css":
 /*!**************************************************!*\
   !*** ./resources/js/@fullcalendar/core/main.css ***!
@@ -59843,10 +59935,14 @@ var main = Object(_fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__["createPlugin"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./@fullcalendar/core */ "./resources/js/@fullcalendar/core/main.esm.js");
 /* harmony import */ var _fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./@fullcalendar/daygrid */ "./resources/js/@fullcalendar/daygrid/main.esm.js");
-/* harmony import */ var _fullcalendar_core_main_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./@fullcalendar/core/main.css */ "./resources/js/@fullcalendar/core/main.css");
-/* harmony import */ var _fullcalendar_core_main_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_fullcalendar_core_main_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _fullcalendar_daygrid_main_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./@fullcalendar/daygrid/main.css */ "./resources/js/@fullcalendar/daygrid/main.css");
-/* harmony import */ var _fullcalendar_daygrid_main_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_fullcalendar_daygrid_main_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _fullcalendar_core_locales_ru__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./@fullcalendar/core/locales/ru */ "./resources/js/@fullcalendar/core/locales/ru.js");
+/* harmony import */ var _fullcalendar_core_locales_ru__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_fullcalendar_core_locales_ru__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _fullcalendar_core_locales_hy__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./@fullcalendar/core/locales/hy */ "./resources/js/@fullcalendar/core/locales/hy.js");
+/* harmony import */ var _fullcalendar_core_locales_hy__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_fullcalendar_core_locales_hy__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _fullcalendar_core_main_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./@fullcalendar/core/main.css */ "./resources/js/@fullcalendar/core/main.css");
+/* harmony import */ var _fullcalendar_core_main_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_fullcalendar_core_main_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _fullcalendar_daygrid_main_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./@fullcalendar/daygrid/main.css */ "./resources/js/@fullcalendar/daygrid/main.css");
+/* harmony import */ var _fullcalendar_daygrid_main_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_fullcalendar_daygrid_main_css__WEBPACK_IMPORTED_MODULE_5__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -59883,22 +59979,45 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
+
  // import './@fullcalendar/timegrid/main.css';
 // import './@fullcalendar/list/main.css';
 
 document.addEventListener('DOMContentLoaded', function () {
   var calendarEl = document.getElementById('calendar');
+  var lang = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+  if (lang == 'hy') {
+    var language = _fullcalendar_core_locales_hy__WEBPACK_IMPORTED_MODULE_3___default.a;
+  } else if (lang == 'ru') {
+    var language = _fullcalendar_core_locales_ru__WEBPACK_IMPORTED_MODULE_2___default.a;
+  } else {
+    var language = 'en';
+  }
+
   var calendar = new _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__["Calendar"](calendarEl, {
+    displayEventTime: false,
+    eventColor: '#004fff',
+    locales: [_fullcalendar_core_locales_ru__WEBPACK_IMPORTED_MODULE_2___default.a, _fullcalendar_core_locales_hy__WEBPACK_IMPORTED_MODULE_3___default.a],
+    locale: language,
     plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__["default"]],
     events: '/events/get',
     eventClick: function eventClick(info) {
-      console.log(info);
       var start = info.event.start;
       var end = info.event.end;
-      $('.fc-event-container a').css('background-color', '#3788d8');
+      var st_date = "".concat((start.getMonth() + 1).toString().padStart(2, '0'), "/").concat(start.getDate().toString().padStart(2, '0'), "/").concat(start.getFullYear().toString().padStart(4, '0'), " ").concat(start.getHours().toString().padStart(2, '0'), ":").concat(start.getMinutes().toString().padStart(2, '0'), ":").concat(start.getSeconds().toString().padStart(2, '0'));
+      var end_date = "".concat((end.getMonth() + 1).toString().padStart(2, '0'), "/").concat(end.getDate().toString().padStart(2, '0'), "/").concat(end.getFullYear().toString().padStart(4, '0'), " ").concat(end.getHours().toString().padStart(2, '0'), ":").concat(end.getMinutes().toString().padStart(2, '0'), ":").concat(end.getSeconds().toString().padStart(2, '0'));
+      $('.fc-event-container a').css('background-color', '#004fff');
       $(info.el).css('background-color', '#00da4a');
       $('#info-container').empty();
-      var html = '<div class="card"><img class="card-img-top" src="/storage/event_images/' + info.event._def.extendedProps.image + '"><div class="card-body"><h5 class="card-title">' + info.event.title + '</h5><h6>' + info.event._def.extendedProps.location + '</h6><small class="text-right">' + new Date(start).toISOString().slice(0, 10) + ' - ' + new Date(end).toISOString().slice(0, 10) + '</small><div class="card-text">' + info.event._def.extendedProps.description + '</div></div></div>';
+      var html = '<div class="card shadow-sm">';
+
+      if (info.event._def.extendedProps.image !== null) {
+        html += '<img class="card-img-top" src="/storage/event_images/' + info.event._def.extendedProps.image + '">';
+      }
+
+      html += '<div class="card-body d-flex flex-column justify-content-between"><h4 class="card-title">' + info.event.title + '</h4><h5 class="d-flex justify-content-between">' + info.event._def.extendedProps.location + '<small>' + st_date + ' - ' + end_date + '</small></h5><div class="card-text">' + info.event._def.extendedProps.description + '</div></div></div>';
       $('#info-container').append(html);
     }
   });
@@ -60522,6 +60641,7 @@ function readURL(input) {
 $("#imgInp").change(function () {
   readURL(this);
 });
+Waves.attach('button', 'waves-light');
 
 /***/ }),
 

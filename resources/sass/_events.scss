@@ -1,12 +1,32 @@
-.event-card{
-  .card{
-    .card-img-top{
+.event-card {
+  .card {
+    height: 550px;
+
+    .card-img-top {
       height: 250px;
       object-fit: cover;
     }
-    .card-text{
-      height: 200px;
-      overflow-y: scroll;
+
+    .card-body {
+      overflow: auto;
+
+      .card-text {
+        text-align: justify;
+        height: 100%;
+        overflow-y: auto;
+
+        p {
+          padding-right: 10px;
+        }
+      }
     }
   }
+}
+
+.fc-event {
+  border: none !important;
+}
+
+.fc-content {
+  cursor: pointer;
 }

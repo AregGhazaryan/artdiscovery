@@ -29,8 +29,12 @@
 //     el: '#app',
 // });
 
-import { Calendar } from './@fullcalendar/core';
+import {
+  Calendar
+} from './@fullcalendar/core';
 import dayGridPlugin from './@fullcalendar/daygrid';
+import ruLocale from './@fullcalendar/core/locales/ru';
+import hyLocale from './@fullcalendar/core/locales/hy';
 import './@fullcalendar/core/main.css';
 import './@fullcalendar/daygrid/main.css';
 // import './@fullcalendar/timegrid/main.css';
@@ -38,25 +42,55 @@ import './@fullcalendar/daygrid/main.css';
 
 document.addEventListener('DOMContentLoaded', function() {
   var calendarEl = document.getElementById('calendar');
-
+  var lang = document.getElementsByTagName('html')[0].getAttribute('lang');
+  if(lang == 'hy'){
+    var language = hyLocale;
+  }else if(lang == 'ru'){
+    var language = ruLocale;
+  }else{
+    var language = 'en';
+  }
   var calendar = new Calendar(calendarEl, {
-    plugins: [ dayGridPlugin ],
+    displayEventTime: false,
+    eventColor: '#004fff',
+    locales: [ ruLocale, hyLocale],
+    locale: language,
+    plugins: [dayGridPlugin],
     events: '/events/get',
     eventClick: function(info) {
-      console.log(info);
       var start = info.event.start;
       var end = info.event.end;
 
-      $('.fc-event-container a').css('background-color', '#3788d8');
+      var st_date = `${
+      (start.getMonth()+1).toString().padStart(2, '0')}/${
+      start.getDate().toString().padStart(2, '0')}/${
+      start.getFullYear().toString().padStart(4, '0')} ${
+      start.getHours().toString().padStart(2, '0')}:${
+      start.getMinutes().toString().padStart(2, '0')}:${
+      start.getSeconds().toString().padStart(2, '0')}`;
+
+      var end_date = `${
+      (end.getMonth()+1).toString().padStart(2, '0')}/${
+      end.getDate().toString().padStart(2, '0')}/${
+      end.getFullYear().toString().padStart(4, '0')} ${
+      end.getHours().toString().padStart(2, '0')}:${
+      end.getMinutes().toString().padStart(2, '0')}:${
+      end.getSeconds().toString().padStart(2, '0')}`;
+
+
+      $('.fc-event-container a').css('background-color', '#004fff');
       $(info.el).css('background-color', '#00da4a');
       $('#info-container').empty();
-      var html = '<div class="card"><img class="card-img-top" src="/storage/event_images/'+info.event._def.extendedProps.image
-      +'"><div class="card-body"><h5 class="card-title">'+info.event.title
-      +'</h5><h6>'+info.event._def.extendedProps.location+'</h6><small class="text-right">'
-      +(new Date(start)).toISOString().slice(0, 10)+' - ' +(new Date(end)).toISOString().slice(0, 10)+'</small><div class="card-text">'
-      +info.event._def.extendedProps.description+'</div></div></div>';
+      var html = '<div class="card shadow-sm">';
+      if (info.event._def.extendedProps.image !== null) {
+        html += '<img class="card-img-top" src="/storage/event_images/' + info.event._def.extendedProps.image + '">';
+      }
+      html += '<div class="card-body d-flex flex-column justify-content-between"><h4 class="card-title">' + info.event.title +
+        '</h4><h5 class="d-flex justify-content-between">' + info.event._def.extendedProps.location + '<small>' +
+        st_date + ' - ' + end_date + '</small></h5><div class="card-text">' +
+        info.event._def.extendedProps.description + '</div></div></div>';
       $('#info-container').append(html);
-  }
+    }
 
   });
 
@@ -236,7 +270,7 @@ function PostUploadAdapterPlugin(editor) {
 
 
 
-$(window).scroll(function () {
+$(window).scroll(function() {
   if ($(this).scrollTop()) {
     $('#scroll-to-top').fadeIn();
   } else {
@@ -244,7 +278,7 @@ $(window).scroll(function () {
   }
 });
 
-$("#scroll-to-top").click(function () {
+$("#scroll-to-top").click(function() {
   $("html, body").clearQueue();
   $("html, body").animate({
     scrollTop: 0
@@ -400,7 +434,7 @@ ClassicEditor
 
 
 // Add post
-$(document).on('click', '#publish-post', function (event) {
+$(document).on('click', '#publish-post', function(event) {
   const editorData = editor.getData();
   let edtext = trans('posts.edit');
   let deltext = trans('posts.delete');
@@ -415,7 +449,7 @@ $(document).on('click', '#publish-post', function (event) {
       title: $('#post-title').val(),
       content: editorData
     })
-    .done(function (response) {
+    .done(function(response) {
       var html = '<div class="card post-card shadow-sm mt-2"><div class="card-header bg-white p-3 post-by">';
       html += '<a href="/profile/' + response.user['id'] + '"><img class="post-by-image mr-2" src="storage/profile_images/' + response.user['avatar'] + '" />' +
         response.user['first_name'] + ' ' + response.user['last_name'] +
@@ -427,19 +461,19 @@ $(document).on('click', '#publish-post', function (event) {
       editor.setData('');
       $('#post-title').val('');
       $('.submit-loading').fadeOut();
-    }).fail(function (xhr, status, error) {
+    }).fail(function(xhr, status, error) {
       $('.submit-loading').fadeOut();
     });
 
 });
 
 // Delete post
-$(document).on('click', '.delete-post', function (event) {
+$(document).on('click', '.delete-post', function(event) {
   var images = [];
   var container = $(this).closest('.post-card');
   console.log(container);
   var id = $(this).data('id');
-  $(this).parents('.card').find('.post-content').find('img').each(function () {
+  $(this).parents('.card').find('.post-content').find('img').each(function() {
     images.push(this.src);
   });
   $.ajaxSetup({
@@ -454,7 +488,7 @@ $(document).on('click', '.delete-post', function (event) {
       id: id,
     },
     type: 'DELETE',
-    success: function (result) {
+    success: function(result) {
       console.log(result);
       container.remove();
     }
@@ -463,7 +497,7 @@ $(document).on('click', '.delete-post', function (event) {
 });
 
 // Add Comment
-$(document).on('click', '.submit-comment', function (event) {
+$(document).on('click', '.submit-comment', function(event) {
   var body_input = $(this).prev('input');
   var comment_body = $(this).prev('input').val();
   // if(comment_body == ''){
@@ -477,7 +511,7 @@ $(document).on('click', '.submit-comment', function (event) {
   var reptext = trans('comments.reply');
   var deltext = trans('posts.delete');
   var comment_placeholder = $(this).parent().siblings().find('.comments-placeholder');
-  if(comment_placeholder.parent().not('.show')){
+  if (comment_placeholder.parent().not('.show')) {
     comment_placeholder.parent().addClass('show');
   }
   $.ajaxSetup({
@@ -489,22 +523,22 @@ $(document).on('click', '.submit-comment', function (event) {
       comment_body: comment_body,
       post_id: post,
     })
-    .done(function (response) {
+    .done(function(response) {
       var html = '<div class="comment-wrapper"><div class="bg-white comment rounded p-2 shadow-sm"><div class="comment-header mb-1"><a href="/profile/' +
         response[0].user['id'] + '"><img class="comment-by-image mr-2" src="storage/profile_images/' +
-        response[0].user['avatar'] + '"/>' + response[0].user['fullname']
-        + '</a><div class="dropdown post-options float-right dropleft comment-dropdowns"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light delete-comment" data-id="'+response[0].comment['id']+'">'+deltext+'</a></div></div></div><div class="comment-body">'
-        + response[0].comment['body'] + '</div><div class="replies-wrapper text-right"><a data-toggle="collapse" href="#reply'
-        +response[0].comment['id']+'" class="ml-3" role="button">'+reptext+'</a><div class="collapse" id="reply'
-        +response[0].comment['id']+'"><div class="input-group"><input type="text" name="comment_body" class="form-control" class="form-control" /><button data-comment="'
-        +response[0].comment['id']+'" data-parent="true" data-post="'+post+'" type="submit" class="btn btn-primary add-comment-button submit-reply">'
-        +reptext+'</button></div></div></div><div class="comment-footer text-right"><small class="text-muted">' +
-        response[0].comment['created_at'] + '</small></div></div><div class="collapse replies-collapse" id="replies'+response[0].comment['id']+'"></div></div>';
+        response[0].user['avatar'] + '"/>' + response[0].user['fullname'] +
+        '</a><div class="dropdown post-options float-right dropleft comment-dropdowns"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light delete-comment" data-id="' + response[0].comment['id'] + '">' + deltext + '</a></div></div></div><div class="comment-body">' +
+        response[0].comment['body'] + '</div><div class="replies-wrapper text-right"><a data-toggle="collapse" href="#reply' +
+        response[0].comment['id'] + '" class="ml-3" role="button">' + reptext + '</a><div class="collapse" id="reply' +
+        response[0].comment['id'] + '"><div class="input-group"><input type="text" name="comment_body" class="form-control" class="form-control" /><button data-comment="' +
+        response[0].comment['id'] + '" data-parent="true" data-post="' + post + '" type="submit" class="btn btn-primary add-comment-button submit-reply">' +
+        reptext + '</button></div></div></div><div class="comment-footer text-right"><small class="text-muted">' +
+        response[0].comment['created_at'] + '</small></div></div><div class="collapse replies-collapse" id="replies' + response[0].comment['id'] + '"></div></div>';
       body_input.val('');
       body_input.removeClass('is-invalid');
       // body_input.addClass('is-valid');
       comment_placeholder.prepend(html);
-    }).fail(function (response) {
+    }).fail(function(response) {
       // body_input.addClass('is-invalid');
       console.log(response);
       for (let index in response.errors) {
@@ -519,7 +553,7 @@ $(document).on('click', '.submit-comment', function (event) {
 
 // Add Reply
 
-$(document).on('click', '.submit-reply', function (event) {
+$(document).on('click', '.submit-reply', function(event) {
   var post_id = $(this).data('post');
   var comment_id = $(this).data('comment');
   var body_input = $(this).prev('input');
@@ -533,15 +567,15 @@ $(document).on('click', '.submit-reply', function (event) {
   // }else{
   //   body_input.addClass('is-valid');
   // }
-  if($(this).data('parent')){
+  if ($(this).data('parent')) {
     // comment_placeholder = $(this).closest('.replies-collapse');
     // if(comment_placeholder == null){
-      var comment_placeholder = $(this).parents('.comment-wrapper').find('.replies-collapse');
+    var comment_placeholder = $(this).parents('.comment-wrapper').find('.replies-collapse');
     // }
-}else{
+  } else {
     var comment_placeholder = $(this).closest('.comments-wrapper');
   }
-  if(comment_placeholder.not('.show')){
+  if (comment_placeholder.not('.show')) {
     comment_placeholder.addClass('show');
   }
   $.ajaxSetup({
@@ -554,23 +588,23 @@ $(document).on('click', '.submit-reply', function (event) {
       comment_id: comment_id,
       comment_body: comment_body,
     })
-    .done(function (response) {
+    .done(function(response) {
       console.log(response);
       var html = '<div class="comment comment-reply shadow-sm p-2"><div class="comment-header mb-1"><a href="/profile/' + response.user['id'] +
         '"><img class="comment-by-image mr-2" src="storage/profile_images/' + response.user['avatar'] + '" />' +
-        response.user['fullname'] + '</a><div class="dropdown post-options float-right dropleft comment-dropdowns"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light delete-comment" data-id="'
-        +response.comment['id'] + '">' + deltext + '</a></div></div></div><div class="comment-body">' + response.comment['body'] + '</div><div class="replies-wrapper text-right"><a data-toggle="collapse" href="#reply' +
+        response.user['fullname'] + '</a><div class="dropdown post-options float-right dropleft comment-dropdowns"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light delete-comment" data-id="' +
+        response.comment['id'] + '">' + deltext + '</a></div></div></div><div class="comment-body">' + response.comment['body'] + '</div><div class="replies-wrapper text-right"><a data-toggle="collapse" href="#reply' +
         response.comment['id'] + '" role="button">' + reptext + '</a><div class="collapse" id="reply' +
         response.comment['id'] + '"><div class="input-group"><input type="text" name="comment_body" class="form-control" class="form-control" /><button data-comment="' +
-        response.comment['id'] + '" data-post="'+post_id+'" type="submit" class="btn btn-primary add-comment-button submit-reply" data-parent="true">' + reptext
-        + '</button></div></div></div><div class="comment-footer text-right"><small class="text-muted">' +
+        response.comment['id'] + '" data-post="' + post_id + '" type="submit" class="btn btn-primary add-comment-button submit-reply" data-parent="true">' + reptext +
+        '</button></div></div></div><div class="comment-footer text-right"><small class="text-muted">' +
         response.comment['created_at'] + '</small></div></div>';
-        comment_placeholder.append(html);
+      comment_placeholder.append(html);
 
       body_input.val('');
       body_input.removeClass('is-invalid');
       body_input.addClass('is-valid');
-    }).fail(function (response) {
+    }).fail(function(response) {
       body_input.addClass('is-invalid');
       console.log(response);
     });
@@ -579,7 +613,7 @@ $(document).on('click', '.submit-reply', function (event) {
 
 // Delete Comment
 
-$(document).on('click', '.delete-comment', function (event) {
+$(document).on('click', '.delete-comment', function(event) {
   var comment = $(this).parents('.comment');
   $.ajaxSetup({
     headers: {
@@ -589,7 +623,7 @@ $(document).on('click', '.delete-comment', function (event) {
   $.ajax({
     url: '/comment/' + $(this).data('id'),
     type: 'DELETE',
-    success: function (result) {
+    success: function(result) {
       comment.remove();
       console.log(result);
     }
@@ -606,7 +640,7 @@ let isDown = false;
 let startX;
 let scrollLeft;
 
-slider.forEach(function (el) {
+slider.forEach(function(el) {
   el.addEventListener('mousedown', (e) => {
     isDown = true;
     el.classList.add('active');
@@ -632,7 +666,7 @@ slider.forEach(function (el) {
 
 
 
-$('.scroll-right-button').click(function () {
+$('.scroll-right-button').click(function() {
   event.preventDefault();
   $(this).siblings('.video-body').clearQueue();
   $(this).siblings('.video-body').animate({
@@ -640,7 +674,7 @@ $('.scroll-right-button').click(function () {
   }, "slow");
 });
 
-$('.scroll-left-button').click(function () {
+$('.scroll-left-button').click(function() {
   event.preventDefault();
   $(this).siblings('.video-body').clearQueue();
   $(this).siblings('.video-body').animate({
@@ -654,7 +688,7 @@ $('#datepicker').datepicker({
 });
 
 
-$('.comments-collapse ').each(function () {
+$('.comments-collapse ').each(function() {
   id = genId(5);
   $(this).children('.collapse').attr('id', id);
   $(this).children('a').attr('href', '#' + id);
@@ -668,7 +702,7 @@ $('.page-loader').fadeOut('slow');
 
 
 
-$(function () {
+$(function() {
   $('[data-toggle="tooltip"]').tooltip()
 })
 
@@ -687,3 +721,5 @@ function readURL(input) {
 $("#imgInp").change(function() {
   readURL(this);
 });
+
+Waves.attach('button', 'waves-light');

@@ -11963,14 +11963,36 @@ figure img {
   margin-bottom: 1rem;
 }
 
+.event-card .card {
+  height: 550px;
+}
+
 .event-card .card .card-img-top {
   height: 250px;
   -o-object-fit: cover;
      object-fit: cover;
 }
 
-.event-card .card .card-text {
-  height: 200px;
-  overflow-y: scroll;
+.event-card .card .card-body {
+  overflow: auto;
+}
+
+.event-card .card .card-body .card-text {
+  text-align: justify;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.event-card .card .card-body .card-text p {
+  padding-right: 10px;
+}
+
+.fc-event {
+  color: white !important;
+  border: none !important;
+}
+
+.fc-content {
+  cursor: pointer;
 }
 

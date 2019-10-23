@@ -51,7 +51,11 @@ $v = mt_rand();
 
 <body>
   <div id="app">
-
+    <div class="page-loader">
+      <div class="spinner-grow text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
     @include('includes.navbar')
     <main>
       @yield('content')
