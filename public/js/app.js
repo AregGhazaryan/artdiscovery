@@ -60641,7 +60641,7 @@ function readURL(input) {
 $("#imgInp").change(function () {
   readURL(this);
 });
-Waves.attach('button', 'waves-light');
+Waves.attach('button', 'waves-light'); // Find the element that causes the body to overflow
 
 /***/ }),
 

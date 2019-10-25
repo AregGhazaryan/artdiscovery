@@ -11177,6 +11177,12 @@ a.waves-light {
   line-height: normal !important;
 }
 
+@media (max-width: 768px) {
+  .navbar .navbar-collapse {
+    padding-top: 20px;
+  }
+}
+
 .navbar .nav-item .nav-link {
   color: #002bcf !important;
   border-radius: 5px;
@@ -11650,7 +11656,7 @@ main {
   transition: all 100ms ease;
   border: none;
   box-shadow: 0 0 0.5rem #a6a6a6;
-  display: flex !important;
+  display: flex;
   flex-direction: column !important;
   margin-top: 0;
 }
@@ -11811,6 +11817,11 @@ main {
   margin: auto;
 }
 
+.post-card .card-header .dropdown-menu {
+  left: -23px !important;
+  transform: translate3d(-110px, 35px, 0px) !important;
+}
+
 .post-card .ck-toolbar {
   border: none !important;
   border-bottom: 1px solid #c1c1c1 !important;
@@ -11895,6 +11906,15 @@ figure img {
 
 .ck-content {
   text-align: justify !important;
+}
+
+.ck-button {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ck-tooltip {
+  display: none !important;
 }
 
 .comment {
@@ -11988,7 +12008,6 @@ figure img {
 }
 
 .fc-event {
-  color: white !important;
   border: none !important;
 }
 
