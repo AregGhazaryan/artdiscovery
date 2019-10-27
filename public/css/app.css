@@ -11181,6 +11181,16 @@ a.waves-light {
   .navbar .navbar-collapse {
     padding-top: 20px;
   }
+
+  .navbar .dropdown-menu {
+    height: 0px !important;
+  }
+
+  .navbar .dropdown-menu.show {
+    height: -webkit-max-content !important;
+    height: -moz-max-content !important;
+    height: max-content !important;
+  }
 }
 
 .navbar .nav-item .nav-link {
@@ -12008,10 +12018,39 @@ figure img {
 }
 
 .fc-event {
+  color: white !important;
   border: none !important;
 }
 
 .fc-content {
+  transition-timing-function: ease-in-out;
+  transition: 0.4s;
   cursor: pointer;
+}
+
+.fc-button-group {
+  box-shadow: 0 0 0.2rem #2d2d2d !important;
+  border-radius: 0.25em;
+}
+
+.fc-button-group .fc-button {
+  box-shadow: none !important;
+  background-color: #0083ff !important;
+  transition-timing-function: ease-in-out;
+  transition: 0.2s;
+  border: none !important;
+}
+
+.fc-button-group .fc-button:hover {
+  transition: 0.3s;
+  background-color: #006eff !important;
+}
+
+@media (max-width: 456px) {
+  .fc-today-button {
+    margin-bottom: 20px !important;
+    margin-left: 10px !important;
+    width: 80px;
+  }
 }
 

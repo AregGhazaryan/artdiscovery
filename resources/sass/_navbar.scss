@@ -42,6 +42,13 @@
       .navbar-collapse{
         padding-top:20px;
       }
+      .dropdown-menu {
+        height: 0px !important;
+
+        &.show{
+          height:max-content !important;
+        }
+    }
   }
 
   .nav-item {

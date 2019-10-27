@@ -52,11 +52,11 @@
             </div>
 
             <div class="form-row">
-              <div class="form-group col-md-6">
+              {{-- <div class="form-group col-md-6">
                 <label for="address">
                   @lang('registration.address')</label>
                   <input type="text" class="form-control" value="{{ $user->address }}" id="address" name="address" placeholder="@lang('registration.address')">
-              </div>
+              </div> --}}
 
               <div class="form-group col-md-6">
                 <label for="birthday">
@@ -65,13 +65,16 @@
               </div>
             </div>
 
-            <div class="form-group">
+            {{-- <div class="form-group">
               <label for="mobile">
                 @lang('registration.mobile')</label>
                 <input id="mobile" value="{{ $user->mobile }}" type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile" autocomplete="mobile">
-            </div>
+            </div> --}}
+            <a href="#" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse">
+                @lang('registration.changepass')
+              </a>
 
-            <div class="form-row">
+            <div class="form-row collapse" id="collapse">
               <div class="form-group col-md-6">
                 <label for="password">
                   @lang('registration.password')</label>

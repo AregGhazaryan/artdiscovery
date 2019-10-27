@@ -13,5 +13,6 @@ return [
   'mobile' => 'Mobile Number',
   'terms' => 'I agree with <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>',
   'address' => 'Address',
-  'birthdate' => 'Birthday'
+  'birthdate' => 'Birthday',
+  'changepass' => 'Change password'
 ];

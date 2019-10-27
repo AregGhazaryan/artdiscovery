@@ -12,22 +12,26 @@ use Auth;
 
 class PagesController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $posts = Post::orderBy('created_at', 'desc')->paginate(5);
         return view('pages.index')->with('posts', $posts);
     }
 
-    public function contact(){
-
+    public function contact()
+    {
+        return view('pages.contact');
     }
 
-    public function video($id){
-      $video = Video::where('id', $id)->first();
-      return view('pages.video')->with('video', $video);
+    public function video($id)
+    {
+        $video = Video::where('id', $id)->first();
+        return view('pages.video')->with('video', $video);
     }
 
-    public function sections(){
-      $sections = Section::all();
-      return view('pages.sections')->with('sections', $sections);
+    public function sections()
+    {
+        $sections = Section::all();
+        return view('pages.sections')->with('sections', $sections);
     }
 }

@@ -74,12 +74,18 @@ $v = mt_rand();
   {{-- @endauth --}}
 
   @include('includes.footer')
-  <script src="{{ asset('js/app.js?v='.$v) }}" defer></script>
+  <script src="{{ asset('js/app.js?v='.$v) }}"></script>
   <script>
     window.translations = {!! Cache::get('translations') !!}
   </script>
   <script src="{{ asset('js/video-scrollers.js') }}"></script>
   <script src="{{ asset('js/jquery.jscroll.min.js') }}" defer></script>
+  <script>
+Echo.channel('comments')
+.listen('NewComment', (e) => {
+  console.log(e.comment);
+});
+  </script>
   @yield('scripts')
 
 

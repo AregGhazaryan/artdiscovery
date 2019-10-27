@@ -25,7 +25,7 @@
           @lang('footer.aboutus')</h6>
           <ul class="list-unstyled">
             <li>
-              <a href="#!">
+              <a href="{{route('contact')}}">
                 @lang('footer.contact')</a>
             </li>
             <li>

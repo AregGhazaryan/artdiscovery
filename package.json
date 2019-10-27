@@ -32,7 +32,9 @@
         "@fullcalendar/daygrid": "^4.3.0",
         "ckeditor5-simple-upload": "^1.0.7",
         "gijgo": "^1.9.13",
+        "laravel-echo": "^1.6.1",
         "mdbootstrap": "^4.8.9",
+        "pusher-js": "^5.0.2",
         "vis-timeline": "^5.1.0"
     }
 }

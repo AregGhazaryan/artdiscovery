@@ -11,6 +11,8 @@ use App\User;
 |
 */
 
+Auth::routes(['verify' => true]);
+
 Route::get('/', 'PagesController@index')->name('home');
 Route::get('/sections', 'PagesController@sections')->name('sections');
 Route::post('/getVideos', 'VideoController@getVideos');
@@ -18,6 +20,7 @@ Route::post('/getVideo', 'VideoController@getVideo');
 Route::get('/video/{id}', 'PagesController@video')->name('page.video');
 Route::get('/events', 'EventController@index')->name('events.index');
 Route::get('/events/get', 'EventController@getAll')->name('events.get');
+Route::get('/contact', 'PagesController@contact')->name('contact');
 
 Route::middleware('admin')->group(function () {
     Route::post('/events', 'EventController@store')->name('events.store');
@@ -67,7 +70,6 @@ Route::middleware('auth')->group(function () {
 
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@store']);
 
-Route::get('/contact', 'PagesController@contact');
 Auth::routes();
 // Auth::routes(['verify' => true]);
 

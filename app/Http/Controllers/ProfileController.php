@@ -99,7 +99,7 @@ class ProfileController extends Controller
                 'last_name' => 'required|string|max:255',
                 'email' => 'string|max:255|email|unique:users,email,'.Auth::user()->id,
                 'password' => 'min:8|string|nullable|confirmed',
-                'mobile' => 'required|string|numeric',
+                // 'mobile' => 'required|string|numeric',
                 'birth_date' => 'required|date',
                 'gender' => 'required',
                 ]
@@ -107,7 +107,7 @@ class ProfileController extends Controller
             $user->first_name = $request->first_name;
             $user->last_name = $request->last_name;
             $user->email = $request->email;
-            $user->mobile = $request->mobile;
+            // $user->mobile = $request->mobile;
             $user->birthday = $request->birth_date;
             $user->gender = $request->gender;
 

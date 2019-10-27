@@ -24,9 +24,38 @@
 }
 
 .fc-event {
+  color: white !important;
   border: none !important;
 }
 
 .fc-content {
+  transition-timing-function: ease-in-out;
+  transition: 0.4s;
   cursor: pointer;
+}
+
+.fc-button-group {
+  box-shadow: 0 0 0.2rem #2d2d2d !important;
+  border-radius: 0.25em;
+
+  .fc-button {
+    box-shadow: none !important;
+    background-color: #0083ff !important;
+    transition-timing-function: ease-in-out;
+    transition: 0.2s;
+    border: none !important;
+
+    &:hover {
+      transition: 0.3s;
+      background-color: #006eff !important;
+    }
+  }
+}
+
+@media (max-width: 456px) {
+  .fc-today-button {
+    margin-bottom: 20px !important;
+    margin-left: 10px !important;
+    width: 80px;
+  }
 }
