@@ -9,7 +9,7 @@ use Webpatser\Uuid\Uuid;
 use Auth;
 use Carbon\Carbon;
 
-class User extends Authenticatable
+class User extends Authenticatable 
 {
     use Notifiable;
     public $incrementing = false;
