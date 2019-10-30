@@ -57,7 +57,13 @@ document.addEventListener('DOMContentLoaded', function() {
     locale: language,
     plugins: [dayGridPlugin],
     events: '/events/get',
+    eventRender: function(info) {
+    info.el.className += " " + info.event.id + " ";
+    },
     eventClick: function(info) {
+      console.log('event-click-triggered');
+      $('.fc-event-container a').css('background-color', '#004fff');
+      $("."+info.event.id).css("background-color", "#00db4a");
       var start = info.event.start;
       var end = info.event.end;
 
@@ -78,8 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
       end.getSeconds().toString().padStart(2, '0')}`;
 
 
-      $('.fc-event-container a').css('background-color', '#004fff');
-      $(info.el).css('background-color', '#00da4a');
+      // $(info.el).css('background-color', '#00da4a');
       $('#info-container').empty();
       var html = '<div class="card shadow-sm">';
       if (info.event._def.extendedProps.image !== null) {

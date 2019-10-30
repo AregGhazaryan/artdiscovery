@@ -69838,13 +69838,18 @@ document.addEventListener('DOMContentLoaded', function () {
     locale: language,
     plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__["default"]],
     events: '/events/get',
+    eventRender: function eventRender(info) {
+      info.el.className += " " + info.event.id + " ";
+    },
     eventClick: function eventClick(info) {
+      console.log('event-click-triggered');
+      $('.fc-event-container a').css('background-color', '#004fff');
+      $("." + info.event.id).css("background-color", "#00db4a");
       var start = info.event.start;
       var end = info.event.end;
       var st_date = "".concat((start.getMonth() + 1).toString().padStart(2, '0'), "/").concat(start.getDate().toString().padStart(2, '0'), "/").concat(start.getFullYear().toString().padStart(4, '0'), " ").concat(start.getHours().toString().padStart(2, '0'), ":").concat(start.getMinutes().toString().padStart(2, '0'), ":").concat(start.getSeconds().toString().padStart(2, '0'));
-      var end_date = "".concat((end.getMonth() + 1).toString().padStart(2, '0'), "/").concat(end.getDate().toString().padStart(2, '0'), "/").concat(end.getFullYear().toString().padStart(4, '0'), " ").concat(end.getHours().toString().padStart(2, '0'), ":").concat(end.getMinutes().toString().padStart(2, '0'), ":").concat(end.getSeconds().toString().padStart(2, '0'));
-      $('.fc-event-container a').css('background-color', '#004fff');
-      $(info.el).css('background-color', '#00da4a');
+      var end_date = "".concat((end.getMonth() + 1).toString().padStart(2, '0'), "/").concat(end.getDate().toString().padStart(2, '0'), "/").concat(end.getFullYear().toString().padStart(4, '0'), " ").concat(end.getHours().toString().padStart(2, '0'), ":").concat(end.getMinutes().toString().padStart(2, '0'), ":").concat(end.getSeconds().toString().padStart(2, '0')); // $(info.el).css('background-color', '#00da4a');
+
       $('#info-container').empty();
       var html = '<div class="card shadow-sm">';
 
@@ -70539,8 +70544,8 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   key: "ABWQE",
   cluster: "mt1",
   wsHost: window.location.hostname,
-  wsPort: 8080 // encrypted: true
-
+  wsPort: 8080,
+  encrypted: true
 });
 
 /***/ }),
