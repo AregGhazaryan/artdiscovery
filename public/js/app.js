@@ -69819,6 +69819,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  // import './@fullcalendar/timegrid/main.css';
 // import './@fullcalendar/list/main.css';
 
+var gEventId = 0;
 document.addEventListener('DOMContentLoaded', function () {
   var calendarEl = document.getElementById('calendar');
   var lang = document.getElementsByTagName('html')[0].getAttribute('lang');
@@ -69842,9 +69843,9 @@ document.addEventListener('DOMContentLoaded', function () {
       info.el.className += " " + info.event.id + " ";
     },
     eventClick: function eventClick(info) {
-      console.log('event-click-triggered');
+      gEventId = info.event.id;
       $('.fc-event-container a').css('background-color', '#004fff');
-      $("." + info.event.id).css("background-color", "#00db4a");
+      $('.' + info.event.id).css("background-color", "#00da4a");
       var start = info.event.start;
       var end = info.event.end;
       var st_date = "".concat((start.getMonth() + 1).toString().padStart(2, '0'), "/").concat(start.getDate().toString().padStart(2, '0'), "/").concat(start.getFullYear().toString().padStart(4, '0'), " ").concat(start.getHours().toString().padStart(2, '0'), ":").concat(start.getMinutes().toString().padStart(2, '0'), ":").concat(start.getSeconds().toString().padStart(2, '0'));
@@ -69862,6 +69863,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
   calendar.render();
+  $('.fc-next-button, .fc-prev-button').click(function () {
+    console.log(gEventId);
+    $('.' + gEventId).css("background-color", "#00da4a");
+  });
 }); // Start of TranslationServiceProvider
 
 function trans(key) {

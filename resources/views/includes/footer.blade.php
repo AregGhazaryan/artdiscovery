@@ -50,8 +50,8 @@
       <h5 class="mb-1">
         @lang('footer.register')</h5>
     </li>
-    <li class="list-inline-item">
-      <a href="{{route('register')}}" class="btn btn-danger btn-rounded">
+    <li class="list-inline-item bg-success pulse rounded">
+      <a href="{{route('register')}}" class="btn btn-success">
         @lang('footer.registerbtn')</a>
     </li>
   </ul>

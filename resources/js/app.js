@@ -40,6 +40,7 @@ import './@fullcalendar/daygrid/main.css';
 // import './@fullcalendar/timegrid/main.css';
 // import './@fullcalendar/list/main.css';
 
+var gEventId = 0;
 document.addEventListener('DOMContentLoaded', function() {
   var calendarEl = document.getElementById('calendar');
   var lang = document.getElementsByTagName('html')[0].getAttribute('lang');
@@ -61,9 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
     info.el.className += " " + info.event.id + " ";
     },
     eventClick: function(info) {
-      console.log('event-click-triggered');
+      gEventId = info.event.id;
       $('.fc-event-container a').css('background-color', '#004fff');
-      $("."+info.event.id).css("background-color", "#00db4a");
+      $('.'+ info.event.id).css("background-color", "#00da4a");
       var start = info.event.start;
       var end = info.event.end;
 
@@ -100,6 +101,10 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   calendar.render();
+  $('.fc-next-button, .fc-prev-button').click(function(){
+    console.log(gEventId);
+        $('.'+ gEventId).css("background-color", "#00da4a");
+  });
 });
 
 // Start of TranslationServiceProvider

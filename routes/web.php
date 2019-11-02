@@ -11,7 +11,14 @@ use App\User;
 |
 */
 
-Auth::routes(['verify' => true]);
+// Auth::routes(['verify' => true]);
+
+Route::get('/mail', function(){
+  $name = 'Areg Ghazaryan';
+  $email = 'areg.areg51@gmail.com';
+  $body = 'Hello';
+  return view('mail.contact',compact('name', 'email', 'body'));
+});
 
 Route::get('/', 'PagesController@index')->name('home');
 Route::get('/sections', 'PagesController@sections')->name('sections');
@@ -21,6 +28,7 @@ Route::get('/video/{id}', 'PagesController@video')->name('page.video');
 Route::get('/events', 'EventController@index')->name('events.index');
 Route::get('/events/get', 'EventController@getAll')->name('events.get');
 Route::get('/contact', 'PagesController@contact')->name('contact');
+Route::post('/contact', 'PagesController@sendMail')->name('send-mail');
 
 Route::middleware('admin')->group(function () {
     Route::post('/events', 'EventController@store')->name('events.store');
@@ -59,7 +67,7 @@ Route::middleware('auth')->group(function () {
   Route::put('/post/{id}/update', 'PostController@update')->name('post.update');
   Route::get('/post/{id}/edit', 'PostController@edit')->name('post.edit');
   Route::delete('/post/{id}/delete', 'PostController@destroy')->name('post.destroy');
-  Route::post('/uploadPostImg', 'PostController@imageUpload')->middleware('can:create,post')->middleware('can:create,App\Post');
+  Route::post('/uploadPostImg', 'PostController@imageUpload')->middleware('can:create,App\Post');
   Route::resource('comment', 'CommentController');
 
     // Route::get('/profile/{id}', 'ProfileController@show')->name('profile.show');
@@ -71,8 +79,6 @@ Route::middleware('auth')->group(function () {
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@store']);
 
 Auth::routes();
-// Auth::routes(['verify' => true]);
-
 
 Route::get('/sections', function () {
     return view('maintance.underconstruction');

@@ -11641,7 +11641,7 @@ main {
 .page-footer.page-footer .footer-copyright {
   overflow: hidden;
   color: #ebebeb;
-  background-color: #3e3e3e;
+  background-color: #202020;
 }
 
 .page-footer.page-footer a {
@@ -11714,7 +11714,7 @@ main {
 }
 
 .auth-card {
-  border-radius: 1.25rem;
+  border-radius: 0.8rem;
 }
 
 .auth-card .card-header {
@@ -12052,5 +12052,9 @@ figure img {
     margin-left: 10px !important;
     width: 80px;
   }
+}
+
+.a-shadow {
+  box-shadow: 0 0rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
 

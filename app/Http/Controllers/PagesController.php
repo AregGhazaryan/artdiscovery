@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-// use Illuminate\Http\Request;
-use Request;
+use Illuminate\Http\Request;
 use App\Video;
 use App\Section;
 use App\Post;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Validator;
+use App\Rules\Captcha;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Contact;
 use Auth;
 
 class PagesController extends Controller
@@ -33,5 +36,23 @@ class PagesController extends Controller
     {
         $sections = Section::all();
         return view('pages.sections')->with('sections', $sections);
+    }
+
+    public function sendMail(Request $request)
+    {
+        $validatedData = $request->validate(
+            [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'string|max:255|email|required',
+            'g-recaptcha-response' => new Captcha()
+            ]
+        );
+
+        $name = $request->first_name . ' ' . $request->last_name;
+        $email = $request->email;
+        $body = $request->body;
+        Mail::to('info@artdiscovery.online')->send(new Contact($name, $email, $body));
+        return Redirect::back()->with('message', trans('contact.sent'));
     }
 }
