@@ -7,5 +7,6 @@ return [
   'sections' => 'Разделы',
   'users' => 'Пользователи',
   'purchases' => 'Покупки',
-  'subsections' => 'Подразделы'
+  'subsections' => 'Подразделы',
+  'pages' => 'Страницы',
 ];

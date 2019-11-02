@@ -411,6 +411,24 @@ for (var i = 0; i < allEditors.length; ++i) {
   });
 }
 
+var allEditors = document.querySelectorAll('.page-editor');
+for (var i = 0; i < allEditors.length; ++i) {
+
+  ClassicEditor.create(allEditors[i], {
+    extraPlugins: [PostUploadAdapterPlugin],
+    image: {
+      resizeUnit: 'px',
+    },
+    simpleUpload: {
+      uploadUrl: '/uploadPostImg',
+
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    }
+  });
+}
+
 let editor;
 ClassicEditor
   .create(document.querySelector('#editor'), {

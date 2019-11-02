@@ -22,6 +22,8 @@ Route::get('/events', 'EventController@index')->name('events.index');
 Route::get('/events/get', 'EventController@getAll')->name('events.get');
 Route::get('/contact', 'PagesController@contact')->name('contact');
 Route::post('/contact', 'PagesController@sendMail')->name('send-mail');
+Route::get('/privacypolicy', 'PagesController@privacyPolicy')->name('privacy-policy');
+Route::get('/termsofservice', 'PagesController@termsOfService')->name('terms-of-service');
 
 Route::middleware('admin')->group(function () {
     Route::post('/events', 'EventController@store')->name('events.store');
@@ -39,6 +41,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/user/{id}/unsetauthor', 'UserController@unsetAuthor')->name('user.unset-author');
 
     Route::prefix('admin')->group(function () {
+        Route::resource('pages', 'PageController');
         Route::resource('sections', 'SectionController');
         Route::resource('subsections', 'SubsectionController');
         Route::get('/users', 'UserController@Index')->name('admin.users.index');

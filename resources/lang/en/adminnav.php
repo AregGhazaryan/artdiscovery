@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return [
   'videos' => 'Videos',
@@ -7,5 +7,6 @@ return [
   'sections' => 'Sections',
   'users' => 'Users',
   'purchases' => 'Purchase History',
-  'subsections' => 'Subsections'
+  'subsections' => 'Subsections',
+  'pages' => 'Pages',
 ];

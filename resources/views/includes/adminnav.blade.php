@@ -48,6 +48,10 @@
           <a class="nav-link" href="{{ route('admin.purchases') }}"><i class="fas fa-scroll mr-1"></i>
             @lang('adminnav.purchases')</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('pages.index') }}"><i class="fas fa-file-alt mr-1"></i>
+            @lang('adminnav.pages')</a>
+        </li>
       </ul>
     </div>
   </div>

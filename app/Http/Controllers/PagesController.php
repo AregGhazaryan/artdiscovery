@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Video;
 use App\Section;
+use App\Page;
 use App\Post;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
@@ -55,5 +56,15 @@ class PagesController extends Controller
         $body = $request->body;
         Mail::to('info@artdiscovery.online')->send(new Contact($name, $email, $body));
         return Redirect::back()->with('message', trans('contact.sent'));
+    }
+
+    public function privacyPolicy(){
+      $page = Page::find('1');
+      return view('pages.page')->with('page', $page);
+    }
+
+    public function termsOfService(){
+      $page = Page::find('2');
+      return view('pages.page')->with('page', $page);
     }
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return [
   'videos' => 'Տեսանյութեր',
@@ -7,5 +7,6 @@ return [
   'sections' => 'Բաժիններ',
   'users' => 'Օգտագործողներ',
   'purchases' => 'Կատարված Գնումներ',
-  'subsections' => 'Ենթաբաժիններ'
+  'subsections' => 'Ենթաբաժիններ',
+  'pages' => 'Էջեր',
 ];

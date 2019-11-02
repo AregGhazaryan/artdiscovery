@@ -10,11 +10,11 @@
           @lang('footer.website')</h6>
           <ul class="list-unstyled">
             <li>
-              <a href="#">
+              <a href="{{route('privacy-policy')}}">
                 @lang('footer.privacy')</a>
             </li>
             <li>
-              <a href="#!">
+              <a href="{{route('terms-of-service')}}">
                 @lang('footer.services')</a>
             </li>
           </ul>
@@ -39,7 +39,7 @@
         <h6 class="font-weight-bold text-uppercase mt-3 mb-4">
           @lang('footer.developer')</h6>
           <a href="https://areg.site" target="_blank">
-          <img class="footer-dev-logo" src="{{ asset('img/a.png') }}"></a>
+            <img class="footer-dev-logo" src="{{ asset('img/a.png') }}"></a>
       </div>
     </div>
   </div>
