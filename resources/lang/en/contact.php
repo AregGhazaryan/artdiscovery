@@ -3,7 +3,8 @@
 
 return [
   'artdirector' => 'Art Director',
-  'administrator' => 'administrator',
+  'administrator' => 'Administrator',
+  'producer' => 'Producer',
   'anush' => 'Anush Hakobyan +37493640641',
   'ruben' => 'Ruben Suchyan +37477256005',
   'firstname' => 'First Name',

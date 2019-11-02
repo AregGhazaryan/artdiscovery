@@ -14,7 +14,7 @@
             <h4>
               @lang('contact.artdirector')</h4>
               <h5>
-                @lang('contact.anush')</h5>
+                <a href="tel:+37493640641">@lang('contact.anush')</a></h5>
           </div>
         </div>
       </div>
@@ -25,9 +25,9 @@
           </div>
           <div class="col-lg-9 text-center">
             <h4>
-              @lang('contact.administrator')</h4>
+              @lang('contact.producer')</h4>
               <h5>
-                @lang('contact.ruben')</h5>
+                <a href="tel:+37477256005">@lang('contact.ruben')</a></h5>
           </div>
         </div>
       </div>

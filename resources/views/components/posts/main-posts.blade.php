@@ -45,11 +45,9 @@
       <div class="card-body post-content">
         {!! $post->content !!}
       </div>
-      @if($post->comments()->exists())
       <div class="card-footer p-2">
         @include('components.comments.comments-section')
       </div>
-    @endif
     </div>
     @endforeach
     {{ $posts->links() }}
