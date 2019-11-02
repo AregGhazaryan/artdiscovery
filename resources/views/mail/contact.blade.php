@@ -11,6 +11,10 @@
     width: 100%;
   }
 
+  p{
+    font-size: 16pt;
+  }
+
   .container {
     max-width: min-content;
     padding-right: 15px;
