@@ -13,13 +13,6 @@ use App\User;
 
 // Auth::routes(['verify' => true]);
 
-Route::get('/mail', function(){
-  $name = 'Areg Ghazaryan';
-  $email = 'areg.areg51@gmail.com';
-  $body = 'Hello';
-  return view('mail.contact',compact('name', 'email', 'body'));
-});
-
 Route::get('/', 'PagesController@index')->name('home');
 Route::get('/sections', 'PagesController@sections')->name('sections');
 Route::post('/getVideos', 'VideoController@getVideos');
