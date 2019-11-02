@@ -38,7 +38,7 @@ return [
             'options' => [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
                 'useTLS' => true,
-                'host' => 'localhost',
+                'host' => 'artdiscovery.online',
                 'port' => '443',
                 'scheme' => 'http'
             ],
