@@ -8,26 +8,28 @@
       <div class="p-3 col-lg-6">
         <div class="p-4 rounded-pill border row m-2">
           <div class="col-lg-3 text-center">
-            <i class="fa-4x fas fa-address-card text-primary"></i>
+            <i class="fa-4x fas fa-address-card text-primary d-flex flex-column h-100 justify-content-center"></i>
           </div>
           <div class="col-lg-9 text-center">
             <h4>
               @lang('contact.artdirector')</h4>
               <h5>
                 <a href="tel:+37493640641">@lang('contact.anush')</a></h5>
+                <h5><a href="mailto:anushakobyan@gmail.com" target="_top">anushakobyan@gmail.com</a></h5>
           </div>
         </div>
       </div>
       <div class="p-3 col-lg-6">
         <div class="p-4 rounded-pill border row m-2">
           <div class="col-lg-3 text-center">
-            <i class="fa-4x fas fa-address-card text-primary"></i>
+            <i class="fa-4x fas fa-address-card text-primary d-flex flex-column h-100 justify-content-center"></i>
           </div>
           <div class="col-lg-9 text-center">
             <h4>
               @lang('contact.producer')</h4>
               <h5>
                 <a href="tel:+37477256005">@lang('contact.ruben')</a></h5>
+                <h5><a href="mailto:rubensuchyan@gmail.com" target="_top">rubensuchyan@gmail.com</a></h5>
           </div>
         </div>
       </div>

@@ -16,7 +16,7 @@
       <textarea id="editor" name="content">{!! $post->content !!}</textarea>
       <div class="d-flex justify-content-center mt-4">
         <button type="submit" class="btn btn-success">
-          @lang('posts.edit')</button>
+          @lang('posts.submit')</button>
       </div>
     </form>
 </div>

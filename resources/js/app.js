@@ -555,7 +555,7 @@ $(document).on('click', '.submit-comment', function(event) {
       var html = '<div class="comment-wrapper"><div class="bg-white comment rounded p-2 shadow-sm"><div class="comment-header mb-1"><a href="/profile/' +
         response[0].user['id'] + '"><img class="comment-by-image mr-2" src="storage/profile_images/' +
         response[0].user['avatar'] + '"/>' + response[0].user['fullname'] +
-        '</a><div class="dropdown post-options float-right dropleft comment-dropdowns"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light delete-comment" data-id="' + response[0].comment['id'] + '">' + deltext + '</a></div></div></div><div class="comment-body">' +
+        '</a><div class="dropdown post-options float-right dropleft comment-dropdowns"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-effect waves-light delete-comment" data-id="' + response[0].comment['id'] + '">' + deltext + '</a></div></div></div><div class="comment-body">' +
         response[0].comment['body'] + '</div><div class="replies-wrapper text-right"><a data-toggle="collapse" href="#reply' +
         response[0].comment['id'] + '" class="ml-3" role="button">' + reptext + '</a><div class="collapse" id="reply' +
         response[0].comment['id'] + '"><div class="input-group"><input type="text" name="comment_body" class="form-control" class="form-control" /><button data-comment="' +
@@ -564,18 +564,17 @@ $(document).on('click', '.submit-comment', function(event) {
         response[0].comment['created_at'] + '</small></div></div><div class="collapse replies-collapse" id="replies' + response[0].comment['id'] + '"></div></div>';
       body_input.val('');
       body_input.removeClass('is-invalid');
-      // body_input.addClass('is-valid');
+      body_input.addClass('border border-success');
       comment_placeholder.prepend(html);
     }).fail(function(response) {
-      // body_input.addClass('is-invalid');
-      console.log(response);
-      for (let index in response.errors) {
-        console.log(response.errors[index])
-        for (let error in repsponse.errors[index]) {
-          console.log(response.errors[index][error])
-          body_input.parents('.comment').append(response.errors[index][error]);
-        }
-      }
+      body_input.addClass('border border-danger');
+      // for (let index in response.errors) {
+      //   console.log(response.errors[index])
+      //   for (let error in repsponse.errors[index]) {
+      //     console.log(response.errors[index][error])
+      //     body_input.parents('.comment').append(response.errors[index][error]);
+      //   }
+      // }
     });
 });
 
@@ -620,7 +619,7 @@ $(document).on('click', '.submit-reply', function(event) {
       console.log(response);
       var html = '<div class="comment comment-reply shadow-sm p-2"><div class="comment-header mb-1"><a href="/profile/' + response.user['id'] +
         '"><img class="comment-by-image mr-2" src="storage/profile_images/' + response.user['avatar'] + '" />' +
-        response.user['fullname'] + '</a><div class="dropdown post-options float-right dropleft comment-dropdowns"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light delete-comment" data-id="' +
+        response.user['fullname'] + '</a><div class="dropdown post-options float-right dropleft comment-dropdowns"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-effect waves-light delete-comment" data-id="' +
         response.comment['id'] + '">' + deltext + '</a></div></div></div><div class="comment-body">' + response.comment['body'] + '</div><div class="replies-wrapper text-right"><a data-toggle="collapse" href="#reply' +
         response.comment['id'] + '" role="button">' + reptext + '</a><div class="collapse" id="reply' +
         response.comment['id'] + '"><div class="input-group"><input type="text" name="comment_body" class="form-control" class="form-control" /><button data-comment="' +
@@ -630,10 +629,10 @@ $(document).on('click', '.submit-reply', function(event) {
       comment_placeholder.append(html);
 
       body_input.val('');
-      body_input.removeClass('is-invalid');
-      body_input.addClass('is-valid');
+      body_input.removeClass('border border-danger');
+      body_input.addClass('border border-success');
     }).fail(function(response) {
-      body_input.addClass('is-invalid');
+      body_input.addClass('border border-danger');
       console.log(response);
     });
 });
