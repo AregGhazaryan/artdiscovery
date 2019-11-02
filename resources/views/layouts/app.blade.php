@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-@php
-$v = mt_rand();
-@endphp
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +20,7 @@ $v = mt_rand();
     }
   </script>
   <title>{{ config('app.name', 'Art Discovery') }}</title>
-  <link href="{{ asset('css/app.css?v='.$v) }}" rel="stylesheet">
+  <link href="{{ mix('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/flag-icon.min.css') }}" rel="stylesheet">
   <link href="{{ asset('css/gijgo.css') }}" rel="stylesheet">
   <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
@@ -32,7 +30,7 @@ $v = mt_rand();
   <link rel="stylesheet" href="{{ asset('css/vis-timeline-graph2d.min.css') }}">
   <script src="{{ asset('js/vis-timeline-graph2d.min.js') }}"></script>
   <script src="{{ asset('js/jscolor.js') }}"></script>
-  <script src="{{ asset('js/main.js?v='.$v) }}"></script>
+  <script src="{{ asset('js/main.js') }}"></script>
   <script src="{{ asset('js/waves.js') }}"></script>
   <script src='https://www.google.com/recaptcha/api.js'></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-32422407-3"></script>
@@ -74,17 +72,19 @@ $v = mt_rand();
   {{-- @endauth --}}
 
   @include('includes.footer')
-  <script src="{{ asset('js/app.js?v='.$v) }}"></script>
+  <script src="{{ mix('js/app.js') }}"></script>
   <script>
-    window.translations = {!! Cache::get('translations') !!}
+    window.translations = {
+      !!Cache::get('translations') !!
+    }
   </script>
   <script src="{{ asset('js/video-scrollers.js') }}"></script>
   <script src="{{ asset('js/jquery.jscroll.min.js') }}" defer></script>
   <script>
-Echo.channel('comments')
-.listen('NewComment', (e) => {
-  console.log(e.comment);
-});
+    Echo.channel('comments')
+      .listen('NewComment', (e) => {
+        console.log(e.comment);
+      });
   </script>
   @yield('scripts')
 
