@@ -8,6 +8,7 @@ use App\Section;
 use App\Post;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
 use App\Rules\Captcha;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Contact;
