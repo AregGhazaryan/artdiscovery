@@ -54,5 +54,5 @@ window.Echo = new Echo({
     wsHost: window.location.hostname,
     wsPort: 6001,
     enabledTransports: ['ws', 'wss'],
-    encrypted: true
+    encrypted: false
 });
