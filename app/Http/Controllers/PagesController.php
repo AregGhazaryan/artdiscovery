@@ -67,4 +67,9 @@ class PagesController extends Controller
       $page = Page::find('2');
       return view('pages.page')->with('page', $page);
     }
+
+    public function FAQ(){
+      $page = Page::find('3');
+      return view('pages.page')->with('page', $page);
+    }
 }

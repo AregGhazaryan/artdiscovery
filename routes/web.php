@@ -24,6 +24,7 @@ Route::get('/contact', 'PagesController@contact')->name('contact');
 Route::post('/contact', 'PagesController@sendMail')->name('send-mail');
 Route::get('/privacypolicy', 'PagesController@privacyPolicy')->name('privacy-policy');
 Route::get('/termsofservice', 'PagesController@termsOfService')->name('terms-of-service');
+Route::get('/faq', 'PagesController@FAQ')->name('faq');
 
 Route::middleware('admin')->group(function () {
     Route::post('/events', 'EventController@store')->name('events.store');

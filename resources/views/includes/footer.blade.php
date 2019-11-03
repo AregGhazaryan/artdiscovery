@@ -29,7 +29,7 @@
                 @lang('footer.contact')</a>
             </li>
             <li>
-              <a href="#!">
+              <a href="{{ route('faq') }}">
                 @lang('footer.faq')</a>
             </li>
           </ul>
