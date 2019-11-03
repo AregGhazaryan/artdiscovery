@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
+<nav class="navbar navbar-expand-xl navbar-light bg-white shadow-sm fixed-top">
   <div class="container">
     <a class="navbar-brand" href="{{ url('/') }}">
       <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 746.97 233.39">
@@ -55,12 +55,22 @@
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-book-open"></i>
+            <i class="fas fa-book-open mr-1"></i>
             @lang('footer.aboutus')
           </a>
           <div class="dropdown-menu d-flex flex-column" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ route('contact') }}"><i class="fas fa-envelope"></i>@lang('footer.contact')</a>
-            <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-gb mr-2"></span>@lang('footer.faq')</a>
+            <a class="dropdown-item" href="{{ route('contact') }}"><i class="fas fa-envelope mr-2"></i>@lang('footer.contact')</a>
+            <a class="dropdown-item" href="{{ route('faq') }}"><i class="fas fa-question-circle mr-2"></i>@lang('footer.faq')</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-exclamation mr-1"></i>
+            @lang('footer.website')
+          </a>
+          <div class="dropdown-menu d-flex flex-column" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('privacy-policy') }}"><i class="fas fa-file-contract mr-2"></i>@lang('footer.privacy')</a>
+            <a class="dropdown-item" href="{{ route('terms-of-service') }}"><i class="fas fa-file-alt mr-2"></i>@lang('footer.services')</a>
           </div>
         </li>
 
