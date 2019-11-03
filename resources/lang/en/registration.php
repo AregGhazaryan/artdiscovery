@@ -11,7 +11,7 @@ return [
   'passconfirm' => 'Confirm Password',
   'register' => 'Register',
   'mobile' => 'Mobile Number',
-  'terms' => 'I agree with <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>',
+  'terms' => 'I agree with <a href="/termsofservice" target="_blank">Terms of Service</a> and <a href="/privacypolicy" target="_blank">Privacy Policy</a>',
   'address' => 'Address',
   'birthdate' => 'Birthday',
   'changepass' => 'Change password'

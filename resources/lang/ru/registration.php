@@ -13,5 +13,6 @@ return [
   'mobile' => 'Номер мобильного',
   'address' => 'Адрес',
   'birthdate' => 'День рождение',
-  'changepass' => 'Изменить пароль'
+  'changepass' => 'Изменить пароль',
+  'terms' =>'Я согласен с <a href="/termsofservice" target="_blank">Условия использования</a> и <a href="/privacypolicy" target="_blank">Политика конфиденциальности</a>',
 ];
