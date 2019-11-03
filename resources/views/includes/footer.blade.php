@@ -36,10 +36,10 @@
       </div>
       <hr class="clearfix w-100 d-md-none">
       <div class="col mx-auto text-center">
-        <h6 class="font-weight-bold text-uppercase mt-3 mb-4">
-          @lang('footer.developer')</h6>
+        {{-- <h6 class="font-weight-bold text-uppercase mt-3 mb-4">
+          @lang('footer.developer')</h6> --}}
           <a href="https://areg.site" target="_blank">
-            <img class="footer-dev-logo" src="{{ asset('img/a.png') }}"></a>
+            <img class="footer-dev-logo" src="{{ asset('img/a-white.png') }}"></a>
       </div>
     </div>
   </div>
