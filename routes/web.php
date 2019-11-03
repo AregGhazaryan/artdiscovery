@@ -11,7 +11,7 @@ use App\User;
 |
 */
 
-// Auth::routes(['verify' => true]);
+Auth::routes(['verify' => true]);
 
 Route::get('/', 'PagesController@index')->name('home');
 Route::get('/sections', 'PagesController@sections')->name('sections');
