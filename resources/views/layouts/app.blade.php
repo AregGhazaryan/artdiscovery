@@ -74,9 +74,7 @@
   @include('includes.footer')
   <script src="{{ mix('js/app.js') }}"></script>
   <script>
-    window.translations = {
-      !!Cache::get('translations') !!
-    }
+    window.translations = {!! Cache::get('translations') !!}
   </script>
   <script src="{{ asset('js/video-scrollers.js') }}"></script>
   <script src="{{ asset('js/jquery.jscroll.min.js') }}" defer></script>

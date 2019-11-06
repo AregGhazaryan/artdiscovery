@@ -42,6 +42,5 @@ class cc extends Command
         Artisan::call('config:cache');
         Artisan::call('cache:clear');
         Artisan::call('view:clear');
-        echo 'All Cache Cleared Successfully';
     }
 }
