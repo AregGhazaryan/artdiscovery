@@ -39,7 +39,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-globe-americas mr-1"></i>
+            {{-- <i class="fas fa-globe-americas mr-1"></i> --}}
             @lang('home.language')
           </a>
           <div class="dropdown-menu d-flex flex-column" aria-labelledby="navbarDropdown">
