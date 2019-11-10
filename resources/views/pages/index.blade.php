@@ -23,9 +23,9 @@
           </div>
         </div>
       </form>
+    </div>
       @endif
       @endauth
-  </div>
   <div class="main-container d-flex justify-content-center">
     @include('includes.left-sidemenu')
 
