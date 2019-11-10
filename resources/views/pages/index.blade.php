@@ -4,7 +4,7 @@
   @auth
   @if(Gate::allows('post-crud'))
   <div class="d-flex justify-content-center">
-        <nav id="left-sidebar" class="left-sidebar js-pinned-left-sidebar" style="width:250px;">
+        <nav id="left-sidebar" class="left-sidebar js-pinned-left-sidebar">
           <div class="profile-image bg-white shadow-sm">
             <img src="/storage/profile_images/{{ Auth::user()->avatar}}">
           </div>

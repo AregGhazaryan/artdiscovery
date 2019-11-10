@@ -1,5 +1,5 @@
 #left-sidebar {
-  width: min-content;
+  width: 430px;
   padding-top: 8px;
   flex-shrink: 0;
   z-index: 1000;
@@ -18,8 +18,8 @@
 }
 
 #sidebar {
-  min-width: 250px;
-  max-width: 250px;
+  min-width: 430px;
+  // max-width: 250px;
   color: #fff;
   transition: all 0.3s;
 
