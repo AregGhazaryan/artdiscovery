@@ -70499,7 +70499,25 @@ function readURL(input) {
 $("#imgInp").change(function () {
   readURL(this);
 });
-Waves.attach('button', 'waves-light'); // Find the element that causes the body to overflow
+Waves.attach('button', 'waves-light');
+var isOnDiv = false;
+$(".sidemenu-head").mouseenter(function (e) {
+  if (isOnDiv == true) {
+    $(".sidemenu-item").collapse('hide');
+  } else {
+    $(this).children('.collapse').collapse('show');
+  }
+
+  isOnDiv = true;
+}).mouseleave(function (e) {
+  if (isOnDiv == true) {
+    $(".sidemenu-item").collapse('hide');
+  } else {
+    $(this).children('.collapse').collapse('hide');
+  }
+
+  isOnDiv = false;
+}); // Find the element that causes the body to overflow
 
 /***/ }),
 

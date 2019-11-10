@@ -44,27 +44,27 @@ var gEventId = 0;
 document.addEventListener('DOMContentLoaded', function() {
   var calendarEl = document.getElementById('calendar');
   var lang = document.getElementsByTagName('html')[0].getAttribute('lang');
-  if(lang == 'hy'){
+  if (lang == 'hy') {
     var language = hyLocale;
-  }else if(lang == 'ru'){
+  } else if (lang == 'ru') {
     var language = ruLocale;
-  }else{
+  } else {
     var language = 'en';
   }
   var calendar = new Calendar(calendarEl, {
     displayEventTime: false,
     eventColor: '#004fff',
-    locales: [ ruLocale, hyLocale],
+    locales: [ruLocale, hyLocale],
     locale: language,
     plugins: [dayGridPlugin],
     events: '/events/get',
     eventRender: function(info) {
-    info.el.className += " " + info.event.id + " ";
+      info.el.className += " " + info.event.id + " ";
     },
     eventClick: function(info) {
       gEventId = info.event.id;
       $('.fc-event-container a').css('background-color', '#004fff');
-      $('.'+ info.event.id).css("background-color", "#00da4a");
+      $('.' + info.event.id).css("background-color", "#00da4a");
       var start = info.event.start;
       var end = info.event.end;
 
@@ -101,9 +101,9 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   calendar.render();
-  $('.fc-next-button, .fc-prev-button').click(function(){
+  $('.fc-next-button, .fc-prev-button').click(function() {
     console.log(gEventId);
-        $('.'+ gEventId).css("background-color", "#00da4a");
+    $('.' + gEventId).css("background-color", "#00da4a");
   });
 });
 
@@ -752,5 +752,21 @@ $("#imgInp").change(function() {
 Waves.attach('button', 'waves-light');
 
 
+var isOnDiv = false;
+$(".sidemenu-head").mouseenter(function (e) {
+    if(isOnDiv == true){
+      $(".sidemenu-item").collapse('hide');
+    }else{
+      $(this).children('.collapse').collapse('show');
+    }
+    isOnDiv=true;
+  }).mouseleave(function(e){
+    if(isOnDiv == true){
+      $(".sidemenu-item").collapse('hide');
+    }else{
+      $(this).children('.collapse').collapse('hide');
+    }
+    isOnDiv=false;
+});
 
 // Find the element that causes the body to overflow
