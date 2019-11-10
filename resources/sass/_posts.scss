@@ -3,7 +3,7 @@
 }
 
 .post-main {
-  margin-top: 40px !important;
+  margin-top: 8px !important;
 }
 
 .post-card {
@@ -107,11 +107,19 @@ figure {
   text-align: justify !important;
 }
 
-.ck-button{
+.ck-button {
   margin: 0 !important;
   padding: 0 !important;
 }
 
 .ck-tooltip {
   display: none !important;
+}
+
+.profile-image {
+  img {
+    width: 100%;
+    height: 193px;
+    object-fit: contain;
+  }
 }

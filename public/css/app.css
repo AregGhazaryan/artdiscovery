@@ -11818,7 +11818,7 @@ main {
 }
 
 .post-main {
-  margin-top: 40px !important;
+  margin-top: 8px !important;
 }
 
 .post-card {
@@ -11925,6 +11925,13 @@ figure img {
 
 .ck-tooltip {
   display: none !important;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 193px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .comment {
