@@ -9,18 +9,18 @@
         </div>
         @foreach($sections as $section)
         <li class="active sidemenu-head">
-          @if($section->subsection())
+          {{-- @if($section->subsection())
             <a href="#section{{ $section->id }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{$section->title}}</a>
-            <ul class="list-unstyled collapse sidemenu-item" id="section{{ $section->id }}">
-              @foreach($section->subsection as $subsection)
+            <ul class="list-unstyled collapse sidemenu-item" id="section{{ $section->id }}"> --}}
+              {{-- @foreach($section->subsection as $subsection)
                 <li>
                   <a href="#" class="text-orange">{{ $subsection->title }}</a>
                 </li>
-                @endforeach
-            </ul>
-            @else
+                @endforeach --}}
+            {{-- </ul> --}}
+            {{-- @else --}}
             <a href="#section{{ $section->id }}">{{$section->title}}</a>
-            @endif
+          {{-- @endif --}}
         </li>
         @endforeach
       </ul>
