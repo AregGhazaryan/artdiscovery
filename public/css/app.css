@@ -12085,7 +12085,7 @@ figure img {
 }
 
 #sidebar {
-  min-width: 430px;
+  width: 430px;
   color: #fff;
   transition: all 0.3s;
 }
@@ -12157,8 +12157,13 @@ figure img {
     MEDIAQUERIES
 ----------------------------------------------------- */
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+  #left-sidebar {
+    display: none;
+  }
+
   #sidebar {
+    width: 0px;
     margin-left: -250px;
   }
 

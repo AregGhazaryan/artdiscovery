@@ -1,5 +1,6 @@
 #left-sidebar {
   width: 430px;
+  // width: max-content;
   padding-top: 8px;
   flex-shrink: 0;
   z-index: 1000;
@@ -18,7 +19,8 @@
 }
 
 #sidebar {
-  min-width: 430px;
+  // width: max-content;
+  width: 430px;
   // max-width: 250px;
   color: #fff;
   transition: all 0.3s;
@@ -97,8 +99,13 @@ a[aria-expanded="true"] {
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+  #left-sidebar {
+    display:none;
+    // margin-left: -250px;
+  }
   #sidebar {
+    width:0px;
     margin-left: -250px;
   }
 
