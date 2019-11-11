@@ -12066,7 +12066,9 @@ figure img {
 }
 
 #left-sidebar {
-  width: 430px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
   padding-top: 8px;
   flex-shrink: 0;
   z-index: 1000;
@@ -12085,7 +12087,7 @@ figure img {
 }
 
 #sidebar {
-  width: 430px;
+  width: 250px;
   color: #fff;
   transition: all 0.3s;
 }
