@@ -101,12 +101,13 @@ a[aria-expanded="true"] {
 ----------------------------------------------------- */
 @media (max-width: 992px) {
   #left-sidebar {
-    display:none;
+    // display:none;
+    // width:0px;
     // margin-left: -250px;
   }
   #sidebar {
-    width:0px;
-    margin-left: -250px;
+    // width:0px;
+    margin-left: -400px;
   }
 
   #sidebar.active {

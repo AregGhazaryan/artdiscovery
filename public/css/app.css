@@ -12160,13 +12160,8 @@ figure img {
 ----------------------------------------------------- */
 
 @media (max-width: 992px) {
-  #left-sidebar {
-    display: none;
-  }
-
   #sidebar {
-    width: 0px;
-    margin-left: -250px;
+    margin-left: -400px;
   }
 
   #sidebar.active {
