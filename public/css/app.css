@@ -12066,16 +12066,14 @@ figure img {
 }
 
 #left-sidebar {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  padding-top: 8px;
-  flex-shrink: 0;
-  z-index: 1000;
-  position: relative;
+  width: 252px;
   box-shadow: 0 0 0 rgba(12, 13, 14, 0.05);
-  transition: box-shadow ease-in-out 0.1s, transform ease-in-out 0.1s;
+  transition: all 0.3s;
   margin-right: 6px;
+}
+
+#left-sidebar .profile-image img {
+  height: 230px;
 }
 
 .left-sidebar--sticky-container {
@@ -12160,6 +12158,11 @@ figure img {
 ----------------------------------------------------- */
 
 @media (max-width: 992px) {
+  #left-sidebar {
+    display: none;
+    margin-left: -400px;
+  }
+
   #sidebar {
     margin-left: -400px;
   }

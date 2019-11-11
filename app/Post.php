@@ -14,6 +14,8 @@ class Post extends Model
     ];
     protected $keyType = 'string';
 
+    protected $fillable = ['section_id', 'subsection_id'];
+
     public $incrementing = false;
 
     public static function boot()

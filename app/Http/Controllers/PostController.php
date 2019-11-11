@@ -46,6 +46,8 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->content = $request->content;
         $post->user_id = Auth::user()->id;
+        $post->section_id = $request->section_id;
+        $post->subsection_id = $request->subsection_id;
         $post->save();
         $post->refresh();
         $data = [

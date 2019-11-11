@@ -1,7 +1,7 @@
 
-  <div id="new-added"></div>
+  {{-- <div id="new-added"></div> --}}
 
-  <div class="infinite-scroll">
+  <div class="infinite-scroll" id="new-added">
     @foreach($posts as $post)
     <div class="card post-card shadow-sm mt-2">
       <div class="card-header bg-white p-3 post-by">

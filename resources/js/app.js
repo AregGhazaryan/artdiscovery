@@ -475,7 +475,9 @@ $(document).on('click', '#publish-post', function(event) {
   $('.submit-loading').fadeIn().css("display", "inline-block");
   $.post("/post", {
       title: $('#post-title').val(),
-      content: editorData
+      content: editorData,
+      section_id: $('#section-id').val(),
+      subsection_id: $('#subsection-id').val()
     })
     .done(function(response) {
       var html = '<div class="card post-card shadow-sm mt-2"><div class="card-header bg-white p-3 post-by">';

@@ -19,7 +19,7 @@
                 @endforeach --}}
             {{-- </ul> --}}
             {{-- @else --}}
-            <a href="#section{{ $section->id }}">{{$section->title}}</a>
+            <a href="{{ route('section', $section->id) }}">{{$section->title}}</a>
           {{-- @endif --}}
         </li>
         @endforeach

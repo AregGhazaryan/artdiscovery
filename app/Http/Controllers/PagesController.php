@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Video;
 use App\Section;
+use App\Subsection;
 use App\Page;
 use App\Post;
 use Illuminate\Support\Facades\Cache;
@@ -21,7 +22,16 @@ class PagesController extends Controller
     {
         $posts = Post::orderBy('created_at', 'desc')->paginate(5);
         $sections = Section::all();
-        return view('pages.index', compact('sections', 'posts'));
+        $subsections = Subsection::all();
+        return view('pages.index', compact('sections', 'subsections' ,'posts'));
+    }
+
+    public function section($section)
+    {
+        $posts = Post::where('section_id',$section)->orderBy('created_at', 'desc')->paginate(5);
+        $sections = Section::all();
+        $subsections = Subsection::all();
+        return view('pages.index', compact('sections', 'subsections' ,'posts'));
     }
 
     public function contact()

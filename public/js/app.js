@@ -70277,7 +70277,9 @@ $(document).on('click', '#publish-post', function (event) {
   $('.submit-loading').fadeIn().css("display", "inline-block");
   $.post("/post", {
     title: $('#post-title').val(),
-    content: editorData
+    content: editorData,
+    section_id: $('#section-id').val(),
+    subsection_id: $('#subsection-id').val()
   }).done(function (response) {
     var html = '<div class="card post-card shadow-sm mt-2"><div class="card-header bg-white p-3 post-by">';
     html += '<a href="/profile/' + response.user['id'] + '"><img class="post-by-image mr-2" src="storage/profile_images/' + response.user['avatar'] + '" />' + response.user['first_name'] + ' ' + response.user['last_name'] + '</a><div class="dropdown post-options float-right"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item waves-light" href="/post/' + response.post['id'] + '/edit">' + edtext + '</a><a class="dropdown-item waves-light delete-post" data-id="' + response.post['id'] + '">' + deltext + '</a></div></div></div><div class="card-header bg-white p-3 align-middle post-title">' + response.post['title'] + '</div><div class="card-body">' + response.post['content'] + '</div><div class="card-footer p-2"><div class="comments-section"><div class="input-group"><input type="text" name="comment_body" class="form-control" /><button data-post="' + response.post['id'] + '" type="button" class="btn btn-primary add-comment-button submit-comment">' + trans('comments.add') + '</button></div><hr /><div class="comments-wrapper"><div class="comments-placeholder"></div></div></div>';
