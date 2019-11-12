@@ -37,10 +37,10 @@
               {{ $video->date }}
             </td>
             <td>
-              {{ $video->section->title }}
+              {{ $video->section() ? $video->section->title : '-'}}
             </td>
             <td>
-              {{ $video->subsection->title }}
+              {{ $video->subsection() ? $video->subsection->title : '-' }}
             </td>
             <td>
               <div class="d-flex justify-content-center">
