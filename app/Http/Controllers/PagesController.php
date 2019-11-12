@@ -23,7 +23,8 @@ class PagesController extends Controller
         $posts = Post::orderBy('created_at', 'desc')->paginate(5);
         $sections = Section::all();
         $subsections = Subsection::all();
-        return view('pages.index', compact('sections', 'subsections' ,'posts'));
+        $videos = Video::all();
+        return view('pages.index', compact('sections', 'subsections' ,'posts', 'videos'));
     }
 
     public function section($section)
@@ -31,7 +32,8 @@ class PagesController extends Controller
         $posts = Post::where('section_id',$section)->orderBy('created_at', 'desc')->paginate(5);
         $sections = Section::all();
         $subsections = Subsection::all();
-        return view('pages.index', compact('sections', 'subsections' ,'posts'));
+        $videos = Video::where('section_id', $section)->get();
+        return view('pages.index', compact('sections', 'subsections' ,'posts', 'videos'));
     }
 
     public function contact()
@@ -48,7 +50,8 @@ class PagesController extends Controller
     public function sections()
     {
         $sections = Section::all();
-        return view('pages.sections')->with('sections', $sections);
+        $videos = Video::all();
+        return view('pages.sections', compact('sections', 'videos'));
     }
 
     public function sendMail(Request $request)

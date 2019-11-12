@@ -47,8 +47,10 @@
       @endif
       @endauth
   <div class="main-container d-flex justify-content-center">
-    @include('includes.left-sidemenu')
+  @include('includes.left-sidemenu')
 
   @include('components.posts.main-posts')
+
+  @include('components.videos.main-videos')
 </div>
 @endsection

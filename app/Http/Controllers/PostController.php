@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Section;
+use App\Subsection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
@@ -78,7 +80,9 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $this->authorize('update', $post);
-        return view('components.posts.edit-post')->with('post', $post);
+        $sections = Section::all();
+        $subsections = Subsection::all();
+        return view('components.posts.edit-post',compact('post', 'sections', 'subsections'));
     }
 
     /**
@@ -94,6 +98,8 @@ class PostController extends Controller
         $this->authorize('update', $post);
         $post->title = $request->title;
         $post->content = $request->content;
+        $post->section_id = $request->section_id;
+        $post->subsection_id = $request->subsection_id;
         $post->save();
         return Redirect::route('home')->with('message', trans('posts.edited'));
     }
@@ -106,8 +112,8 @@ class PostController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-      $post = Post::findOrFail($id);
-      $this->authorize('delete', $post);
+        $post = Post::findOrFail($id);
+        $this->authorize('delete', $post);
         if($request->images !== null) {
             foreach($request->images as $image){
                 $exp = explode('/', $image);
