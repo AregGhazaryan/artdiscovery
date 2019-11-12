@@ -9,5 +9,6 @@ return [
   'services' => 'Terms of Service',
   'contact' => 'Contact',
   'faq' => 'FAQ',
-  'developer' => 'Developed and Maintained By'
+  'developer' => 'Developed and Maintained By',
+  'activities' => 'Our Activities'
 ];

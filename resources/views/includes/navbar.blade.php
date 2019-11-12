@@ -37,9 +37,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{-- <i class="fas fa-globe-americas mr-1"></i> --}}
             @lang('home.language')
           </a>
           <div class="dropdown-menu d-flex flex-column" aria-labelledby="navbarDropdown">
@@ -47,7 +46,7 @@
             <a class="dropdown-item" href="/lang/en"><span class="flag-icon flag-icon-gb mr-2"></span>English</a>
             <a class="dropdown-item" href="/lang/ru"><span class="flag-icon flag-icon-ru mr-2"></span>Русский</a>
           </div>
-        </li>
+        </li> --}}
         <li class="nav-item">
           <a class="nav-link" href="{{ route('events.index') }}">
             @lang('events.index')</a>
@@ -59,6 +58,7 @@
           </a>
           <div class="dropdown-menu d-flex flex-column" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{ route('contact') }}"><i class="fas fa-envelope mr-2"></i>@lang('footer.contact')</a>
+            <a class="dropdown-item" href="{{ route('activities') }}"><i class="fas fa-chalkboard mr-2"></i>@lang('footer.activities')</a>
             <a class="dropdown-item" href="{{ route('faq') }}"><i class="fas fa-question-circle mr-2"></i>@lang('footer.faq')</a>
           </div>
         </li>

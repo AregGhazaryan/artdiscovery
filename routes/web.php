@@ -25,6 +25,7 @@ Route::post('/contact', 'PagesController@sendMail')->name('send-mail');
 Route::get('/privacypolicy', 'PagesController@privacyPolicy')->name('privacy-policy');
 Route::get('/termsofservice', 'PagesController@termsOfService')->name('terms-of-service');
 Route::get('/faq', 'PagesController@FAQ')->name('faq');
+Route::get('/activites', 'PagesController@activities')->name('activities');
 Route::get('/page/{section_id}', 'PagesController@section')->name('section');
 
 

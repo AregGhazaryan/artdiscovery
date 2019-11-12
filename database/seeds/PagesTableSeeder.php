@@ -23,14 +23,20 @@ class PagesTableSeeder extends Seeder
         //     'title_hy' => 'Օգտագործման Համաձայնագիր',
         //     'title_en' => 'Terms of Service',
         //     'title_ru' => ' Условия использования',
-        //   ]
+        //   ],
+        // [
+        //   'id' => '3',
+        //   'title_hy' => 'Հաճախ տրվող հարցեր',
+        //   'title_en' => 'FAQ',
+        //   'title_ru' => ' Вопросы-Ответы',
+        // ]
         // ]);
 
         DB::table('pages')->insert([
-          'id' => '3',
-          'title_hy' => 'Հաճախ տրվող հարցեր',
-          'title_en' => 'FAQ',
-          'title_ru' => ' Вопросы-Ответы',
+          'id' => '4',
+          'title_hy' => 'Մեր գործունեությունը',
+          'title_en' => 'Our Activities',
+          'title_ru' => ' Наша деятельность',
         ]);
     }
 }

@@ -29,6 +29,10 @@
                 @lang('footer.contact')</a>
             </li>
             <li>
+              <a href="{{route('activities')}}">
+                @lang('footer.activities')</a>
+            </li>
+            <li>
               <a href="{{ route('faq') }}">
                 @lang('footer.faq')</a>
             </li>
