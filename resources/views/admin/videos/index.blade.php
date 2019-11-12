@@ -37,12 +37,12 @@
               {{ $video->date }}
             </td>
             <td>
-              @if($video->section->exists())
+              @if($video->section !== null)
                 {{ $video->section->title !== null ? $video->section->title : '-'}}
               @endif
             </td>
             <td>
-            @if($video->subsection->exists())
+            @if($video->subsection !== null)
               {{ $video->subsection->title !== null ? $video->subsection->title : '-' }}
             @endif
             </td>
