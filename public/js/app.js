@@ -70581,11 +70581,11 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: "ABWQE",
   cluster: "mt1",
-  host: window.location.hostname + ':6001',
-  // wsHost: window.location.hostname,
-  // wsPort: 6001,
-  enabledTransports: 'ws',
-  // enabledTransports: ['ws', 'wss'],
+  // host: window.location.hostname + ':6001',
+  wsHost: window.location.hostname,
+  wsPort: 6001,
+  // enabledTransports: 'ws',
+  enabledTransports: ['ws', 'wss'],
   encrypted: false
 });
 

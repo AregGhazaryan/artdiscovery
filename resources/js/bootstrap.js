@@ -51,10 +51,10 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    host: window.location.hostname + ':6001',
-    // wsHost: window.location.hostname,
-    // wsPort: 6001,
-    enabledTransports: 'ws',
-    // enabledTransports: ['ws', 'wss'],
+    // host: window.location.hostname + ':6001',
+    wsHost: window.location.hostname,
+    wsPort: 6001,
+    // enabledTransports: 'ws',
+    enabledTransports: ['ws', 'wss'],
     encrypted: false
 });
