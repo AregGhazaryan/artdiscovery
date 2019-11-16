@@ -18,8 +18,8 @@
               @lang('adminvideos.dates')</th>
             <th scope="col">
               @lang('adminvideos.section')</th>
-            <th scope="col">
-              @lang('adminvideos.subsection')</th>
+            {{-- <th scope="col">
+              @lang('adminvideos.subsection')</th> --}}
             <th scope="col">
               @lang('adminvideos.actions')</th>
           </tr>
@@ -41,11 +41,11 @@
                 {{ $video->section->title !== null ? $video->section->title : '-'}}
               @endif
             </td>
-            <td>
+            {{-- <td>
             @if($video->subsection !== null)
               {{ $video->subsection->title !== null ? $video->subsection->title : '-' }}
             @endif
-            </td>
+            </td> --}}
             <td>
               <div class="d-flex justify-content-center">
 
