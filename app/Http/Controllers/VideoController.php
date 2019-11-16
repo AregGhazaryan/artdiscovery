@@ -30,9 +30,9 @@ class VideoController extends Controller
     public function create()
     {
         $sections = Section::all();
-        $subsections = Subsection::all();
+        // $subsections = Subsection::all();
         $currencies = Currency::all();
-        return view('admin.videos.create', compact('sections', 'subsections', 'currencies'));
+        return view('admin.videos.create', compact('sections', 'currencies'));
     }
 
     /**
@@ -49,7 +49,7 @@ class VideoController extends Controller
             'title_en' => 'string|max:255',
             'title_ru' => 'string|max:255',
             'section_id' => 'required|exists:sections,id',
-            'subsection_id' => 'required|exists:subsections,id',
+            // 'subsection_id' => 'required|exists:subsections,id',
             'description_en' => 'string',
             'description_hy' => 'string',
             'description_ru' => 'string',
@@ -94,7 +94,7 @@ class VideoController extends Controller
         $video->title_en = $request->title_en;
         $video->title_ru = $request->title_ru;
         $video->section_id = $request->section_id;
-        $video->subsection_id = $request->subsection_id;
+        // $video->subsection_id = $request->subsection_id;
         $video->description_hy = $request->description_hy;
         $video->description_en = $request->description_en;
         $video->description_ru = $request->description_ru;
@@ -124,10 +124,10 @@ class VideoController extends Controller
     public function edit($id)
     {
         $sections = Section::all();
-        $subsections = Subsection::all();
+        // $subsections = Subsection::all();
         $video = Video::findOrFail($id);
         $currencies = Currency::all();
-        return view('admin.videos.edit', compact('sections', 'subsections', 'video', 'currencies'));
+        return view('admin.videos.edit', compact('sections', 'video', 'currencies'));
     }
 
     /**

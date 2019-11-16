@@ -37,7 +37,7 @@
                 @endforeach
               </select>
           </div>
-          <div class="form-group col">
+          {{-- <div class="form-group col">
             <label for="subsection">
               @lang('videoupload.subsection')</label>
               <select name="subsection_id" id="subsection" class="form-control">
@@ -45,7 +45,7 @@
                 <option value="{{ $section->id }}">{{ $section->title }}</option>
                 @endforeach
               </select>
-          </div>
+          </div> --}}
         </div>
         <div class="form-group">
           <label for="video">
