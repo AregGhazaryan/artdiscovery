@@ -3,7 +3,7 @@
 
   <div class="infinite-scroll" id="new-added">
     @foreach($posts as $post)
-      <div class="card post-card mt-2" style="border: 1px solid #{{ $post->section->color }} !important;">
+      <div class="card post-card mt-2" style="border: 1px solid #{{ $post->section !== null ? $post->section->color : ''}} !important;">
     {{-- <div class="card post-card mt-2" style="box-shadow: 0 0 0.5rem #{{ $post->section->color }} !important;"> --}}
       <div class="card-header bg-white p-3 post-by">
         <a href="{{ route('profile.show', $post->user->id) }}"><img class="post-by-image mr-2" src="storage/profile_images/{{ $post->user->avatar }}" />
@@ -31,7 +31,7 @@
       </div>
       <div class="card-footer p-2">
         @if($post->section !== null)
-        <a href="{{ route('section', $post->section->id) }}" class="text-light btn btn-lg w-100" style="text-shadow: 2px 1px 2px #5B5B5B; background-color:#{{ $post->section->color }};">{{$post->section->title}}</a>
+        <a href="{{ route('section', $post->section->id) }}" class="text-light btn btn-lg w-100" style="text-shadow: 2px 1px 2px #5B5B5B; background-color:#{{ $post->section !== null ? $post->section->color : ''}}">{{$post->section->title}}</a>
       @endif
         @include('components.comments.comments-section')
       </div>

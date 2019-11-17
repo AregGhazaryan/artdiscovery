@@ -11612,6 +11612,10 @@ main {
   border-bottom-right-radius: 0.25rem !important;
 }
 
+.add-comment-button:hover {
+  font-size: 23pt;
+}
+
 .centered-table tr th {
   text-align: center;
 }
