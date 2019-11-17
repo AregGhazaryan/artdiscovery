@@ -125,6 +125,8 @@ figure {
 }
 
 .scroller{
+  position: sticky;
+  top: 5rem;
   overflow: auto;
   height: 100vh;
 }
