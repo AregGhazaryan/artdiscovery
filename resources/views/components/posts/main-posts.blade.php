@@ -30,7 +30,7 @@
       </div>
       <div class="card-footer p-2">
         @if($post->section !== null)
-        <a href="{{ route('section', $post->section->id) }}" class="text-light btn btn-sm w-100" style="text-stroke: 1px #001959; background-color:#{{ $post->section->color }};">{{$post->section->title}}</a>
+        <a href="{{ route('section', $post->section->id) }}" class="text-light btn btn-sm w-100" style="text-shadow: 2px 1px 2px #5B5B5B; background-color:#{{ $post->section->color }};">{{$post->section->title}}</a>
       @endif
         @include('components.comments.comments-section')
       </div>
