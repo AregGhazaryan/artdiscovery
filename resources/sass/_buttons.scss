@@ -55,11 +55,11 @@
   border-top-right-radius: 0.25rem !important;
   border-bottom-right-radius: 0.25rem !important;
   transition-timing-function: ease-out;
-  transition: 0.4s;
+  transition: 0.2s;
 
   &:hover{
-    transition: 0.4s;
+    transition: 0.2s;
     transition-timing-function: ease-in;
-    opacity: 0.5;
+    font-size: 12pt;
   }
 }
