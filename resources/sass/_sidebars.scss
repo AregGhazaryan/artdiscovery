@@ -10,9 +10,9 @@
   transition: all 0.3s;
   margin-right: 6px;
 
-  .profile-image{
-    img{
-      height:230px;
+  .profile-image {
+    img {
+      height: 230px;
     }
   }
 }
@@ -29,9 +29,9 @@
 
 #sidebar {
   // width: max-content;
-    width: 250px;
-    // max-height: 330px;
-    // overflow: auto;
+  width: 250px;
+  // max-height: 330px;
+  // overflow: auto;
   // max-width: 250px;
   color: #fff;
   transition: all 0.3s;
@@ -101,6 +101,7 @@ a[aria-expanded="true"] {
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
+
 #content {
   width: 100%;
   padding: 20px;
@@ -112,11 +113,12 @@ a[aria-expanded="true"] {
 ----------------------------------------------------- */
 @media (max-width: 992px) {
   #left-sidebar {
-    display:none;
+    display: none;
     // width:0px;
     // margin-left: -250px;
     margin-left: -400px;
   }
+
   #sidebar {
     // width:0px;
     margin-left: -400px;
@@ -131,6 +133,12 @@ a[aria-expanded="true"] {
   }
 }
 
-.video-sidebar{
-  overflow:auto;
+.video-sidebar {
+  position: sticky;
+  width: auto;
+  max-height: 85vh;
+  overflow: auto;
+  top: 5rem;
+  margin-bottom: 8px;
+  overflow: auto;
 }

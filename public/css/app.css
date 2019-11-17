@@ -12187,6 +12187,13 @@ figure img {
 }
 
 .video-sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  width: auto;
+  max-height: 85vh;
+  overflow: auto;
+  top: 5rem;
+  margin-bottom: 8px;
   overflow: auto;
 }
 
