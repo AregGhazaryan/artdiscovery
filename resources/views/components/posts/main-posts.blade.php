@@ -1,5 +1,6 @@
 
   {{-- <div id="new-added"></div> --}}
+<div class="scroller">
 
   <div class="infinite-scroll" id="new-added">
     @foreach($posts as $post)
@@ -40,6 +41,7 @@
     {{ $posts->links() }}
 
   </div>
+</div>
   @section('scripts')
   <script type="text/javascript">
     $('ul.pagination').hide();

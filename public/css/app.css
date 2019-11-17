@@ -11942,7 +11942,7 @@ figure img {
      object-fit: contain;
 }
 
-.infinite-scroll {
+.scroller {
   overflow: auto;
   height: 100vh;
 }
