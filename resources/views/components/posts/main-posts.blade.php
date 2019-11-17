@@ -3,7 +3,7 @@
 
   <div class="infinite-scroll" id="new-added">
     @foreach($posts as $post)
-    <div class="card post-card mt-2" style="box-shadow: 0 0.125rem 0.25rem #{{ $post->section->color }} !important;">
+    <div class="card post-card mt-2" style="box-shadow: 0 0 0.25rem #{{ $post->section->color }} !important;">
       <div class="card-header bg-white p-3 post-by">
         <a href="{{ route('profile.show', $post->user->id) }}"><img class="post-by-image mr-2" src="storage/profile_images/{{ $post->user->avatar }}" />
           {{ $post->user->fullname }}
