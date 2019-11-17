@@ -12080,12 +12080,16 @@ figure img {
   position: -webkit-sticky;
   position: sticky;
   width: auto;
+  max-height: 100vh;
+  overflow: auto;
   top: 5rem;
   margin-bottom: 8px;
 }
 
 #sidebar {
   width: 250px;
+  max-height: 330px;
+  overflow: auto;
   color: #fff;
   transition: all 0.3s;
 }

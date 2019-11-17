@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
 use App\User;
 use App\Comment;
+use App\Section;
 
 class Post extends Model
 {
@@ -40,6 +41,10 @@ class Post extends Model
 
     public function comment()
     {
-      $this->morphedByMany('App\Post', 'commentable');
+      return $this->morphedByMany('App\Post', 'commentable');
+    }
+
+    public function section(){
+      return $this->belongsTo(Section::class, 'section_id');
     }
 }

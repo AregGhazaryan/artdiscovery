@@ -74,6 +74,14 @@ function insertText(color, id, title) {
     }
 }
 
+function insertRaw(color, id, title){
+  if (lightOrDark('#' + color) === 'dark') {
+      $('#' + id).append('<span class="section-text-white text-white text-center">' + title + '</span>');
+  } else {
+      $('#' + id).append('<span class="section-text-dark text-center">' + title + '</span>');
+  }
+}
+
 function genId(length) {
     var result = '';
     var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
