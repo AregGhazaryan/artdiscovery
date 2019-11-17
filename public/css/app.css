@@ -11942,6 +11942,11 @@ figure img {
      object-fit: contain;
 }
 
+.infinite-scroll {
+  overflow: auto;
+  height: 100vh;
+}
+
 .comment {
   margin-top: 5px;
 }
