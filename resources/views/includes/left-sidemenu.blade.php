@@ -26,7 +26,7 @@
       </ul>
     </nav>
 
-    <nav id="sidebar">
+    <nav id="sidebar" class="shadow-lg">
       <div class="about-us-sidebar bg-white shadow-sm">
         <ul class="list-unstyled components bg-white shadow-sm">
           <div class="sidebar-header text-dark">

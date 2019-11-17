@@ -14,7 +14,6 @@
           <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-ellipsis-v"></i>
           </a>
-
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <a class="dropdown-item waves-light edit-post" href="{{route('post.edit', $post->id)}}">@lang('posts.edit')</a>
             <a class="dropdown-item waves-light delete-post" data-id="{{ $post->id }}">@lang('posts.delete')</a>
