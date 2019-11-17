@@ -36,7 +36,7 @@
         <div class="input-group">
           <input type="text" name="comment_body" class="form-control" class="form-control" />
           <button data-comment="{{ $comment->id }}" data-parent="true" data-post="{{ $post->id }}" type="submit"
-            class="btn btn-primary add-comment-button submit-reply">@lang('comments.reply')</button>
+            class="btn add-comment-button submit-reply" style="background-color:#{{ $post->section->color }};">@lang('comments.reply')</button>
         </div>
       </div>
       @endauth
