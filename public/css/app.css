@@ -12186,3 +12186,7 @@ figure img {
   }
 }
 
+.video-sidebar {
+  overflow: auto;
+}
+
